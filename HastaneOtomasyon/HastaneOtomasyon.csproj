@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5A8AE881-82BE-41C6-81C1-D889A84B5E97}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HastaneOtomasyon</RootNamespace>
+    <AssemblyName>HastaneOtomasyon</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="DBServices.cs" />
+    <Compile Include="Models\Discharged.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Polyclinic.cs" />
+    <Compile Include="Models\GenericResponse.cs" />
+    <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\AddPolyclinic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\AddPolyclinic.Designer.cs">
+      <DependentUpon>AddPolyclinic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\DischargedPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\DischargedPanel.Designer.cs">
+      <DependentUpon>DischargedPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\PatientInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\PatientInformation.Designer.cs">
+      <DependentUpon>PatientInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\PatientList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\PatientList.Designer.cs">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\PatientOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\PatientOperations.Designer.cs">
+      <DependentUpon>PatientOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\SearchFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\SearchFile.Designer.cs">
+      <DependentUpon>SearchFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\UserDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\UserDefinition.Designer.cs">
+      <DependentUpon>UserDefinition.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\AddPolyclinic.resx">
+      <DependentUpon>AddPolyclinic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\DischargedPanel.resx">
+      <DependentUpon>DischargedPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\PatientInformation.resx">
+      <DependentUpon>PatientInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\PatientList.resx">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\PatientOperations.resx">
+      <DependentUpon>PatientOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\SearchFile.resx">
+      <DependentUpon>SearchFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\UserDefinition.resx">
+      <DependentUpon>UserDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Erase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vista_icons_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastaekle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastasec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastataburcu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastayazdir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastaonizleme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-kapat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\round_remove_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico-logout.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico-poliklinik.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape_align_middle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastabul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnico-hastabilgisi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
