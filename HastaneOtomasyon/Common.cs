@@ -102,6 +102,46 @@ namespace HastaneOtomasyon
         public const string ConnectionString = @"Server=.\; Database=SOHATS; Integrated Security = SSPI";
         public const string LogPath = @"C:\LOG\SOHATS_LOG.txt";
 
+        #region procedure names
+        public const string hastasil = "delete_hasta";
+        public const string kullanıcısil = "delete_kullanici";
+        public const string polikliniksil = "delete_poliklinik";
+        public const string sevksil = "delete_sevk";
+        public const string dosyanobul = "dosyano_ile_bul";
+        public const string hasthastaadbul = "hastaAdı_ile_bul";
+        public const string cikisKaydet = "insert_cikis";
+        public const string hastaKaydet = "insert_hasta";
+        public const string kullanıcıKaydet = "insert_kullanici";
+        public const string poliklinikKaydet = "insert_poliklinik";
+        public const string sevkKaydet = "insert_sevk";
+        public const string hastaGuncelle = "update_hasta";
+        public const string kullanıcıGüncelle = "update_kullanıcı";
+        public const string poliklinikGuncelle = "update_poliklinik";
+        public const string sevkGuncelle = "update_sevk";
+
+        private string CreateProcedureText(string tablo,string filter,string[] alanlar)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("SELECT ");
+            if(alanlar.Length > 0)
+            {
+                bool first = true;
+                foreach (var item in alanlar)
+                {
+                    stringBuilder.Append( (first)? item : " ,"+item );
+                    first = false;
+                }
+            }
+            stringBuilder.Append(" FroM " + tablo);
+            if(filter.Length > 1)
+            {
+                stringBuilder.Append(" WHERE "+filter);
+            }
+
+            return stringBuilder.ToString();
+        }
+        #endregion
         #endregion
     }
 }

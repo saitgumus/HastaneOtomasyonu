@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace HastaneOtomasyon.Models
 {
-    public class GenericResponse
+    public class GenericResponse<T>
     {
         public bool Success;
-        public object Value;
+        public T Value;
         public string ErrorMessage;
 
-        public GenericResponse(object obj)
+        public GenericResponse()
+        {
+        }
+        public GenericResponse(T obj)
         {
             this.Value = obj;
         }
