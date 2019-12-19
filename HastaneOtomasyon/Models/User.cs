@@ -18,7 +18,7 @@ namespace HastaneOtomasyon.Models
         private string ceptel;
         private string adres;
         private string unvan;
-        private DateTime? iseBaslama;
+        private DateTime iseBaslama;
         private string maas;
         private string dogumYeri;
         private string anneAd;
@@ -26,7 +26,7 @@ namespace HastaneOtomasyon.Models
         private string cinsiyet;
         private string kanGrubu;
         private string medeniHal;
-        private DateTime? dogumTarihi;
+        private DateTime dogumTarihi;
         private string tcKimlikNo;
         private string userName;
         #endregion
@@ -41,6 +41,7 @@ namespace HastaneOtomasyon.Models
             set
             {
                 kodu = value;
+
             }
         }
         public String Ad
@@ -131,7 +132,7 @@ namespace HastaneOtomasyon.Models
                 unvan = value;
             }
         }
-        public DateTime? IseBaslama
+        public DateTime IseBaslama
         {
             get
             {
@@ -219,7 +220,7 @@ namespace HastaneOtomasyon.Models
                 medeniHal = value;
             }
         }
-        public DateTime? DogumTarihi
+        public DateTime DogumTarihi
         {
             get
             {

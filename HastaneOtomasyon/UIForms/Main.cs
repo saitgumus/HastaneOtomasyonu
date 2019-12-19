@@ -26,10 +26,10 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
-       {
+        {
             menum = HomeMenuStrip;
             menuReferansBilgisi = menuReferanslar;
-           
+
             Login login = new Login();
             login.MdiParent = this;
             login.Show();
@@ -58,6 +58,29 @@ namespace HastaneOtomasyon.UIForms
             Application.Restart();
         }
 
+        /// <summary>
+        /// kullanıcı tanıtma
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuKullanici_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            addUser.MdiParent = this;
+            addUser.Show();
 
+        }
+
+        /// <summary>
+        /// hasta işlemlerini açar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuHastaIslemleri_Click(object sender, EventArgs e)
+        {
+            PatientOperations patientOperations = new PatientOperations();
+            patientOperations.MdiParent = this;
+            patientOperations.Show();
+        }
     }
 }

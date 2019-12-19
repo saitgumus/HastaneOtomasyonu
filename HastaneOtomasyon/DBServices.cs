@@ -621,7 +621,7 @@ namespace HastaneOtomasyon
                 user.CepTel = dr[6].ToString();
                 user.Adres = dr[7].ToString();
                 user.Unvan = dr[8].ToString();
-                user.IseBaslama = (dr[9] != DBNull.Value) ? Convert.ToDateTime(dr[9]): DateTime.MinValue ;
+                user.IseBaslama = (dr[9] != DBNull.Value) ? Convert.ToDateTime(dr[9]) : DateTime.MinValue;
                 user.Maas = dr[10].ToString();
                 user.DogumYeri = dr[11].ToString();
                 user.AnneAd = dr[12].ToString();
@@ -745,6 +745,74 @@ namespace HastaneOtomasyon
                 pol.Durum = dr[1].ToString();
                 pol.Aciklama = dr[2].ToString();
                 data.Add(pol);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// işlem kayıtlarını getirir
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<Operation>> SelectOperation()
+        {
+            var returnObject = new GenericResponse<List<Operation>>();
+
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.operationTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<Operation> data = new List<Operation>();
+            Operation dt = new Operation();
+            while (dr.Read())
+            {
+                dt = new Operation();
+                dt.IslemAdi = dr[0].ToString();
+                dt.BirimFiyat = dr[1].ToString();
+                data.Add(dt);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+       
+        /// <summary>
+        /// sevk select sorgusu
+        /// </summary>
+        /// <param name="alanlar"></param>
+        /// <param name="filtre"></param>
+        /// <returns></returns>
+        public GenericResponse<List<Transfer>> SelectTransfer(string[] alanlar, string filtre)
+        {
+            var returnObject = new GenericResponse<List<Transfer>>();
+
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.operationTable, alanlar, filtre);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<Transfer> data = new List<Transfer>();
+            Transfer dt = new Transfer();
+            while (dr.Read())
+            {
+                dt = new Transfer();
+                dt.Poliklinik = dr[0].ToString();
+                dt.Sira = dr[1].ToString();
+                dt.Saat = dr[2].ToString();
+                dt.YapilanIslem = dr[3].ToString();
+                dt.DrKod = dr[4].ToString();
+                dt.Miktar = dr[5].ToString();
+                dt.BirimFiyat = dr[6].ToString();
+                data.Add(dt);
             }
             endConnectDB();
             returnObject.Value = data;

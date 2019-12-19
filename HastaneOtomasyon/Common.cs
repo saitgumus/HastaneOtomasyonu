@@ -40,7 +40,13 @@ namespace HastaneOtomasyon
         public const string msg_silmeHata = "Silme işlemi Yapılamadı.";
         public const string msg_silmeOk = "Silindi.";
         public const string msg_selectRecordWarning = "Lütfen bir kayıt seçiniz.";
-        public const string msg_silmeIslemiSoru= "Seçili kayıt silisin mi?";
+        public const string msg_silmeIslemiSoru = "Seçili kayıt silisin mi?";
+        public const string msg_selectHata = "Kayıtlar getirilemedi.";
+        public const string msg_kayıtOk = "Kaydedildi";
+
+
+        public const string msg_seciniz = "Seçiniz";
+        public const string msg_hepsi = "Hepsi";
 
         #endregion
         #region message metods
@@ -95,7 +101,7 @@ namespace HastaneOtomasyon
         /// </summary>
         /// <param name="subject"></param>
         /// <param name="message"></param>
-        public static void WriteLog(string subject,string message)
+        public static void WriteLog(string subject, string message)
         {
             StreamWriter streamWriter = new StreamWriter(LogPath, true);
 
@@ -113,7 +119,7 @@ namespace HastaneOtomasyon
         #endregion
 
         /// <summary>
-        /// boşluk kontrolü yapar
+        /// string boş değil ise true döner
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -138,7 +144,33 @@ namespace HastaneOtomasyon
             bool ret = true;
             foreach (var item in control.Controls.OfType<TextBox>())
             {
-               if(!SpaceControl(item.Text))
+                if (!SpaceControl(item.Text))
+                {
+                    item.BackColor = Color.LightCoral;
+                    ret = false;
+                }
+                else
+                {
+                    item.BackColor = Color.White;
+                }
+            }
+
+            foreach (var item in control.Controls.OfType<MaskedTextBox>())
+            {
+                if (!SpaceControl(item.Text))
+                {
+                    item.BackColor = Color.LightCoral;
+                    ret = false;
+                }
+                else
+                {
+                    item.BackColor = Color.White;
+                }
+            }
+
+            foreach (var item in control.Controls.OfType<ComboBox>())
+            {
+                if (item.SelectedIndex < 0)
                 {
                     item.BackColor = Color.LightCoral;
                     ret = false;
@@ -178,6 +210,15 @@ namespace HastaneOtomasyon
                 item.Text = "";
             }
 
+            foreach (var item in parent.Controls.OfType<MaskedTextBox>())
+            {
+                item.Text = "";
+            }
+
+            foreach (var item in parent.Controls.OfType<ComboBox>())
+            {
+                item.SelectedIndex = 0;
+            }
         }
 
 
@@ -206,7 +247,7 @@ namespace HastaneOtomasyon
         public const string kullanıcıGüncelle = "update_kullanıcı";
         public const string poliklinikGuncelle = "update_poliklinik";
         public const string sevkGuncelle = "update_sevk";
-        
+
 
         public const string userTable = "kullanici";
         public const string patientTable = "hasta";
@@ -221,17 +262,17 @@ namespace HastaneOtomasyon
         /// <param name="filter"></param>
         /// <param name="alanlar"></param>
         /// <returns></returns>
-        public static string CreateProcedureText(string tablo,string[] alanlar, string filter)
+        public static string CreateProcedureText(string tablo, string[] alanlar, string filter)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.Append("SELECT ");
-            if(alanlar != null && alanlar.Length > 0)
+            if (alanlar != null && alanlar.Length > 0)
             {
                 bool first = true;
                 foreach (var item in alanlar)
                 {
-                    stringBuilder.Append( (first)? item : " ,"+item );
+                    stringBuilder.Append((first) ? item : " ," + item);
                     first = false;
                 }
             }
@@ -240,9 +281,9 @@ namespace HastaneOtomasyon
                 stringBuilder.Append(" * ");
             }
             stringBuilder.Append(" FROM " + tablo);
-            if(filter != null && filter.Length > 1)
+            if (filter != null && filter.Length > 1)
             {
-                stringBuilder.Append(" WHERE "+filter);
+                stringBuilder.Append(" WHERE " + filter);
             }
 
             return stringBuilder.ToString();

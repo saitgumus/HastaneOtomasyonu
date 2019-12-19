@@ -43,9 +43,17 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void Login_Load(object sender, EventArgs e)
         {
+            GetUsers();
+        }
+
+        /// <summary>
+        /// kullanıcıları al
+        /// </summary>
+        private void GetUsers()
+        {
             userList = new List<User>();
 
-            Request<User,List<User>> request = new Request<User,List<User>>();
+            Request<User, List<User>> request = new Request<User, List<User>>();
             request.MethodName = "SelectUser";
 
             GenericResponse<List<User>> responseUser = request.Execute();

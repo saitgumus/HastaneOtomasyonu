@@ -52,7 +52,8 @@
             this.menuRapor});
             this.HomeMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.HomeMenuStrip.Name = "HomeMenuStrip";
-            this.HomeMenuStrip.Size = new System.Drawing.Size(1065, 40);
+            this.HomeMenuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.HomeMenuStrip.Size = new System.Drawing.Size(799, 40);
             this.HomeMenuStrip.TabIndex = 2;
             this.HomeMenuStrip.Text = "menuStrip1";
             this.HomeMenuStrip.Visible = false;
@@ -67,7 +68,7 @@
             this.menuReferanslar.Image = global::HastaneOtomasyon.Properties.Resources.shape_align_middle;
             this.menuReferanslar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuReferanslar.Name = "menuReferanslar";
-            this.menuReferanslar.Size = new System.Drawing.Size(132, 36);
+            this.menuReferanslar.Size = new System.Drawing.Size(107, 36);
             this.menuReferanslar.Text = "Referanslar";
             // 
             // menuLogout
@@ -77,7 +78,7 @@
             this.menuLogout.Name = "menuLogout";
             this.menuLogout.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.O)));
             this.menuLogout.ShowShortcutKeys = false;
-            this.menuLogout.Size = new System.Drawing.Size(239, 42);
+            this.menuLogout.Size = new System.Drawing.Size(197, 42);
             this.menuLogout.Text = "Logout";
             this.menuLogout.Click += new System.EventHandler(this.menuLogout_Click);
             // 
@@ -88,7 +89,7 @@
             this.menuPoliklinik.Name = "menuPoliklinik";
             this.menuPoliklinik.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.menuPoliklinik.ShowShortcutKeys = false;
-            this.menuPoliklinik.Size = new System.Drawing.Size(239, 42);
+            this.menuPoliklinik.Size = new System.Drawing.Size(197, 42);
             this.menuPoliklinik.Text = "Poliklinik Tanıtma";
             this.menuPoliklinik.Click += new System.EventHandler(this.menuPoliklinik_Click);
             // 
@@ -99,8 +100,9 @@
             this.menuKullanici.Name = "menuKullanici";
             this.menuKullanici.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.K)));
             this.menuKullanici.ShowShortcutKeys = false;
-            this.menuKullanici.Size = new System.Drawing.Size(239, 42);
+            this.menuKullanici.Size = new System.Drawing.Size(197, 42);
             this.menuKullanici.Text = "Kullanıcı Tanıtma";
+            this.menuKullanici.Click += new System.EventHandler(this.menuKullanici_Click);
             // 
             // menuCikis
             // 
@@ -108,7 +110,7 @@
             this.menuCikis.Name = "menuCikis";
             this.menuCikis.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Q)));
             this.menuCikis.ShowShortcutKeys = false;
-            this.menuCikis.Size = new System.Drawing.Size(239, 42);
+            this.menuCikis.Size = new System.Drawing.Size(197, 42);
             this.menuCikis.Text = "Çıkış";
             // 
             // menuHastaKabul
@@ -118,7 +120,7 @@
             this.menuHastaKabul.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastabul;
             this.menuHastaKabul.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuHastaKabul.Name = "menuHastaKabul";
-            this.menuHastaKabul.Size = new System.Drawing.Size(137, 36);
+            this.menuHastaKabul.Size = new System.Drawing.Size(112, 36);
             this.menuHastaKabul.Text = "Hasta Kabul";
             // 
             // menuHastaIslemleri
@@ -128,8 +130,9 @@
             this.menuHastaIslemleri.Name = "menuHastaIslemleri";
             this.menuHastaIslemleri.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F2)));
             this.menuHastaIslemleri.ShowShortcutKeys = false;
-            this.menuHastaIslemleri.Size = new System.Drawing.Size(239, 42);
+            this.menuHastaIslemleri.Size = new System.Drawing.Size(199, 42);
             this.menuHastaIslemleri.Text = "Hasta İşlemleri";
+            this.menuHastaIslemleri.Click += new System.EventHandler(this.menuHastaIslemleri_Click);
             // 
             // menuRapor
             // 
@@ -138,7 +141,7 @@
             this.menuRapor.Image = global::HastaneOtomasyon.Properties.Resources.report;
             this.menuRapor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuRapor.Name = "menuRapor";
-            this.menuRapor.Size = new System.Drawing.Size(124, 36);
+            this.menuRapor.Size = new System.Drawing.Size(104, 36);
             this.menuRapor.Text = "Raporlar";
             // 
             // menuRaporlama
@@ -148,18 +151,19 @@
             this.menuRaporlama.Name = "menuRaporlama";
             this.menuRaporlama.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             this.menuRaporlama.ShowShortcutKeys = false;
-            this.menuRaporlama.Size = new System.Drawing.Size(236, 38);
+            this.menuRaporlama.Size = new System.Drawing.Size(120, 38);
             this.menuRaporlama.Text = "Rapor";
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(207)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1065, 658);
+            this.ClientSize = new System.Drawing.Size(799, 579);
             this.Controls.Add(this.HomeMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.Text = "Sağlık Ocağı Hasta Takip Sistemi";
             this.Load += new System.EventHandler(this.Main_Load);
