@@ -54,6 +54,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Polyclinic.cs" />
     <Compile Include="Models\GenericResponse.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />

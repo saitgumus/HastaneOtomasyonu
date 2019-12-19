@@ -89,6 +89,7 @@
             this.btn_clean.TabIndex = 5;
             this.btn_clean.Text = "Temizle";
             this.btn_clean.UseVisualStyleBackColor = false;
+            this.btn_clean.Click += new System.EventHandler(this.btn_clean_Click);
             // 
             // btn_giriş
             // 
@@ -106,6 +107,7 @@
             this.btn_giriş.TabIndex = 4;
             this.btn_giriş.Text = "Giriş";
             this.btn_giriş.UseVisualStyleBackColor = false;
+            this.btn_giriş.Click += new System.EventHandler(this.btn_giriş_Click);
             // 
             // txt_password
             // 

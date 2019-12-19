@@ -26,13 +26,38 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
-        {
+       {
+            menum = HomeMenuStrip;
+            menuReferansBilgisi = menuReferanslar;
+           
             Login login = new Login();
             login.MdiParent = this;
             login.Show();
 
-            menum = MainMenuStrip;
-            menuReferansBilgisi = menuReferanslar;
         }
+
+        /// <summary>
+        /// poliklinik tanıtma
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuPoliklinik_Click(object sender, EventArgs e)
+        {
+            AddPolyclinic add = new AddPolyclinic();
+            add.MdiParent = this;
+            add.Show();
+        }
+
+        /// <summary>
+        /// Log out
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuLogout_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+
     }
 }

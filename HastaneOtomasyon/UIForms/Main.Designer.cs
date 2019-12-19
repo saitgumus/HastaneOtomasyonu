@@ -75,30 +75,40 @@
             this.menuLogout.Image = global::HastaneOtomasyon.Properties.Resources.ico_logout;
             this.menuLogout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuLogout.Name = "menuLogout";
-            this.menuLogout.Size = new System.Drawing.Size(249, 42);
+            this.menuLogout.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.O)));
+            this.menuLogout.ShowShortcutKeys = false;
+            this.menuLogout.Size = new System.Drawing.Size(239, 42);
             this.menuLogout.Text = "Logout";
+            this.menuLogout.Click += new System.EventHandler(this.menuLogout_Click);
             // 
             // menuPoliklinik
             // 
             this.menuPoliklinik.Image = global::HastaneOtomasyon.Properties.Resources.ico_poliklinik;
             this.menuPoliklinik.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuPoliklinik.Name = "menuPoliklinik";
-            this.menuPoliklinik.Size = new System.Drawing.Size(249, 42);
+            this.menuPoliklinik.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            this.menuPoliklinik.ShowShortcutKeys = false;
+            this.menuPoliklinik.Size = new System.Drawing.Size(239, 42);
             this.menuPoliklinik.Text = "Poliklinik Tanıtma";
+            this.menuPoliklinik.Click += new System.EventHandler(this.menuPoliklinik_Click);
             // 
             // menuKullanici
             // 
             this.menuKullanici.Image = global::HastaneOtomasyon.Properties.Resources.user_32x32;
             this.menuKullanici.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuKullanici.Name = "menuKullanici";
-            this.menuKullanici.Size = new System.Drawing.Size(249, 42);
+            this.menuKullanici.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.K)));
+            this.menuKullanici.ShowShortcutKeys = false;
+            this.menuKullanici.Size = new System.Drawing.Size(239, 42);
             this.menuKullanici.Text = "Kullanıcı Tanıtma";
             // 
             // menuCikis
             // 
             this.menuCikis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuCikis.Name = "menuCikis";
-            this.menuCikis.Size = new System.Drawing.Size(249, 42);
+            this.menuCikis.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Q)));
+            this.menuCikis.ShowShortcutKeys = false;
+            this.menuCikis.Size = new System.Drawing.Size(239, 42);
             this.menuCikis.Text = "Çıkış";
             // 
             // menuHastaKabul
@@ -117,7 +127,8 @@
             this.menuHastaIslemleri.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuHastaIslemleri.Name = "menuHastaIslemleri";
             this.menuHastaIslemleri.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F2)));
-            this.menuHastaIslemleri.Size = new System.Drawing.Size(290, 42);
+            this.menuHastaIslemleri.ShowShortcutKeys = false;
+            this.menuHastaIslemleri.Size = new System.Drawing.Size(239, 42);
             this.menuHastaIslemleri.Text = "Hasta İşlemleri";
             // 
             // menuRapor
@@ -135,6 +146,8 @@
             this.menuRaporlama.Image = global::HastaneOtomasyon.Properties.Resources.report;
             this.menuRaporlama.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuRaporlama.Name = "menuRaporlama";
+            this.menuRaporlama.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.menuRaporlama.ShowShortcutKeys = false;
             this.menuRaporlama.Size = new System.Drawing.Size(236, 38);
             this.menuRaporlama.Text = "Rapor";
             // 

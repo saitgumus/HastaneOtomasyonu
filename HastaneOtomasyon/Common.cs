@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HastaneOtomasyon.Models;
 using System.IO;
+using System.Drawing;
 
 namespace HastaneOtomasyon
 {
@@ -28,7 +29,20 @@ namespace HastaneOtomasyon
         #endregion
 
         #region methods
+        #region message texts
 
+        public const string msg_zorunluAlanWarning = "Zorunlu alanları doldurunuz.";
+        public const string msg_kullaniciBulunamadı = "Kullanıcı adı veya şifre hatalı.";
+        public const string msg_yetkiliDegil = "Yetkiniz bulunmamaktadır.";
+        public const string msg_kayıtHata = "Kayıt yapılamadı.";
+        public const string msg_güncellemeHata = "Güncelleme Yapılamadı.";
+        public const string msg_güncellemeOk = "Güncellendi.";
+        public const string msg_silmeHata = "Silme işlemi Yapılamadı.";
+        public const string msg_silmeOk = "Silindi.";
+        public const string msg_selectRecordWarning = "Lütfen bir kayıt seçiniz.";
+        public const string msg_silmeIslemiSoru= "Seçili kayıt silisin mi?";
+
+        #endregion
         #region message metods
         /// <summary>
         /// uyarı mesajı
@@ -91,17 +105,91 @@ namespace HastaneOtomasyon
                                 subject,
                                 message)
                 );
+
+            streamWriter.Close();
         }
 
 
         #endregion
 
+        /// <summary>
+        /// boşluk kontrolü yapar
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool SpaceControl(string s)
+        {
+            if (string.IsNullOrEmpty(s) || string.IsNullOrEmpty(s))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// boş bırakılan text alanlarını işaretler
+        /// </summary>
+        /// <param name="control"></param>
+        public static bool SpaceControlAll(ref Panel control)
+        {
+            bool ret = true;
+            foreach (var item in control.Controls.OfType<TextBox>())
+            {
+               if(!SpaceControl(item.Text))
+                {
+                    item.BackColor = Color.LightCoral;
+                    ret = false;
+                }
+                else
+                {
+                    item.BackColor = Color.White;
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// değerin numeric olma durumu
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool NumericControl(string s)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(s, "[^0-9]"))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// işaret edilen control içerisindeki textleri temizler
+        /// </summary>
+        /// <param name="parent"></param>
+        public static void CleanTextControls(ref Panel parent)
+        {
+            foreach (var item in parent.Controls.OfType<TextBox>())
+            {
+                item.Text = "";
+            }
+
+        }
+
+
         #endregion
 
-        #region types
-        public const string ConnectionString = @"Server=.\; Database=SOHATS; Integrated Security = SSPI";
-        public const string LogPath = @"C:\LOG\SOHATS_LOG.txt";
 
+
+        #region types
+        public const string ConnectionString = @"Server=.\; Database= SOHATS; Integrated Security = SSPI";
+        public const string LogPath = @"./SOHATS_LOG.txt";
+        public const string AdminText = "Evet";
+        public const string PolyclinicStatus = "Aktif";
         #region procedure names
         public const string hastasil = "delete_hasta";
         public const string kullanıcısil = "delete_kullanici";
@@ -118,13 +206,27 @@ namespace HastaneOtomasyon
         public const string kullanıcıGüncelle = "update_kullanıcı";
         public const string poliklinikGuncelle = "update_poliklinik";
         public const string sevkGuncelle = "update_sevk";
+        
 
-        private string CreateProcedureText(string tablo,string filter,string[] alanlar)
+        public const string userTable = "kullanici";
+        public const string patientTable = "hasta";
+        public const string polyclinicTable = "poliklinik";
+        public const string operationTable = "islem";
+        public const string dischargedTable = "cikis";
+        public const string transferTable = "sevk";
+        /// <summary>
+        /// procedure için commandtext oluşturur
+        /// </summary>
+        /// <param name="tablo"></param>
+        /// <param name="filter"></param>
+        /// <param name="alanlar"></param>
+        /// <returns></returns>
+        public static string CreateProcedureText(string tablo,string[] alanlar, string filter)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.Append("SELECT ");
-            if(alanlar.Length > 0)
+            if(alanlar != null && alanlar.Length > 0)
             {
                 bool first = true;
                 foreach (var item in alanlar)
@@ -133,8 +235,12 @@ namespace HastaneOtomasyon
                     first = false;
                 }
             }
-            stringBuilder.Append(" FroM " + tablo);
-            if(filter.Length > 1)
+            else
+            {
+                stringBuilder.Append(" * ");
+            }
+            stringBuilder.Append(" FROM " + tablo);
+            if(filter != null && filter.Length > 1)
             {
                 stringBuilder.Append(" WHERE "+filter);
             }
@@ -142,6 +248,7 @@ namespace HastaneOtomasyon
             return stringBuilder.ToString();
         }
         #endregion
+
         #endregion
     }
 }

@@ -15,7 +15,7 @@ namespace HastaneOtomasyon
         SqlConnection conSOHATS;
         SqlDataAdapter dr;
         DataSet ds;
-        private DBServices dbService;
+        private static DBServices dbService;
 
         private DBServices()
         {
@@ -23,7 +23,7 @@ namespace HastaneOtomasyon
             ds = new DataSet();
         }
 
-        public DBServices ConnectToService()
+        public static DBServices ConnectToService()
         {
             if(dbService == null)
             {
@@ -86,26 +86,26 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.kullanıcıKaydet, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("kodu",user.Kodu);
-            cmd.Parameters.AddWithValue("ad", user.Ad);
-            cmd.Parameters.AddWithValue("soyad", user.Soyad);
-            cmd.Parameters.AddWithValue("sifre", user.Sifre);
-            cmd.Parameters.AddWithValue("Yetki", user.Yetki);
-            cmd.Parameters.AddWithValue("Evtel", user.Evtel);
-            cmd.Parameters.AddWithValue("CepTel", user.CepTel);
-            cmd.Parameters.AddWithValue("Adres", user.Adres);
-            cmd.Parameters.AddWithValue("Unvan", user.Unvan);
-            cmd.Parameters.AddWithValue("IseBaslama", user.IseBaslama);
-            cmd.Parameters.AddWithValue("Maas", user.Maas);
-            cmd.Parameters.AddWithValue("DogumYeri", user.DogumYeri);
-            cmd.Parameters.AddWithValue("AnneAd", user.AnneAd);
-            cmd.Parameters.AddWithValue("BabaAd", user.BabaAd);
-            cmd.Parameters.AddWithValue("Cinsiyet", user.Cinsiyet);
-            cmd.Parameters.AddWithValue("KanGrubu", user.KanGrubu);
-            cmd.Parameters.AddWithValue("MedeniHal", user.MedeniHal);
-            cmd.Parameters.AddWithValue("DogumTarihi", user.DogumTarihi);
-            cmd.Parameters.AddWithValue("TcKimlikNo", user.TcKimlikNo);
-            cmd.Parameters.AddWithValue("UserName", user.UserName);
+            cmd.Parameters.AddWithValue("kodu",         user.Kodu);
+            cmd.Parameters.AddWithValue("ad",           user.Ad);
+            cmd.Parameters.AddWithValue("soyad",        user.Soyad);
+            cmd.Parameters.AddWithValue("sifre",        user.Sifre);
+            cmd.Parameters.AddWithValue("Yetki",        user.Yetki);
+            cmd.Parameters.AddWithValue("Evtel",        user.Evtel);
+            cmd.Parameters.AddWithValue("CepTel",       user.CepTel);
+            cmd.Parameters.AddWithValue("Adres",        user.Adres);
+            cmd.Parameters.AddWithValue("Unvan",        user.Unvan);
+            cmd.Parameters.AddWithValue("IseBaslama",   user.IseBaslama);
+            cmd.Parameters.AddWithValue("Maas",         user.Maas);
+            cmd.Parameters.AddWithValue("DogumYeri",    user.DogumYeri);
+            cmd.Parameters.AddWithValue("AnneAd",       user.AnneAd);
+            cmd.Parameters.AddWithValue("BabaAd",       user.BabaAd);
+            cmd.Parameters.AddWithValue("Cinsiyet",     user.Cinsiyet);
+            cmd.Parameters.AddWithValue("KanGrubu",     user.KanGrubu);
+            cmd.Parameters.AddWithValue("MedeniHal",    user.MedeniHal);
+            cmd.Parameters.AddWithValue("DogumTarihi",  user.DogumTarihi);
+            cmd.Parameters.AddWithValue("TcKimlikNo",   user.TcKimlikNo);
+            cmd.Parameters.AddWithValue("UserName",     user.UserName);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -593,7 +593,165 @@ namespace HastaneOtomasyon
 
         #region Select işlemleri
 
+        /// <summary>
+        /// kullanıcıları getirir
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<User>> SelectUser()
+        {
+            var returnObject = new GenericResponse<List<User>>();
 
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.userTable,null, null );
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<User> data = new List<User>();
+            User user;
+            while (dr.Read())
+            {
+                user = new User();
+                user.Kodu = dr[0].ToString();
+                user.Ad = dr[1].ToString();
+                user.Soyad = dr[2].ToString();
+                user.Sifre = dr[3].ToString();
+                user.Yetki = dr[4].ToString();
+                user.Evtel = dr[5].ToString();
+                user.CepTel = dr[6].ToString();
+                user.Adres = dr[7].ToString();
+                user.Unvan = dr[8].ToString();
+                user.IseBaslama = (dr[9] != DBNull.Value) ? Convert.ToDateTime(dr[9]): DateTime.MinValue ;
+                user.Maas = dr[10].ToString();
+                user.DogumYeri = dr[11].ToString();
+                user.AnneAd = dr[12].ToString();
+                user.BabaAd = dr[13].ToString();
+                user.Cinsiyet = dr[14].ToString();
+                user.KanGrubu = dr[15].ToString();
+                user.MedeniHal = dr[16].ToString();
+                user.DogumTarihi = (dr[17] != DBNull.Value) ? Convert.ToDateTime(dr[17]) : DateTime.MinValue;
+                user.TcKimlikNo = dr[18].ToString();
+                user.UserName = dr[19].ToString();
+
+                data.Add(user);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// hasta kayıtlarını getirir
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<Patient>> SelectPatient()
+        {
+            var returnObject = new GenericResponse<List<Patient>>();
+
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.patientTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<Patient> data = new List<Patient>();
+            Patient patient = new Patient();
+            while (dr.Read())
+            {
+                patient = new Patient();
+                patient.TcKimlikNo = dr[0].ToString();
+                patient.DosyaNo = dr[1].ToString();
+                patient.Ad = dr[2].ToString();
+                patient.Soyad = dr[3].ToString();
+                patient.DogumYeri = dr[4].ToString();
+                patient.DogumTarihi = (dr[5] != DBNull.Value) ? Convert.ToDateTime(dr[5]) : DateTime.MinValue;
+                patient.BabaAdi = dr[6].ToString();
+                patient.AnneAdi = dr[7].ToString();
+                patient.Cinsiyet = dr[8].ToString();
+                patient.KanGrubu = dr[9].ToString();
+                patient.MedeniHal = dr[10].ToString();
+                patient.Adres = dr[11].ToString();
+                patient.Tel = dr[12].ToString();
+                patient.KurumSicilNo = dr[13].ToString();
+                patient.KurumAdi = dr[14].ToString();
+                patient.YakinTel = dr[15].ToString();
+                patient.YakinKurumSicilNo = dr[16].ToString();
+                patient.YakinKurumAdi = dr[17].ToString();
+                data.Add(patient);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// taburcu kayıtları
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<Discharged>> SelectDischarged()
+        {
+            var returnObject = new GenericResponse<List<Discharged>>();
+
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.patientTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<Discharged> data = new List<Discharged>();
+            Discharged patient = new Discharged();
+            while (dr.Read())
+            {
+                patient = new Discharged();
+                patient.DosyaNo = dr[0].ToString();
+                patient.SevkTarihi = dr[1].ToString();
+                patient.CikisTarihi = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue;
+                patient.Odeme = dr.GetString(3);
+                patient.ToplamTutar = dr.GetString(4);
+
+                data.Add(patient);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// poliklinik kayıtları getirir
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<Polyclinic>> SelectPolyclinic()
+        {
+            var returnObject = new GenericResponse<List<Polyclinic>>();
+
+            ConnectDB();
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.polyclinicTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            List<Polyclinic> data = new List<Polyclinic>();
+            Polyclinic pol = new Polyclinic();
+            while (dr.Read())
+            {
+                pol = new Polyclinic();
+                pol.PoliklinikAdi = dr[0].ToString();
+                pol.Durum = dr[1].ToString();
+                pol.Aciklama = dr[2].ToString();
+                data.Add(pol);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
 
         #endregion
     }
