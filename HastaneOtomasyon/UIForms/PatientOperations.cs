@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HastaneOtomasyon.Models;
+// ReSharper disable All
 
 namespace HastaneOtomasyon.UIForms
 {
@@ -137,6 +138,9 @@ namespace HastaneOtomasyon.UIForms
 
             cmbDrKodu.DataSource = users;
             cmbDrKodu.DisplayMember = "Kodu";
+
+            cmbSevkTarihi.DataSource = transfers;
+            cmbSevkTarihi.DisplayMember = "SevkTarihi";
         }
 
         /// <summary>
@@ -161,6 +165,58 @@ namespace HastaneOtomasyon.UIForms
             if(cmbOncekiIslemleri.SelectedIndex != -1)
             {
                 GetTransfers();
+
+                dtgTahliller.DataSource = transfers;
+            }
+        }
+
+
+        /// <summary>
+        /// hasta bilgileri ekranı açılır
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        // ReSharper disable once IdentifierTypo
+        private void btnHastaBilgileri_Click(object sender, EventArgs e)
+        {
+            PatientInformation pinfo = new PatientInformation(txtDosyaNo.Text);
+            pinfo.MdiParent = Main.ActiveForm;
+            pinfo.Show();
+        }
+
+        private void btnEkle_Click(object sender, EventArgs e)
+        {
+            PatientInformation pinfo = new PatientInformation();
+            pinfo.MdiParent = Main.ActiveForm;
+            pinfo.Show();
+        }
+
+        private void txtDosyaNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (!Common.SpaceControl(txtDosyaNo.Text))
+                {
+                    return;
+                }
+
+                var patient = patients.Find(x => x.DosyaNo == txtDosyaNo.Text);
+                var sevk = transfers.Find(r => r.DosyaNo == txtDosyaNo.Text);
+                if (patient != null)
+                {
+                    txtDosyaNo.Text = patient.DosyaNo;
+                    txtHastaAdi.Text = patient.Ad;
+                    txtSoyadi.Text = patient.Soyad;
+                    txtKurumAdi.Text = patient.KurumAdi;
+                }
+
+                if (sevk != null)
+                {
+                    cmbOncekiIslemleri.SelectedIndex = cmbOncekiIslemleri.Items.IndexOf(sevk);
+                    cmbSevkTarihi.SelectedIndex = cmbSevkTarihi.Items.IndexOf(sevk);
+                }
+
             }
         }
     }

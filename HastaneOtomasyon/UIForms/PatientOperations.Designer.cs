@@ -47,9 +47,8 @@
             this.btnHastaBilgileri = new System.Windows.Forms.Button();
             this.btnGit = new System.Windows.Forms.Button();
             this.btn_ekle = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEkle = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,6 +79,7 @@
             this.btnTaburcu = new System.Windows.Forms.Button();
             this.btnSecSil = new System.Windows.Forms.Button();
             this.btnYeni = new System.Windows.Forms.Button();
+            this.cmbSevkTarihi = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMiktar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -203,10 +203,10 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
+            this.groupBox1.Controls.Add(this.cmbSevkTarihi);
             this.groupBox1.Controls.Add(this.btnHastaBilgileri);
             this.groupBox1.Controls.Add(this.btnGit);
             this.groupBox1.Controls.Add(this.btn_ekle);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.cmbOncekiIslemleri);
             this.groupBox1.Controls.Add(this.txtKurumAdi);
@@ -244,6 +244,7 @@
             this.btnHastaBilgileri.Text = "Hasta Bilgileri";
             this.btnHastaBilgileri.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHastaBilgileri.UseVisualStyleBackColor = false;
+            this.btnHastaBilgileri.Click += new System.EventHandler(this.btnHastaBilgileri_Click);
             // 
             // btnGit
             // 
@@ -285,18 +286,9 @@
             this.btn_ekle.UseVisualStyleBackColor = false;
             this.btn_ekle.Click += new System.EventHandler(this.btn_ekle_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(120, 40);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(146, 24);
-            this.dateTimePicker1.TabIndex = 3;
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnEkle);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.cmbPoliklinik);
             this.panel1.Controls.Add(this.label13);
@@ -315,23 +307,24 @@
             this.panel1.Size = new System.Drawing.Size(878, 81);
             this.panel1.TabIndex = 9;
             // 
-            // button2
+            // btnEkle
             // 
-            this.button2.BackColor = System.Drawing.Color.AliceBlue;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::HastaneOtomasyon.Properties.Resources.Add;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(701, 19);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(174, 44);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Ekle";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnEkle.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnEkle.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnEkle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
+            this.btnEkle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEkle.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEkle.Image = global::HastaneOtomasyon.Properties.Resources.Add;
+            this.btnEkle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEkle.Location = new System.Drawing.Point(701, 19);
+            this.btnEkle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEkle.Name = "btnEkle";
+            this.btnEkle.Size = new System.Drawing.Size(174, 44);
+            this.btnEkle.TabIndex = 16;
+            this.btnEkle.Text = "Ekle";
+            this.btnEkle.UseVisualStyleBackColor = false;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
             // label8
             // 
@@ -423,6 +416,7 @@
             this.txtDosyaNo.Name = "txtDosyaNo";
             this.txtDosyaNo.Size = new System.Drawing.Size(147, 24);
             this.txtDosyaNo.TabIndex = 1;
+            this.txtDosyaNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDosyaNo_KeyPress);
             // 
             // label3
             // 
@@ -675,6 +669,16 @@
             this.btnYeni.TabIndex = 18;
             this.btnYeni.UseVisualStyleBackColor = false;
             // 
+            // cmbSevkTarihi
+            // 
+            this.cmbSevkTarihi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSevkTarihi.FormattingEnabled = true;
+            this.cmbSevkTarihi.Location = new System.Drawing.Point(118, 40);
+            this.cmbSevkTarihi.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbSevkTarihi.Name = "cmbSevkTarihi";
+            this.cmbSevkTarihi.Size = new System.Drawing.Size(215, 23);
+            this.cmbSevkTarihi.TabIndex = 11;
+            // 
             // PatientOperations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,11 +749,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnGit;
         private System.Windows.Forms.Button btn_ekle;
         private System.Windows.Forms.Button btnHastaBilgileri;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEkle;
         private System.Windows.Forms.Button btnYeni;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSecSil;
@@ -757,5 +760,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox cmbSevkTarihi;
     }
 }

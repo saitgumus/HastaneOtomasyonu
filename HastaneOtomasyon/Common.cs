@@ -13,7 +13,9 @@ namespace HastaneOtomasyon
     public class Common
     {
         #region LoginUser
+        // ReSharper disable once InconsistentNaming
         private static User loginUser;
+
         public static User LoginUser
         {
             get
@@ -43,7 +45,7 @@ namespace HastaneOtomasyon
         public const string msg_silmeIslemiSoru = "Seçili kayıt silisin mi?";
         public const string msg_selectHata = "Kayıtlar getirilemedi.";
         public const string msg_kayıtOk = "Kaydedildi";
-
+        public const string msg_hastaBulunamadı = "Hasta bulunamadı";
 
         public const string msg_seciniz = "Seçiniz";
         public const string msg_hepsi = "Hepsi";

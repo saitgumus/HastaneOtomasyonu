@@ -646,39 +646,43 @@ namespace HastaneOtomasyon
         /// hasta kayıtlarını getirir
         /// </summary>
         /// <returns></returns>
-        public GenericResponse<List<Patient>> SelectPatient()
+        public GenericResponse<List<Patient>> SelectPatient(string[] fields, string filter)
         {
             var returnObject = new GenericResponse<List<Patient>>();
 
             ConnectDB();
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.CommandText = Common.CreateProcedureText(Common.patientTable, null, null);
-            sqlCommand.Connection = conSOHATS;
-            SqlDataReader dr = sqlCommand.ExecuteReader();
+            var sqlCommand = new SqlCommand
+            {
+                CommandText = Common.CreateProcedureText(Common.patientTable, fields, filter),
+                Connection = conSOHATS
+            };
+            var dr = sqlCommand.ExecuteReader();
 
-            List<Patient> data = new List<Patient>();
-            Patient patient = new Patient();
+            var data = new List<Patient>();
+            var patient = new Patient();
             while (dr.Read())
             {
-                patient = new Patient();
-                patient.TcKimlikNo = dr[0].ToString();
-                patient.DosyaNo = dr[1].ToString();
-                patient.Ad = dr[2].ToString();
-                patient.Soyad = dr[3].ToString();
-                patient.DogumYeri = dr[4].ToString();
-                patient.DogumTarihi = (dr[5] != DBNull.Value) ? Convert.ToDateTime(dr[5]) : DateTime.MinValue;
-                patient.BabaAdi = dr[6].ToString();
-                patient.AnneAdi = dr[7].ToString();
-                patient.Cinsiyet = dr[8].ToString();
-                patient.KanGrubu = dr[9].ToString();
-                patient.MedeniHal = dr[10].ToString();
-                patient.Adres = dr[11].ToString();
-                patient.Tel = dr[12].ToString();
-                patient.KurumSicilNo = dr[13].ToString();
-                patient.KurumAdi = dr[14].ToString();
-                patient.YakinTel = dr[15].ToString();
-                patient.YakinKurumSicilNo = dr[16].ToString();
-                patient.YakinKurumAdi = dr[17].ToString();
+                patient = new Patient
+                {
+                    TcKimlikNo = dr[0].ToString(),
+                    DosyaNo = dr[1].ToString(),
+                    Ad = dr[2].ToString(),
+                    Soyad = dr[3].ToString(),
+                    DogumYeri = dr[4].ToString(),
+                    DogumTarihi = (dr[5] != DBNull.Value) ? Convert.ToDateTime(dr[5]) : DateTime.MinValue,
+                    BabaAdi = dr[6].ToString(),
+                    AnneAdi = dr[7].ToString(),
+                    Cinsiyet = dr[8].ToString(),
+                    KanGrubu = dr[9].ToString(),
+                    MedeniHal = dr[10].ToString(),
+                    Adres = dr[11].ToString(),
+                    Tel = dr[12].ToString(),
+                    KurumSicilNo = dr[13].ToString(),
+                    KurumAdi = dr[14].ToString(),
+                    YakinTel = dr[15].ToString(),
+                    YakinKurumSicilNo = dr[16].ToString(),
+                    YakinKurumAdi = dr[17].ToString()
+                };
                 data.Add(patient);
             }
             endConnectDB();
@@ -771,9 +775,11 @@ namespace HastaneOtomasyon
             Operation dt = new Operation();
             while (dr.Read())
             {
-                dt = new Operation();
-                dt.IslemAdi = dr[0].ToString();
-                dt.BirimFiyat = dr[1].ToString();
+                dt = new Operation
+                {
+                    IslemAdi = dr[0].ToString(),
+                    BirimFiyat = dr[1].ToString()
+                };
                 data.Add(dt);
             }
             endConnectDB();
