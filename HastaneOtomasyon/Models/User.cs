@@ -9,7 +9,7 @@ namespace HastaneOtomasyon.Models
    public class User
     {
         #region private members
-        private string kodu;
+        private int kodu;
         private string ad;
         private string soyad;
         private string sifre;
@@ -19,7 +19,7 @@ namespace HastaneOtomasyon.Models
         private string adres;
         private string unvan;
         private DateTime iseBaslama;
-        private string maas;
+        private int maas;
         private string dogumYeri;
         private string anneAd;
         private string babaAd;
@@ -32,7 +32,7 @@ namespace HastaneOtomasyon.Models
         #endregion
 
         #region Public Members
-        public String Kodu
+        public int Kodu
         {
             get
             {
@@ -143,7 +143,7 @@ namespace HastaneOtomasyon.Models
                 iseBaslama = value;
             }
         }
-        public String Maas
+        public int Maas
         {
             get
             {

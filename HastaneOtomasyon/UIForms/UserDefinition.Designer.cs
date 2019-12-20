@@ -63,17 +63,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlUserDef = new System.Windows.Forms.Panel();
+            this.txtMaas = new System.Windows.Forms.MaskedTextBox();
+            this.txtGSM = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelefonNo = new System.Windows.Forms.MaskedTextBox();
+            this.txtKullaniciKodu = new System.Windows.Forms.MaskedTextBox();
+            this.txtTcKimlikNumarasi = new System.Windows.Forms.MaskedTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btn_exit = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
             this.btnGuncelleKaydet = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnl_userNamePass = new System.Windows.Forms.Panel();
-            this.txtTcKimlikNumarasi = new System.Windows.Forms.MaskedTextBox();
-            this.txtKullaniciKodu = new System.Windows.Forms.MaskedTextBox();
-            this.txtTelefonNo = new System.Windows.Forms.MaskedTextBox();
-            this.txtGSM = new System.Windows.Forms.MaskedTextBox();
-            this.txtMaas = new System.Windows.Forms.MaskedTextBox();
             this.pnlUserDef.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnl_userNamePass.SuspendLayout();
@@ -509,6 +509,56 @@
             this.pnlUserDef.Size = new System.Drawing.Size(680, 552);
             this.pnlUserDef.TabIndex = 50;
             // 
+            // txtMaas
+            // 
+            this.txtMaas.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaas.Location = new System.Drawing.Point(470, 106);
+            this.txtMaas.Mask = "00000";
+            this.txtMaas.Name = "txtMaas";
+            this.txtMaas.PromptChar = ' ';
+            this.txtMaas.Size = new System.Drawing.Size(199, 26);
+            this.txtMaas.TabIndex = 56;
+            // 
+            // txtGSM
+            // 
+            this.txtGSM.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGSM.Location = new System.Drawing.Point(149, 214);
+            this.txtGSM.Mask = "0000000000";
+            this.txtGSM.Name = "txtGSM";
+            this.txtGSM.PromptChar = ' ';
+            this.txtGSM.Size = new System.Drawing.Size(156, 23);
+            this.txtGSM.TabIndex = 55;
+            // 
+            // txtTelefonNo
+            // 
+            this.txtTelefonNo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefonNo.Location = new System.Drawing.Point(149, 179);
+            this.txtTelefonNo.Mask = "0000000000";
+            this.txtTelefonNo.Name = "txtTelefonNo";
+            this.txtTelefonNo.PromptChar = ' ';
+            this.txtTelefonNo.Size = new System.Drawing.Size(156, 23);
+            this.txtTelefonNo.TabIndex = 54;
+            // 
+            // txtKullaniciKodu
+            // 
+            this.txtKullaniciKodu.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKullaniciKodu.Location = new System.Drawing.Point(149, 11);
+            this.txtKullaniciKodu.Mask = "00000000000";
+            this.txtKullaniciKodu.Name = "txtKullaniciKodu";
+            this.txtKullaniciKodu.PromptChar = ' ';
+            this.txtKullaniciKodu.Size = new System.Drawing.Size(156, 23);
+            this.txtKullaniciKodu.TabIndex = 53;
+            // 
+            // txtTcKimlikNumarasi
+            // 
+            this.txtTcKimlikNumarasi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTcKimlikNumarasi.Location = new System.Drawing.Point(149, 45);
+            this.txtTcKimlikNumarasi.Mask = "00000000000";
+            this.txtTcKimlikNumarasi.Name = "txtTcKimlikNumarasi";
+            this.txtTcKimlikNumarasi.PromptChar = ' ';
+            this.txtTcKimlikNumarasi.Size = new System.Drawing.Size(156, 23);
+            this.txtTcKimlikNumarasi.TabIndex = 52;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
@@ -614,56 +664,6 @@
             this.pnl_userNamePass.Name = "pnl_userNamePass";
             this.pnl_userNamePass.Size = new System.Drawing.Size(519, 56);
             this.pnl_userNamePass.TabIndex = 50;
-            // 
-            // txtTcKimlikNumarasi
-            // 
-            this.txtTcKimlikNumarasi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTcKimlikNumarasi.Location = new System.Drawing.Point(149, 45);
-            this.txtTcKimlikNumarasi.Mask = "00000000000";
-            this.txtTcKimlikNumarasi.Name = "txtTcKimlikNumarasi";
-            this.txtTcKimlikNumarasi.PromptChar = ' ';
-            this.txtTcKimlikNumarasi.Size = new System.Drawing.Size(156, 23);
-            this.txtTcKimlikNumarasi.TabIndex = 52;
-            // 
-            // txtKullaniciKodu
-            // 
-            this.txtKullaniciKodu.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKullaniciKodu.Location = new System.Drawing.Point(149, 11);
-            this.txtKullaniciKodu.Mask = "00000000000";
-            this.txtKullaniciKodu.Name = "txtKullaniciKodu";
-            this.txtKullaniciKodu.PromptChar = ' ';
-            this.txtKullaniciKodu.Size = new System.Drawing.Size(156, 23);
-            this.txtKullaniciKodu.TabIndex = 53;
-            // 
-            // txtTelefonNo
-            // 
-            this.txtTelefonNo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonNo.Location = new System.Drawing.Point(149, 179);
-            this.txtTelefonNo.Mask = "0000000000";
-            this.txtTelefonNo.Name = "txtTelefonNo";
-            this.txtTelefonNo.PromptChar = ' ';
-            this.txtTelefonNo.Size = new System.Drawing.Size(156, 23);
-            this.txtTelefonNo.TabIndex = 54;
-            // 
-            // txtGSM
-            // 
-            this.txtGSM.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGSM.Location = new System.Drawing.Point(149, 214);
-            this.txtGSM.Mask = "0000000000";
-            this.txtGSM.Name = "txtGSM";
-            this.txtGSM.PromptChar = ' ';
-            this.txtGSM.Size = new System.Drawing.Size(156, 23);
-            this.txtGSM.TabIndex = 55;
-            // 
-            // txtMaas
-            // 
-            this.txtMaas.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaas.Location = new System.Drawing.Point(470, 106);
-            this.txtMaas.Mask = "00000000000";
-            this.txtMaas.Name = "txtMaas";
-            this.txtMaas.PromptChar = ' ';
-            this.txtMaas.Size = new System.Drawing.Size(199, 26);
-            this.txtMaas.TabIndex = 56;
             // 
             // UserDefinition
             // 

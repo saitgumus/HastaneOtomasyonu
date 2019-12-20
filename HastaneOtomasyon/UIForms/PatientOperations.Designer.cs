@@ -44,6 +44,8 @@
             this.saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDosyaNo = new System.Windows.Forms.MaskedTextBox();
+            this.cmbSevkTarihi = new System.Windows.Forms.ComboBox();
             this.btnHastaBilgileri = new System.Windows.Forms.Button();
             this.btnGit = new System.Windows.Forms.Button();
             this.btn_ekle = new System.Windows.Forms.Button();
@@ -58,7 +60,6 @@
             this.txtKurumAdi = new System.Windows.Forms.TextBox();
             this.txtSoyadi = new System.Windows.Forms.TextBox();
             this.txtHastaAdi = new System.Windows.Forms.TextBox();
-            this.txtDosyaNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,8 +71,8 @@
             this.poliklinik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgTahliller = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblToplamTutarValue = new System.Windows.Forms.Label();
+            this.lblTopTutar = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -79,7 +80,6 @@
             this.btnTaburcu = new System.Windows.Forms.Button();
             this.btnSecSil = new System.Windows.Forms.Button();
             this.btnYeni = new System.Windows.Forms.Button();
-            this.cmbSevkTarihi = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMiktar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,6 +117,7 @@
             // 
             // cmbSiraNo
             // 
+            this.cmbSiraNo.Enabled = false;
             this.cmbSiraNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSiraNo.Location = new System.Drawing.Point(146, 37);
             this.cmbSiraNo.Name = "cmbSiraNo";
@@ -203,6 +204,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
+            this.groupBox1.Controls.Add(this.txtDosyaNo);
             this.groupBox1.Controls.Add(this.cmbSevkTarihi);
             this.groupBox1.Controls.Add(this.btnHastaBilgileri);
             this.groupBox1.Controls.Add(this.btnGit);
@@ -212,7 +214,6 @@
             this.groupBox1.Controls.Add(this.txtKurumAdi);
             this.groupBox1.Controls.Add(this.txtSoyadi);
             this.groupBox1.Controls.Add(this.txtHastaAdi);
-            this.groupBox1.Controls.Add(this.txtDosyaNo);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label6);
@@ -225,6 +226,27 @@
             this.groupBox1.Size = new System.Drawing.Size(895, 231);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
+            // 
+            // txtDosyaNo
+            // 
+            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosyaNo.Location = new System.Drawing.Point(117, 12);
+            this.txtDosyaNo.Mask = "00000";
+            this.txtDosyaNo.Name = "txtDosyaNo";
+            this.txtDosyaNo.PromptChar = ' ';
+            this.txtDosyaNo.Size = new System.Drawing.Size(149, 23);
+            this.txtDosyaNo.TabIndex = 59;
+            this.txtDosyaNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDosyaNo_KeyPress_1);
+            // 
+            // cmbSevkTarihi
+            // 
+            this.cmbSevkTarihi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSevkTarihi.FormattingEnabled = true;
+            this.cmbSevkTarihi.Location = new System.Drawing.Point(118, 40);
+            this.cmbSevkTarihi.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbSevkTarihi.Name = "cmbSevkTarihi";
+            this.cmbSevkTarihi.Size = new System.Drawing.Size(215, 23);
+            this.cmbSevkTarihi.TabIndex = 11;
             // 
             // btnHastaBilgileri
             // 
@@ -409,15 +431,6 @@
             this.txtHastaAdi.Size = new System.Drawing.Size(230, 24);
             this.txtHastaAdi.TabIndex = 6;
             // 
-            // txtDosyaNo
-            // 
-            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosyaNo.Location = new System.Drawing.Point(118, 11);
-            this.txtDosyaNo.Name = "txtDosyaNo";
-            this.txtDosyaNo.Size = new System.Drawing.Size(147, 24);
-            this.txtDosyaNo.TabIndex = 1;
-            this.txtDosyaNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDosyaNo_KeyPress);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -536,27 +549,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Yapılan Tahlil ve İşlemler";
             // 
-            // label15
+            // lblToplamTutarValue
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(862, 583);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(36, 19);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "0 TL";
+            this.lblToplamTutarValue.AutoSize = true;
+            this.lblToplamTutarValue.BackColor = System.Drawing.Color.Transparent;
+            this.lblToplamTutarValue.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToplamTutarValue.Location = new System.Drawing.Point(862, 583);
+            this.lblToplamTutarValue.Name = "lblToplamTutarValue";
+            this.lblToplamTutarValue.Size = new System.Drawing.Size(36, 19);
+            this.lblToplamTutarValue.TabIndex = 16;
+            this.lblToplamTutarValue.Text = "0 TL";
             // 
-            // label14
+            // lblTopTutar
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(717, 583);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(114, 21);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Toplam Tutar : ";
+            this.lblTopTutar.AutoSize = true;
+            this.lblTopTutar.BackColor = System.Drawing.Color.Transparent;
+            this.lblTopTutar.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTopTutar.Location = new System.Drawing.Point(717, 583);
+            this.lblTopTutar.Name = "lblTopTutar";
+            this.lblTopTutar.Size = new System.Drawing.Size(114, 21);
+            this.lblTopTutar.TabIndex = 17;
+            this.lblTopTutar.Text = "Toplam Tutar : ";
             // 
             // panel2
             // 
@@ -668,16 +681,7 @@
             this.btnYeni.Size = new System.Drawing.Size(66, 70);
             this.btnYeni.TabIndex = 18;
             this.btnYeni.UseVisualStyleBackColor = false;
-            // 
-            // cmbSevkTarihi
-            // 
-            this.cmbSevkTarihi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSevkTarihi.FormattingEnabled = true;
-            this.cmbSevkTarihi.Location = new System.Drawing.Point(118, 40);
-            this.cmbSevkTarihi.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbSevkTarihi.Name = "cmbSevkTarihi";
-            this.cmbSevkTarihi.Size = new System.Drawing.Size(215, 23);
-            this.cmbSevkTarihi.TabIndex = 11;
+            this.btnYeni.Click += new System.EventHandler(this.btnYeni_Click);
             // 
             // PatientOperations
             // 
@@ -688,8 +692,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblToplamTutarValue);
+            this.Controls.Add(this.lblTopTutar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PatientOperations";
@@ -735,7 +739,6 @@
         private System.Windows.Forms.TextBox txtKurumAdi;
         private System.Windows.Forms.TextBox txtSoyadi;
         private System.Windows.Forms.TextBox txtHastaAdi;
-        private System.Windows.Forms.TextBox txtDosyaNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
@@ -747,8 +750,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn poliklinik;
         private System.Windows.Forms.DataGridView dtgTahliller;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblToplamTutarValue;
+        private System.Windows.Forms.Label lblTopTutar;
         private System.Windows.Forms.Button btnGit;
         private System.Windows.Forms.Button btn_ekle;
         private System.Windows.Forms.Button btnHastaBilgileri;
@@ -761,5 +764,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cmbSevkTarihi;
+        private System.Windows.Forms.MaskedTextBox txtDosyaNo;
     }
 }

@@ -60,7 +60,7 @@ namespace HastaneOtomasyon.UIForms
         /// </summary>
         private void SetUpdateUser()
         {
-            txtKullaniciKodu.Text = updateUser.Kodu;
+            txtKullaniciKodu.Text = updateUser.Kodu.ToString();
             txtAdi.Text = updateUser.Ad;
             txtSoyadi.Text = updateUser.Soyad;
             txtSifre.Text = updateUser.Sifre;
@@ -74,7 +74,7 @@ namespace HastaneOtomasyon.UIForms
             txtAdres.Text = updateUser.Adres;
             cmbUnvani.Text = updateUser.Unvan;
             dateIseBaslama.Value = (updateUser.IseBaslama < dateIseBaslama.MinDate)? dateIseBaslama.MinDate: updateUser.IseBaslama ;
-            txtMaas.Text = updateUser.Maas;
+            txtMaas.Text = updateUser.Maas.ToString();
             txtDogumYeri.Text = updateUser.DogumYeri;
             txtAnneAdi.Text = updateUser.AnneAd;
             txtBabaAdi.Text = updateUser.BabaAd;
@@ -117,7 +117,7 @@ namespace HastaneOtomasyon.UIForms
         /// </summary>
         private void SetUserValues()
         {
-            data.Kodu = txtKullaniciKodu.Text;
+            data.Kodu = Convert.ToInt32(txtKullaniciKodu.Text);
             data.Ad = txtAdi.Text;
             data.Soyad = txtSoyadi.Text;
             data.Sifre = txtSifre.Text;
@@ -130,7 +130,7 @@ namespace HastaneOtomasyon.UIForms
             data.Adres = txtAdres.Text;
             data.Unvan = cmbUnvani.Text;
             data.IseBaslama = Convert.ToDateTime(dateIseBaslama.Value);
-            data.Maas = txtMaas.Text;
+            data.Maas = Convert.ToInt32(txtMaas.Text);
             data.DogumYeri = txtDogumYeri.Text;
             data.AnneAd = txtAnneAdi.Text;
             data.BabaAd = txtBabaAdi.Text;
@@ -225,7 +225,7 @@ namespace HastaneOtomasyon.UIForms
                 {
                     var request = new Request<User, bool>();
                     request.MethodName = "DeleteUser";
-                    User user = new User{ Kodu= txtKullaniciKodu.Text};
+                    User user = new User{ Kodu= Convert.ToInt32(txtKullaniciKodu.Text)};
                     var response = request.Execute(new object[] { user });
                     if (!response.Success)
                     {

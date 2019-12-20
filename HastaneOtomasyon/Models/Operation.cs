@@ -11,7 +11,7 @@ namespace HastaneOtomasyon.Models
         #region private members
 
         private string islemAdi;
-        private string birimFiyat;
+        private int birimFiyat;
         #endregion
         
         #region Public members
@@ -27,7 +27,7 @@ namespace HastaneOtomasyon.Models
                 islemAdi = value;
             }
         }
-        public string BirimFiyat
+        public int BirimFiyat
         {
             get
             {

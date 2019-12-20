@@ -33,21 +33,17 @@
             this.cmbCinsiyet = new System.Windows.Forms.ComboBox();
             this.dateDogumTarihi = new System.Windows.Forms.DateTimePicker();
             this.txtSoyadi = new System.Windows.Forms.TextBox();
-            this.txtTcKimlikNo = new System.Windows.Forms.TextBox();
             this.txtAdres = new System.Windows.Forms.TextBox();
             this.txtYakininKurumAdi = new System.Windows.Forms.TextBox();
             this.txtKurumAdi = new System.Windows.Forms.TextBox();
             this.txtYakininKurumSicilNo = new System.Windows.Forms.TextBox();
             this.txtKurumSicilNo = new System.Windows.Forms.TextBox();
             this.txtAnneAdi = new System.Windows.Forms.TextBox();
-            this.txtYakininTelefonu = new System.Windows.Forms.TextBox();
-            this.txtTelefonNo = new System.Windows.Forms.TextBox();
             this.txtBabaAdi = new System.Windows.Forms.TextBox();
             this.txtDogumYeri = new System.Windows.Forms.TextBox();
             this.txtAdi = new System.Windows.Forms.TextBox();
-            this.txtDosyaNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblYakınKurumadı = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,9 +61,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlPatientInfo = new System.Windows.Forms.Panel();
+            this.txtYakininTelefonu = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelefonNo = new System.Windows.Forms.MaskedTextBox();
+            this.txtDosyaNo = new System.Windows.Forms.MaskedTextBox();
+            this.txtTcKimlikNo = new System.Windows.Forms.MaskedTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btn_ekle = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnYeni = new System.Windows.Forms.Button();
+            this.btnKaydet = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
             this.pnlPatientInfo.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -115,14 +115,6 @@
             this.txtSoyadi.Name = "txtSoyadi";
             this.txtSoyadi.Size = new System.Drawing.Size(200, 24);
             this.txtSoyadi.TabIndex = 41;
-            // 
-            // txtTcKimlikNo
-            // 
-            this.txtTcKimlikNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTcKimlikNo.Location = new System.Drawing.Point(416, 11);
-            this.txtTcKimlikNo.Name = "txtTcKimlikNo";
-            this.txtTcKimlikNo.Size = new System.Drawing.Size(200, 24);
-            this.txtTcKimlikNo.TabIndex = 40;
             // 
             // txtAdres
             // 
@@ -173,22 +165,6 @@
             this.txtAnneAdi.Size = new System.Drawing.Size(164, 24);
             this.txtAnneAdi.TabIndex = 39;
             // 
-            // txtYakininTelefonu
-            // 
-            this.txtYakininTelefonu.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYakininTelefonu.Location = new System.Drawing.Point(416, 349);
-            this.txtYakininTelefonu.Name = "txtYakininTelefonu";
-            this.txtYakininTelefonu.Size = new System.Drawing.Size(200, 24);
-            this.txtYakininTelefonu.TabIndex = 34;
-            // 
-            // txtTelefonNo
-            // 
-            this.txtTelefonNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonNo.Location = new System.Drawing.Point(104, 349);
-            this.txtTelefonNo.Name = "txtTelefonNo";
-            this.txtTelefonNo.Size = new System.Drawing.Size(164, 24);
-            this.txtTelefonNo.TabIndex = 35;
-            // 
             // txtBabaAdi
             // 
             this.txtBabaAdi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -213,15 +189,6 @@
             this.txtAdi.Size = new System.Drawing.Size(164, 24);
             this.txtAdi.TabIndex = 38;
             // 
-            // txtDosyaNo
-            // 
-            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosyaNo.Location = new System.Drawing.Point(104, 11);
-            this.txtDosyaNo.Name = "txtDosyaNo";
-            this.txtDosyaNo.Size = new System.Drawing.Size(164, 24);
-            this.txtDosyaNo.TabIndex = 28;
-            this.txtDosyaNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDosyaNo_KeyPress);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -234,17 +201,17 @@
             this.label4.Text = "Soyadı";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label15
+            // lblYakınKurumadı
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(338, 415);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 17);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "Kurum Adı";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblYakınKurumadı.AutoSize = true;
+            this.lblYakınKurumadı.BackColor = System.Drawing.Color.Transparent;
+            this.lblYakınKurumadı.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYakınKurumadı.Location = new System.Drawing.Point(307, 417);
+            this.lblYakınKurumadı.Name = "lblYakınKurumadı";
+            this.lblYakınKurumadı.Size = new System.Drawing.Size(98, 17);
+            this.lblYakınKurumadı.TabIndex = 9;
+            this.lblYakınKurumadı.Text = "Yakın Kurum Adı";
+            this.lblYakınKurumadı.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label18
             // 
@@ -347,11 +314,11 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(317, 386);
+            this.label13.Location = new System.Drawing.Point(285, 387);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 17);
+            this.label13.Size = new System.Drawing.Size(120, 17);
             this.label13.TabIndex = 17;
-            this.label13.Text = "Kurum Sicil No";
+            this.label13.Text = "Yakın Kurum Sicil No";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label16
@@ -440,8 +407,11 @@
             // 
             // pnlPatientInfo
             // 
-            this.pnlPatientInfo.Controls.Add(this.panel2);
+            this.pnlPatientInfo.Controls.Add(this.txtYakininTelefonu);
+            this.pnlPatientInfo.Controls.Add(this.txtTelefonNo);
+            this.pnlPatientInfo.Controls.Add(this.txtDosyaNo);
             this.pnlPatientInfo.Controls.Add(this.txtTcKimlikNo);
+            this.pnlPatientInfo.Controls.Add(this.panel2);
             this.pnlPatientInfo.Controls.Add(this.txtYakininKurumAdi);
             this.pnlPatientInfo.Controls.Add(this.txtAdres);
             this.pnlPatientInfo.Controls.Add(this.txtKurumAdi);
@@ -450,18 +420,15 @@
             this.pnlPatientInfo.Controls.Add(this.label1);
             this.pnlPatientInfo.Controls.Add(this.txtKurumSicilNo);
             this.pnlPatientInfo.Controls.Add(this.cmbMedeniHal);
-            this.pnlPatientInfo.Controls.Add(this.txtYakininTelefonu);
             this.pnlPatientInfo.Controls.Add(this.label3);
-            this.pnlPatientInfo.Controls.Add(this.txtTelefonNo);
             this.pnlPatientInfo.Controls.Add(this.cmbCinsiyet);
             this.pnlPatientInfo.Controls.Add(this.label2);
             this.pnlPatientInfo.Controls.Add(this.dateDogumTarihi);
-            this.pnlPatientInfo.Controls.Add(this.label15);
+            this.pnlPatientInfo.Controls.Add(this.lblYakınKurumadı);
             this.pnlPatientInfo.Controls.Add(this.label4);
             this.pnlPatientInfo.Controls.Add(this.label8);
             this.pnlPatientInfo.Controls.Add(this.txtSoyadi);
             this.pnlPatientInfo.Controls.Add(this.label14);
-            this.pnlPatientInfo.Controls.Add(this.txtDosyaNo);
             this.pnlPatientInfo.Controls.Add(this.label6);
             this.pnlPatientInfo.Controls.Add(this.label18);
             this.pnlPatientInfo.Controls.Add(this.label13);
@@ -483,53 +450,97 @@
             this.pnlPatientInfo.Size = new System.Drawing.Size(638, 536);
             this.pnlPatientInfo.TabIndex = 46;
             // 
+            // txtYakininTelefonu
+            // 
+            this.txtYakininTelefonu.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYakininTelefonu.Location = new System.Drawing.Point(417, 347);
+            this.txtYakininTelefonu.Mask = "0000000000";
+            this.txtYakininTelefonu.Name = "txtYakininTelefonu";
+            this.txtYakininTelefonu.PromptChar = ' ';
+            this.txtYakininTelefonu.Size = new System.Drawing.Size(199, 26);
+            this.txtYakininTelefonu.TabIndex = 60;
+            // 
+            // txtTelefonNo
+            // 
+            this.txtTelefonNo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefonNo.Location = new System.Drawing.Point(104, 347);
+            this.txtTelefonNo.Mask = "0000000000";
+            this.txtTelefonNo.Name = "txtTelefonNo";
+            this.txtTelefonNo.PromptChar = ' ';
+            this.txtTelefonNo.Size = new System.Drawing.Size(164, 26);
+            this.txtTelefonNo.TabIndex = 59;
+            // 
+            // txtDosyaNo
+            // 
+            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosyaNo.Location = new System.Drawing.Point(104, 6);
+            this.txtDosyaNo.Mask = "00000";
+            this.txtDosyaNo.Name = "txtDosyaNo";
+            this.txtDosyaNo.PromptChar = ' ';
+            this.txtDosyaNo.Size = new System.Drawing.Size(164, 26);
+            this.txtDosyaNo.TabIndex = 58;
+            // 
+            // txtTcKimlikNo
+            // 
+            this.txtTcKimlikNo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTcKimlikNo.Location = new System.Drawing.Point(417, 9);
+            this.txtTcKimlikNo.Mask = "00000000000";
+            this.txtTcKimlikNo.Name = "txtTcKimlikNo";
+            this.txtTcKimlikNo.PromptChar = ' ';
+            this.txtTcKimlikNo.Size = new System.Drawing.Size(199, 26);
+            this.txtTcKimlikNo.TabIndex = 57;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
-            this.panel2.Controls.Add(this.btn_ekle);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnYeni);
+            this.panel2.Controls.Add(this.btnKaydet);
             this.panel2.Controls.Add(this.btn_exit);
             this.panel2.Location = new System.Drawing.Point(5, 456);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(610, 78);
+            this.panel2.Size = new System.Drawing.Size(631, 78);
             this.panel2.TabIndex = 49;
             // 
-            // btn_ekle
+            // btnYeni
             // 
-            this.btn_ekle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_ekle.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.btn_ekle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
-            this.btn_ekle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.btn_ekle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ekle.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ekle.Image = global::HastaneOtomasyon.Properties.Resources.user_add;
-            this.btn_ekle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_ekle.Location = new System.Drawing.Point(2, 14);
-            this.btn_ekle.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_ekle.Name = "btn_ekle";
-            this.btn_ekle.Size = new System.Drawing.Size(105, 49);
-            this.btn_ekle.TabIndex = 46;
-            this.btn_ekle.Text = "Ekle";
-            this.btn_ekle.UseVisualStyleBackColor = false;
+            this.btnYeni.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnYeni.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnYeni.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
+            this.btnYeni.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnYeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYeni.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYeni.Image = global::HastaneOtomasyon.Properties.Resources.New_document;
+            this.btnYeni.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnYeni.Location = new System.Drawing.Point(16, 14);
+            this.btnYeni.Margin = new System.Windows.Forms.Padding(2);
+            this.btnYeni.Name = "btnYeni";
+            this.btnYeni.Size = new System.Drawing.Size(116, 49);
+            this.btnYeni.TabIndex = 46;
+            this.btnYeni.Text = "Yeni";
+            this.btnYeni.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnYeni.UseVisualStyleBackColor = false;
+            this.btnYeni.Click += new System.EventHandler(this.btnYeni_Click);
             // 
-            // button1
+            // btnKaydet
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::HastaneOtomasyon.Properties.Resources.Save;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(123, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 47);
-            this.button1.TabIndex = 47;
-            this.button1.Text = "Kaydet";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnKaydet.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKaydet.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnKaydet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
+            this.btnKaydet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.btnKaydet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKaydet.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKaydet.Image = global::HastaneOtomasyon.Properties.Resources.Save;
+            this.btnKaydet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKaydet.Location = new System.Drawing.Point(153, 14);
+            this.btnKaydet.Margin = new System.Windows.Forms.Padding(2);
+            this.btnKaydet.Name = "btnKaydet";
+            this.btnKaydet.Size = new System.Drawing.Size(121, 49);
+            this.btnKaydet.TabIndex = 47;
+            this.btnKaydet.Text = "Kaydet";
+            this.btnKaydet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnKaydet.UseVisualStyleBackColor = false;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // btn_exit
             // 
@@ -548,6 +559,7 @@
             this.btn_exit.Size = new System.Drawing.Size(94, 45);
             this.btn_exit.TabIndex = 48;
             this.btn_exit.Text = "Çık";
+            this.btn_exit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_exit.UseVisualStyleBackColor = false;
             // 
             // PatientInformation
@@ -560,7 +572,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PatientInformation";
-            this.Text = "PatientInformation";
+            this.Text = "hasta işlemleri";
             this.Load += new System.EventHandler(this.PatientInformation_Load);
             this.pnlPatientInfo.ResumeLayout(false);
             this.pnlPatientInfo.PerformLayout();
@@ -576,21 +588,17 @@
         private System.Windows.Forms.ComboBox cmbCinsiyet;
         private System.Windows.Forms.DateTimePicker dateDogumTarihi;
         private System.Windows.Forms.TextBox txtSoyadi;
-        private System.Windows.Forms.TextBox txtTcKimlikNo;
         private System.Windows.Forms.TextBox txtAdres;
         private System.Windows.Forms.TextBox txtYakininKurumAdi;
         private System.Windows.Forms.TextBox txtKurumAdi;
         private System.Windows.Forms.TextBox txtYakininKurumSicilNo;
         private System.Windows.Forms.TextBox txtKurumSicilNo;
         private System.Windows.Forms.TextBox txtAnneAdi;
-        private System.Windows.Forms.TextBox txtYakininTelefonu;
-        private System.Windows.Forms.TextBox txtTelefonNo;
         private System.Windows.Forms.TextBox txtBabaAdi;
         private System.Windows.Forms.TextBox txtDogumYeri;
         private System.Windows.Forms.TextBox txtAdi;
-        private System.Windows.Forms.TextBox txtDosyaNo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblYakınKurumadı;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
@@ -608,9 +616,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlPatientInfo;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btn_ekle;
+        private System.Windows.Forms.Button btnKaydet;
+        private System.Windows.Forms.Button btnYeni;
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.MaskedTextBox txtTcKimlikNo;
+        private System.Windows.Forms.MaskedTextBox txtYakininTelefonu;
+        private System.Windows.Forms.MaskedTextBox txtTelefonNo;
+        private System.Windows.Forms.MaskedTextBox txtDosyaNo;
     }
 }

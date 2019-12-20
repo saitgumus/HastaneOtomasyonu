@@ -94,7 +94,7 @@ namespace HastaneOtomasyon.UIForms
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if( Common.SpaceControl(selectedUser.Kodu))
+                if( selectedUser.Kodu > 0)
                 {
                  UserDefinition userDef = new UserDefinition(selectedUser);
                     userDef.MdiParent = Main.ActiveForm;

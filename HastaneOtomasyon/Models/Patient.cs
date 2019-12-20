@@ -11,7 +11,7 @@ namespace HastaneOtomasyon.Models
 
         #region private members
         private string tcKimlikNo;
-        private string dosyaNo;
+        private int dosyaNo;
         private string ad;
         private string soyad;
         private string dogumYeri;
@@ -41,7 +41,7 @@ namespace HastaneOtomasyon.Models
                 tcKimlikNo = value;
             }
         }
-        public string DosyaNo
+        public int DosyaNo
         {
             get
             {

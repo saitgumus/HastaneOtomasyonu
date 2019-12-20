@@ -15,11 +15,12 @@ namespace HastaneOtomasyon.UIForms
     public partial class PatientOperations : Form
     {
         #region properties
-        List<Patient> patients;
+        Patient patient;
         List<User> users;
         List<Operation> operations;
         List<Polyclinic> polyclinics;
         List<Transfer> transfers;
+        private int DosyaNo;
 
         #endregion
         public PatientOperations()
@@ -125,6 +126,27 @@ namespace HastaneOtomasyon.UIForms
 
             transfers = responseUser.Value;
         }
+
+        /// <summary>
+        /// dosya numarasından hasta getirir.
+        /// </summary>
+        private void GetPatient()
+        {
+            var request = new Request<Patient, Patient>();
+            request.MethodName = "SelectPatientByKey";
+
+            var response = request.Execute(new object[] {DosyaNo});
+            if (response.Success)
+            {
+                patient = response.Value;
+            }
+            else
+            {
+                Common.DialogErrorMessage(response.ErrorMessage);
+            }
+
+        }
+
         /// <summary>
         /// komboboxları doldur
         /// </summary>
@@ -179,11 +201,16 @@ namespace HastaneOtomasyon.UIForms
         // ReSharper disable once IdentifierTypo
         private void btnHastaBilgileri_Click(object sender, EventArgs e)
         {
-            PatientInformation pinfo = new PatientInformation(txtDosyaNo.Text);
+            PatientInformation pinfo = new PatientInformation(Convert.ToInt32(txtDosyaNo.Text));
             pinfo.MdiParent = Main.ActiveForm;
             pinfo.Show();
         }
 
+        /// <summary>
+        /// hasta ekleme
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEkle_Click(object sender, EventArgs e)
         {
             PatientInformation pinfo = new PatientInformation();
@@ -191,9 +218,47 @@ namespace HastaneOtomasyon.UIForms
             pinfo.Show();
         }
 
-        private void txtDosyaNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtDosyaNo_KeyPress(object sender, KeyPressEventArgs e)
+        //{
 
+        //    if (e.KeyChar == (char)Keys.Enter)
+        //    {
+        //        if (!Common.SpaceControl(txtDosyaNo.Text))
+        //        {
+        //            return;
+        //        }
+
+        //        var patient = patients.Find(x => x.DosyaNo == int.Parse(txtDosyaNo.Text));
+        //        var sevk = transfers.Find(r => r.DosyaNo.ToString() == txtDosyaNo.Text);
+        //        if (patient != null)
+        //        {
+        //            txtDosyaNo.Text = patient.DosyaNo.ToString();
+        //            txtHastaAdi.Text = patient.Ad;
+        //            txtSoyadi.Text = patient.Soyad;
+        //            txtKurumAdi.Text = patient.KurumAdi;
+        //        }
+
+        //        if (sevk != null)
+        //        {
+        //            cmbOncekiIslemleri.SelectedIndex = cmbOncekiIslemleri.Items.IndexOf(sevk);
+        //            cmbSevkTarihi.SelectedIndex = cmbSevkTarihi.Items.IndexOf(sevk);
+        //        }
+
+        //    }
+        //}
+
+        /// <summary>
+        /// dosya no enter basıldığında
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtDosyaNo_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (!Common.SpaceControl(txtDosyaNo.Text))
@@ -201,23 +266,55 @@ namespace HastaneOtomasyon.UIForms
                     return;
                 }
 
-                var patient = patients.Find(x => x.DosyaNo == txtDosyaNo.Text);
-                var sevk = transfers.Find(r => r.DosyaNo == txtDosyaNo.Text);
-                if (patient != null)
-                {
-                    txtDosyaNo.Text = patient.DosyaNo;
-                    txtHastaAdi.Text = patient.Ad;
-                    txtSoyadi.Text = patient.Soyad;
-                    txtKurumAdi.Text = patient.KurumAdi;
-                }
+                DosyaNo = int.Parse(txtDosyaNo.Text);
 
-                if (sevk != null)
+                if (DosyaNo > 0)
                 {
-                    cmbOncekiIslemleri.SelectedIndex = cmbOncekiIslemleri.Items.IndexOf(sevk);
-                    cmbSevkTarihi.SelectedIndex = cmbSevkTarihi.Items.IndexOf(sevk);
+                    GetPatient();
+
                 }
 
             }
+        }
+
+        /// <summary>
+        /// hasta bilgileri komboboxlarda seçilir
+        /// </summary>
+        private void SetComboboxItemsForPatient()
+        {
+
+            var sevk = transfers.Find(r => r.DosyaNo.ToString() == txtDosyaNo.Text);
+
+            if (patient != null)
+            {
+                txtDosyaNo.Text = patient.DosyaNo.ToString();
+                txtHastaAdi.Text = patient.Ad;
+                txtSoyadi.Text = patient.Soyad;
+                txtKurumAdi.Text = patient.KurumAdi;
+            }
+
+            if (sevk != null)
+            {
+                cmbOncekiIslemleri.SelectedIndex = cmbOncekiIslemleri.Items.IndexOf(sevk);
+                cmbSevkTarihi.SelectedIndex = cmbSevkTarihi.Items.IndexOf(sevk);
+            }
+            else
+            {
+                cmbOncekiIslemleri.SelectedIndex = 0;
+                cmbSevkTarihi.SelectedIndex = 0;
+            }
+        }
+
+        /// <summary>
+        /// yeni hasta ekler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnYeni_Click(object sender, EventArgs e)
+        {
+            PatientInformation ptInfo = new PatientInformation();
+            ptInfo.MdiParent = Main.ActiveForm;
+            ptInfo.Show();
         }
     }
 }

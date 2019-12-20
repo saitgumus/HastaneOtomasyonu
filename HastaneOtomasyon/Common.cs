@@ -249,6 +249,7 @@ namespace HastaneOtomasyon
         public const string kullanıcıGüncelle = "update_kullanıcı";
         public const string poliklinikGuncelle = "update_poliklinik";
         public const string sevkGuncelle = "update_sevk";
+        public const string dosyanoilehastagetir = "dosyano_ile_bul";
 
 
         public const string userTable = "kullanici";
@@ -289,6 +290,25 @@ namespace HastaneOtomasyon
             }
 
             return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// verilen sınıfın public değerlerni döndürür.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<string> GetClassProperties<T>()
+        {
+            var returnObject = new List<string>();
+
+            var pross = typeof(T).GetProperties();
+
+            foreach (var propertyInfo in pross)
+            {
+                returnObject.Add(propertyInfo.Name);
+            }
+
+            return returnObject;
         }
         #endregion
 

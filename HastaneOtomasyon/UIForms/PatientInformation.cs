@@ -16,17 +16,16 @@ namespace HastaneOtomasyon.UIForms
         #region properties
 
         private Patient patient;
-        public string DosyaNo { get; private set; }
+        public int DosyaNo { get; private set; }
 
         #endregion
         public PatientInformation()
         {
             InitializeComponent();
         } 
-        public PatientInformation(string dosyaNo):this()
+        public PatientInformation(int dosyaNo):this()
         {
             DosyaNo = dosyaNo;
-
         }
 
         /// <summary>
@@ -75,7 +74,35 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void PatientInformation_Load(object sender, EventArgs e)
         {
-            GetPatient();
+            if (DosyaNo > 0)
+            {  GetPatient();
+                SetFields();
+            }
+        }
+
+        /// <summary>
+        /// alanları doldurur.
+        /// </summary>
+        private void SetFields()
+        {
+            txtTcKimlikNo.Text = patient.TcKimlikNo;
+            txtDosyaNo.Text = patient.DosyaNo.ToString();
+            txtAdi.Text = patient.Ad;
+            txtSoyadi.Text = patient.Soyad;
+            txtDogumYeri.Text = patient.DogumYeri;
+            dateDogumTarihi.Value = patient.DogumTarihi;
+            txtBabaAdi.Text = patient.BabaAdi;
+            txtAnneAdi.Text = patient.AnneAdi;
+            cmbCinsiyet.Text = patient.Cinsiyet;
+            cmbKanGrubu.Text = patient.KanGrubu;
+            cmbMedeniHal.Text = patient.MedeniHal;
+            txtAdres.Text = patient.Adres;
+            txtTelefonNo.Text = patient.Tel;
+            txtKurumSicilNo.Text = patient.KurumSicilNo;
+            txtKurumAdi.Text = patient.KurumAdi;
+            txtYakininTelefonu.Text = patient.YakinTel;
+            txtYakininKurumSicilNo.Text = patient.YakinKurumSicilNo;
+            txtYakininKurumAdi.Text = patient.YakinKurumAdi;
         }
 
         /// <summary>
@@ -85,6 +112,26 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void txtDosyaNo_KeyPress(object sender, KeyPressEventArgs e)
         {
+        }
+
+        /// <summary>
+        /// kaydet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// temizler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnYeni_Click(object sender, EventArgs e)
+        {
+            Common.CleanTextControls(ref pnlPatientInfo);
         }
     }
 }

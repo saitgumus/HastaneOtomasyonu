@@ -9,20 +9,20 @@ namespace HastaneOtomasyon.Models
     public class Transfer
     {
         #region private members
-        private string sevkTarihi;
-        private string dosyaNo;
+        private DateTime sevkTarihi;
+        private int dosyaNo;
         private string poliklinik;
-        private string saat;
+        private DateTime saat;
         private string yapilanIslem;
-        private string drKod;
-        private string miktar;
-        private string birimFiyat;
-        private string sira;
-        private string toplamTutar;
+        private int drKod;
+        private int miktar;
+        private int birimFiyat;
+        private int sira;
+        private int toplamTutar;
         private string taburcu;
         #endregion
         #region public members
-        public string SevkTarihi
+        public DateTime SevkTarihi
         {
             get
             {
@@ -33,7 +33,7 @@ namespace HastaneOtomasyon.Models
                 sevkTarihi = value;
             }
         }
-        public string DosyaNo
+        public int DosyaNo
         {
             get
             {
@@ -55,7 +55,7 @@ namespace HastaneOtomasyon.Models
                 poliklinik = value;
             }
         }
-        public string Saat
+        public DateTime Saat
         {
             get
             {
@@ -77,7 +77,7 @@ namespace HastaneOtomasyon.Models
                 yapilanIslem = value;
             }
         }
-        public string DrKod
+        public int DrKod
         {
             get
             {
@@ -88,7 +88,7 @@ namespace HastaneOtomasyon.Models
                 drKod = value;
             }
         }
-        public string Miktar
+        public int Miktar
         {
             get
             {
@@ -99,7 +99,7 @@ namespace HastaneOtomasyon.Models
                 miktar = value;
             }
         }
-        public string BirimFiyat
+        public int BirimFiyat
         {
             get
             {
@@ -110,7 +110,7 @@ namespace HastaneOtomasyon.Models
                 birimFiyat = value;
             }
         }
-        public string Sira
+        public int Sira
         {
             get
             {
@@ -121,7 +121,7 @@ namespace HastaneOtomasyon.Models
                 sira = value;
             }
         }
-        public string ToplamTutar
+        public int ToplamTutar
         {
             get
             {

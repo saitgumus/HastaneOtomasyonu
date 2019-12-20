@@ -10,14 +10,14 @@ namespace HastaneOtomasyon.Models
     {
 
         #region private members
-        private string dosyaNo;
-        private string sevkTarihi;
+        private int dosyaNo;
+        private DateTime sevkTarihi;
         private DateTime cikisTarihi;
-        private string odeme;
-        private string toplamTutar;
+        private int odeme;
+        private int toplamTutar;
         #endregion
         #region public members
-        public string DosyaNo
+        public int DosyaNo
         {
             get
             {
@@ -29,7 +29,7 @@ namespace HastaneOtomasyon.Models
             }
         }
 
-        public string SevkTarihi
+        public DateTime SevkTarihi
         {
             get
             {
@@ -53,7 +53,7 @@ namespace HastaneOtomasyon.Models
             }
         }
 
-        public string Odeme
+        public int Odeme
         {
             get
             {
@@ -65,7 +65,7 @@ namespace HastaneOtomasyon.Models
             }
         }
 
-        public string ToplamTutar
+        public int ToplamTutar
         {
             get
             {

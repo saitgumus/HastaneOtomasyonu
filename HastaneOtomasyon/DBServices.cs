@@ -86,26 +86,26 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.kullanıcıKaydet, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("kodu",         user.Kodu);
-            cmd.Parameters.AddWithValue("ad",           user.Ad);
-            cmd.Parameters.AddWithValue("soyad",        user.Soyad);
-            cmd.Parameters.AddWithValue("sifre",        user.Sifre);
-            cmd.Parameters.AddWithValue("Yetki",        user.Yetki);
-            cmd.Parameters.AddWithValue("Evtel",        user.Evtel);
-            cmd.Parameters.AddWithValue("CepTel",       user.CepTel);
-            cmd.Parameters.AddWithValue("Adres",        user.Adres);
-            cmd.Parameters.AddWithValue("Unvan",        user.Unvan);
-            cmd.Parameters.AddWithValue("IseBaslama",   user.IseBaslama);
-            cmd.Parameters.AddWithValue("Maas",         user.Maas);
-            cmd.Parameters.AddWithValue("DogumYeri",    user.DogumYeri);
-            cmd.Parameters.AddWithValue("AnneAd",       user.AnneAd);
-            cmd.Parameters.AddWithValue("BabaAd",       user.BabaAd);
-            cmd.Parameters.AddWithValue("Cinsiyet",     user.Cinsiyet);
-            cmd.Parameters.AddWithValue("KanGrubu",     user.KanGrubu);
-            cmd.Parameters.AddWithValue("MedeniHal",    user.MedeniHal);
-            cmd.Parameters.AddWithValue("DogumTarihi",  user.DogumTarihi);
-            cmd.Parameters.AddWithValue("TcKimlikNo",   user.TcKimlikNo);
-            cmd.Parameters.AddWithValue("UserName",     user.UserName);
+            cmd.Parameters.AddWithValue("@kodu",         user.Kodu);
+            cmd.Parameters.AddWithValue("@ad",           user.Ad);
+            cmd.Parameters.AddWithValue("@soyad",        user.Soyad);
+            cmd.Parameters.AddWithValue("@sifre",        user.Sifre);
+            cmd.Parameters.AddWithValue("@Yetki",        user.Yetki);
+            cmd.Parameters.AddWithValue("@Evtel",        user.Evtel);
+            cmd.Parameters.AddWithValue("@CepTel",       user.CepTel);
+            cmd.Parameters.AddWithValue("@Adres",        user.Adres);
+            cmd.Parameters.AddWithValue("@Unvan",        user.Unvan);
+            cmd.Parameters.AddWithValue("@IseBaslama",   user.IseBaslama);
+            cmd.Parameters.AddWithValue("@Maas",         user.Maas);
+            cmd.Parameters.AddWithValue("@DogumYeri",    user.DogumYeri);
+            cmd.Parameters.AddWithValue("@AnneAd",       user.AnneAd);
+            cmd.Parameters.AddWithValue("@BabaAd",       user.BabaAd);
+            cmd.Parameters.AddWithValue("@Cinsiyet",     user.Cinsiyet);
+            cmd.Parameters.AddWithValue("@KanGrubu",     user.KanGrubu);
+            cmd.Parameters.AddWithValue("@MedeniHal",    user.MedeniHal);
+            cmd.Parameters.AddWithValue("@DogumTarihi",  user.DogumTarihi);
+            cmd.Parameters.AddWithValue("@TcKimlikNo",   user.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@UserName",     user.UserName);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -136,28 +136,30 @@ namespace HastaneOtomasyon
             var returnObject = new GenericResponse<Boolean>();
 
             ConnectDB();
-            var cmd = new SqlCommand(Common.hastaKaydet, conSOHATS);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("tcKimlikNo", data.TcKimlikNo);
-            cmd.Parameters.AddWithValue("DosyaNo", data.DosyaNo);
-            cmd.Parameters.AddWithValue("ad", data.Ad);
-            cmd.Parameters.AddWithValue("soyad", data.Soyad);
-            cmd.Parameters.AddWithValue("DogumYeri", data.DogumYeri);
-            cmd.Parameters.AddWithValue("DogumTarihi", data.DogumTarihi);
-            cmd.Parameters.AddWithValue("Adres", data.Adres);
-            cmd.Parameters.AddWithValue("Tel", data.Tel);
-            cmd.Parameters.AddWithValue("KurumSicilNo", data.KurumSicilNo);
-            cmd.Parameters.AddWithValue("KurumAdi", data.KurumAdi);
-            cmd.Parameters.AddWithValue("YakinTel", data.YakinTel);
-            cmd.Parameters.AddWithValue("YakinKurumSicilNo", data.YakinKurumSicilNo);
-            cmd.Parameters.AddWithValue("YakinKurumAdi", data.YakinKurumAdi);
-            cmd.Parameters.AddWithValue("DogumYeri", data.DogumYeri);
-            cmd.Parameters.AddWithValue("AnneAdi", data.AnneAdi);
-            cmd.Parameters.AddWithValue("BabaAdi", data.BabaAdi);
-            cmd.Parameters.AddWithValue("Cinsiyet", data.Cinsiyet);
-            cmd.Parameters.AddWithValue("KanGrubu", data.KanGrubu);
-            cmd.Parameters.AddWithValue("MedeniHal", data.MedeniHal);
-            cmd.Parameters.AddWithValue("TcKimlikNo", data.TcKimlikNo);
+            var cmd = new SqlCommand(Common.hastaKaydet, conSOHATS)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("@tcKimlikNo", data.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@DosyaNo", data.DosyaNo);
+            cmd.Parameters.AddWithValue("@ad", data.Ad);
+            cmd.Parameters.AddWithValue("@soyad", data.Soyad);
+            cmd.Parameters.AddWithValue("@DogumYeri", data.DogumYeri);
+            cmd.Parameters.AddWithValue("@DogumTarihi", data.DogumTarihi);
+            cmd.Parameters.AddWithValue("@Adres", data.Adres);
+            cmd.Parameters.AddWithValue("@Tel", data.Tel);
+            cmd.Parameters.AddWithValue("@KurumSicilNo", data.KurumSicilNo);
+            cmd.Parameters.AddWithValue("@KurumAdi", data.KurumAdi);
+            cmd.Parameters.AddWithValue("@YakinTel", data.YakinTel);
+            cmd.Parameters.AddWithValue("@YakinKurumSicilNo", data.YakinKurumSicilNo);
+            cmd.Parameters.AddWithValue("@YakinKurumAdi", data.YakinKurumAdi);
+            cmd.Parameters.AddWithValue("@DogumYeri", data.DogumYeri);
+            cmd.Parameters.AddWithValue("@AnneAdi", data.AnneAdi);
+            cmd.Parameters.AddWithValue("@BabaAdi", data.BabaAdi);
+            cmd.Parameters.AddWithValue("@Cinsiyet", data.Cinsiyet);
+            cmd.Parameters.AddWithValue("@KanGrubu", data.KanGrubu);
+            cmd.Parameters.AddWithValue("@MedeniHal", data.MedeniHal);
+            cmd.Parameters.AddWithValue("@TcKimlikNo", data.TcKimlikNo);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -190,11 +192,11 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.cikisKaydet, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("DosyaNo", data.DosyaNo);
-            cmd.Parameters.AddWithValue("SevkTarihi", data.SevkTarihi);
-            cmd.Parameters.AddWithValue("CikisTarihi", data.CikisTarihi);
-            cmd.Parameters.AddWithValue("Odeme", data.Odeme);
-            cmd.Parameters.AddWithValue("ToplamTutar", data.ToplamTutar);
+            cmd.Parameters.AddWithValue("@DosyaNo", data.DosyaNo);
+            cmd.Parameters.AddWithValue("@SevkTarihi", data.SevkTarihi);
+            cmd.Parameters.AddWithValue("@CikisTarihi", data.CikisTarihi);
+            cmd.Parameters.AddWithValue("@Odeme", data.Odeme);
+            cmd.Parameters.AddWithValue("@ToplamTutar", data.ToplamTutar);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -226,17 +228,17 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.sevkKaydet, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("SevkTarihi", data.SevkTarihi);
-            cmd.Parameters.AddWithValue("DosyaNo", data.DosyaNo);
-            cmd.Parameters.AddWithValue("Poliklinik", data.Poliklinik);
-            cmd.Parameters.AddWithValue("Saat", data.Saat);
-            cmd.Parameters.AddWithValue("YapilanIslem", data.YapilanIslem);
-            cmd.Parameters.AddWithValue("DrKod", data.DrKod);
-            cmd.Parameters.AddWithValue("Miktar", data.Miktar);
-            cmd.Parameters.AddWithValue("BirimFiyat", data.BirimFiyat);
-            cmd.Parameters.AddWithValue("Sira", data.Sira);
-            cmd.Parameters.AddWithValue("ToplamTutar", data.ToplamTutar);
-            cmd.Parameters.AddWithValue("Taburcu", data.Taburcu);
+            cmd.Parameters.AddWithValue("@SevkTarihi", data.SevkTarihi);
+            cmd.Parameters.AddWithValue("@DosyaNo", data.DosyaNo);
+            cmd.Parameters.AddWithValue("@Poliklinik", data.Poliklinik);
+            cmd.Parameters.AddWithValue("@Saat", data.Saat);
+            cmd.Parameters.AddWithValue("@YapilanIslem", data.YapilanIslem);
+            cmd.Parameters.AddWithValue("@DrKod", data.DrKod);
+            cmd.Parameters.AddWithValue("@Miktar", data.Miktar);
+            cmd.Parameters.AddWithValue("@BirimFiyat", data.BirimFiyat);
+            cmd.Parameters.AddWithValue("@Sira", data.Sira);
+            cmd.Parameters.AddWithValue("@ToplamTutar", data.ToplamTutar);
+            cmd.Parameters.AddWithValue("@Taburcu", data.Taburcu);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -269,9 +271,9 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.poliklinikKaydet, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("PoliklinikAdi", data.PoliklinikAdi);
-            cmd.Parameters.AddWithValue("Durum", data.Durum);
-            cmd.Parameters.AddWithValue("Aciklama", data.Aciklama);
+            cmd.Parameters.AddWithValue("@PoliklinikAdi", data.PoliklinikAdi);
+            cmd.Parameters.AddWithValue("@Durum", data.Durum);
+            cmd.Parameters.AddWithValue("@Aciklama", data.Aciklama);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -308,26 +310,26 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.hastaGuncelle, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("tcKimlikNo", data.TcKimlikNo);
-            cmd.Parameters.AddWithValue("DosyaNo", data.DosyaNo);
-            cmd.Parameters.AddWithValue("ad", data.Ad);
-            cmd.Parameters.AddWithValue("soyad", data.Soyad);
-            cmd.Parameters.AddWithValue("DogumYeri", data.DogumYeri);
-            cmd.Parameters.AddWithValue("DogumTarihi", data.DogumTarihi);
-            cmd.Parameters.AddWithValue("Adres", data.Adres);
-            cmd.Parameters.AddWithValue("Tel", data.Tel);
-            cmd.Parameters.AddWithValue("KurumSicilNo", data.KurumSicilNo);
-            cmd.Parameters.AddWithValue("KurumAdi", data.KurumAdi);
-            cmd.Parameters.AddWithValue("YakinTel", data.YakinTel);
-            cmd.Parameters.AddWithValue("YakinKurumSicilNo", data.YakinKurumSicilNo);
-            cmd.Parameters.AddWithValue("YakinKurumAdi", data.YakinKurumAdi);
-            cmd.Parameters.AddWithValue("DogumYeri", data.DogumYeri);
-            cmd.Parameters.AddWithValue("AnneAdi", data.AnneAdi);
-            cmd.Parameters.AddWithValue("BabaAdi", data.BabaAdi);
-            cmd.Parameters.AddWithValue("Cinsiyet", data.Cinsiyet);
-            cmd.Parameters.AddWithValue("KanGrubu", data.KanGrubu);
-            cmd.Parameters.AddWithValue("MedeniHal", data.MedeniHal);
-            cmd.Parameters.AddWithValue("TcKimlikNo", data.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@tcKimlikNo", data.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@DosyaNo", data.DosyaNo);
+            cmd.Parameters.AddWithValue("@ad", data.Ad);
+            cmd.Parameters.AddWithValue("@soyad", data.Soyad);
+            cmd.Parameters.AddWithValue("@DogumYeri", data.DogumYeri);
+            cmd.Parameters.AddWithValue("@DogumTarihi", data.DogumTarihi);
+            cmd.Parameters.AddWithValue("@Adres", data.Adres);
+            cmd.Parameters.AddWithValue("@Tel", data.Tel);
+            cmd.Parameters.AddWithValue("@KurumSicilNo", data.KurumSicilNo);
+            cmd.Parameters.AddWithValue("@KurumAdi", data.KurumAdi);
+            cmd.Parameters.AddWithValue("@YakinTel", data.YakinTel);
+            cmd.Parameters.AddWithValue("@YakinKurumSicilNo", data.YakinKurumSicilNo);
+            cmd.Parameters.AddWithValue("@YakinKurumAdi", data.YakinKurumAdi);
+            cmd.Parameters.AddWithValue("@DogumYeri", data.DogumYeri);
+            cmd.Parameters.AddWithValue("@AnneAdi", data.AnneAdi);
+            cmd.Parameters.AddWithValue("@BabaAdi", data.BabaAdi);
+            cmd.Parameters.AddWithValue("@Cinsiyet", data.Cinsiyet);
+            cmd.Parameters.AddWithValue("@KanGrubu", data.KanGrubu);
+            cmd.Parameters.AddWithValue("@MedeniHal", data.MedeniHal);
+            cmd.Parameters.AddWithValue("@TcKimlikNo", data.TcKimlikNo);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -357,26 +359,26 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.kullanıcıGüncelle, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("kodu", user.Kodu);
-            cmd.Parameters.AddWithValue("ad", user.Ad);
-            cmd.Parameters.AddWithValue("soyad", user.Soyad);
-            cmd.Parameters.AddWithValue("sifre", user.Sifre);
-            cmd.Parameters.AddWithValue("Yetki", user.Yetki);
-            cmd.Parameters.AddWithValue("Evtel", user.Evtel);
-            cmd.Parameters.AddWithValue("CepTel", user.CepTel);
-            cmd.Parameters.AddWithValue("Adres", user.Adres);
-            cmd.Parameters.AddWithValue("Unvan", user.Unvan);
-            cmd.Parameters.AddWithValue("IseBaslama", user.IseBaslama);
-            cmd.Parameters.AddWithValue("Maas", user.Maas);
-            cmd.Parameters.AddWithValue("DogumYeri", user.DogumYeri);
-            cmd.Parameters.AddWithValue("AnneAd", user.AnneAd);
-            cmd.Parameters.AddWithValue("BabaAd", user.BabaAd);
-            cmd.Parameters.AddWithValue("Cinsiyet", user.Cinsiyet);
-            cmd.Parameters.AddWithValue("KanGrubu", user.KanGrubu);
-            cmd.Parameters.AddWithValue("MedeniHal", user.MedeniHal);
-            cmd.Parameters.AddWithValue("DogumTarihi", user.DogumTarihi);
-            cmd.Parameters.AddWithValue("TcKimlikNo", user.TcKimlikNo);
-            cmd.Parameters.AddWithValue("UserName", user.UserName);
+            cmd.Parameters.AddWithValue("@kodu", user.Kodu);
+            cmd.Parameters.AddWithValue("@ad", user.Ad);
+            cmd.Parameters.AddWithValue("@soyad", user.Soyad);
+            cmd.Parameters.AddWithValue("@sifre", user.Sifre);
+            cmd.Parameters.AddWithValue("@Yetki", user.Yetki);
+            cmd.Parameters.AddWithValue("@Evtel", user.Evtel);
+            cmd.Parameters.AddWithValue("@CepTel", user.CepTel);
+            cmd.Parameters.AddWithValue("@Adres", user.Adres);
+            cmd.Parameters.AddWithValue("@Unvan", user.Unvan);
+            cmd.Parameters.AddWithValue("@IseBaslama", user.IseBaslama);
+            cmd.Parameters.AddWithValue("@Maas", user.Maas);
+            cmd.Parameters.AddWithValue("@DogumYeri", user.DogumYeri);
+            cmd.Parameters.AddWithValue("@AnneAd", user.AnneAd);
+            cmd.Parameters.AddWithValue("@BabaAd", user.BabaAd);
+            cmd.Parameters.AddWithValue("@Cinsiyet", user.Cinsiyet);
+            cmd.Parameters.AddWithValue("@KanGrubu", user.KanGrubu);
+            cmd.Parameters.AddWithValue("@MedeniHal", user.MedeniHal);
+            cmd.Parameters.AddWithValue("@DogumTarihi", user.DogumTarihi);
+            cmd.Parameters.AddWithValue("@TcKimlikNo", user.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@UserName", user.UserName);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -406,17 +408,17 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.sevkGuncelle, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("SevkTarihi", data.SevkTarihi);
-            cmd.Parameters.AddWithValue("DosyaNo", data.DosyaNo);
-            cmd.Parameters.AddWithValue("Poliklinik", data.Poliklinik);
-            cmd.Parameters.AddWithValue("Saat", data.Saat);
-            cmd.Parameters.AddWithValue("YapilanIslem", data.YapilanIslem);
-            cmd.Parameters.AddWithValue("DrKod", data.DrKod);
-            cmd.Parameters.AddWithValue("Miktar", data.Miktar);
-            cmd.Parameters.AddWithValue("BirimFiyat", data.BirimFiyat);
-            cmd.Parameters.AddWithValue("Sira", data.Sira);
-            cmd.Parameters.AddWithValue("ToplamTutar", data.ToplamTutar);
-            cmd.Parameters.AddWithValue("Taburcu", data.Taburcu);
+            cmd.Parameters.AddWithValue("@SevkTarihi", data.SevkTarihi);
+            cmd.Parameters.AddWithValue("@DosyaNo", data.DosyaNo);
+            cmd.Parameters.AddWithValue("@Poliklinik", data.Poliklinik);
+            cmd.Parameters.AddWithValue("@Saat", data.Saat);
+            cmd.Parameters.AddWithValue("@YapilanIslem", data.YapilanIslem);
+            cmd.Parameters.AddWithValue("@DrKod", data.DrKod);
+            cmd.Parameters.AddWithValue("@Miktar", data.Miktar);
+            cmd.Parameters.AddWithValue("@BirimFiyat", data.BirimFiyat);
+            cmd.Parameters.AddWithValue("@Sira", data.Sira);
+            cmd.Parameters.AddWithValue("@ToplamTutar", data.ToplamTutar);
+            cmd.Parameters.AddWithValue("@Taburcu", data.Taburcu);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -446,9 +448,9 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.poliklinikGuncelle, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("PoliklinikAdi", data.PoliklinikAdi);
-            cmd.Parameters.AddWithValue("Durum", data.Durum);
-            cmd.Parameters.AddWithValue("Aciklama", data.Aciklama);
+            cmd.Parameters.AddWithValue("@PoliklinikAdi", data.PoliklinikAdi);
+            cmd.Parameters.AddWithValue("@Durum", data.Durum);
+            cmd.Parameters.AddWithValue("@Aciklama", data.Aciklama);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -481,7 +483,7 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.hastasil, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("tcKimlikNo", data.TcKimlikNo);
+            cmd.Parameters.AddWithValue("@tcKimlikNo", data.TcKimlikNo);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -511,7 +513,7 @@ namespace HastaneOtomasyon
             ConnectDB();
             var cmd = new SqlCommand(Common.kullanıcısil, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("kodu", user.Kodu);
+            cmd.Parameters.AddWithValue("@kodu", user.Kodu);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -612,7 +614,7 @@ namespace HastaneOtomasyon
             while (dr.Read())
             {
                 user = new User();
-                user.Kodu = dr[0].ToString();
+                user.Kodu = (int)dr[0];
                 user.Ad = dr[1].ToString();
                 user.Soyad = dr[2].ToString();
                 user.Sifre = dr[3].ToString();
@@ -622,7 +624,7 @@ namespace HastaneOtomasyon
                 user.Adres = dr[7].ToString();
                 user.Unvan = dr[8].ToString();
                 user.IseBaslama = (dr[9] != DBNull.Value) ? Convert.ToDateTime(dr[9]) : DateTime.MinValue;
-                user.Maas = dr[10].ToString();
+                user.Maas = (dr[10] != DBNull.Value) ? dr.GetInt32(10) : 0;
                 user.DogumYeri = dr[11].ToString();
                 user.AnneAd = dr[12].ToString();
                 user.BabaAd = dr[13].ToString();
@@ -632,7 +634,7 @@ namespace HastaneOtomasyon
                 user.DogumTarihi = (dr[17] != DBNull.Value) ? Convert.ToDateTime(dr[17]) : DateTime.MinValue;
                 user.TcKimlikNo = dr[18].ToString();
                 user.UserName = dr[19].ToString();
-
+                
                 data.Add(user);
             }
             endConnectDB();
@@ -665,8 +667,8 @@ namespace HastaneOtomasyon
                 patient = new Patient
                 {
                     TcKimlikNo = dr[0].ToString(),
-                    DosyaNo = dr[1].ToString(),
-                    Ad = dr[2].ToString(),
+                    DosyaNo = (dr[1] != DBNull.Value) ? dr.GetInt32(1) : 0,
+                Ad = dr[2].ToString(),
                     Soyad = dr[3].ToString(),
                     DogumYeri = dr[4].ToString(),
                     DogumTarihi = (dr[5] != DBNull.Value) ? Convert.ToDateTime(dr[5]) : DateTime.MinValue,
@@ -693,6 +695,36 @@ namespace HastaneOtomasyon
         }
 
         /// <summary>
+        /// dosya numarası ile kayıt getirir.
+        /// </summary>
+        /// <param name="dosyaNo"></param>
+        /// <returns></returns>
+        public GenericResponse<Patient> SelectPatientByKey(int dosyaNo)
+        {
+            var returnObject = new GenericResponse<Patient>();
+
+            ConnectDB();
+            var cmd = new SqlCommand(Common.dosyanoilehastagetir, conSOHATS);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@dosyano",dosyaNo);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Common.WriteLog("error", e.Message);
+                returnObject.Success = false;
+                returnObject.ErrorMessage = e.Message;
+                throw;
+            }
+
+            returnObject.Success = true;
+            endConnectDB();
+            return returnObject;
+        }
+
+        /// <summary>
         /// taburcu kayıtları
         /// </summary>
         /// <returns></returns>
@@ -701,21 +733,23 @@ namespace HastaneOtomasyon
             var returnObject = new GenericResponse<List<Discharged>>();
 
             ConnectDB();
-            SqlCommand sqlCommand = new SqlCommand();
+            var sqlCommand = new SqlCommand();
             sqlCommand.CommandText = Common.CreateProcedureText(Common.patientTable, null, null);
             sqlCommand.Connection = conSOHATS;
-            SqlDataReader dr = sqlCommand.ExecuteReader();
+            var dr = sqlCommand.ExecuteReader();
 
-            List<Discharged> data = new List<Discharged>();
-            Discharged patient = new Discharged();
+            var data = new List<Discharged>();
+            var patient = new Discharged();
             while (dr.Read())
             {
-                patient = new Discharged();
-                patient.DosyaNo = dr[0].ToString();
-                patient.SevkTarihi = dr[1].ToString();
-                patient.CikisTarihi = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue;
-                patient.Odeme = dr.GetString(3);
-                patient.ToplamTutar = dr.GetString(4);
+                patient = new Discharged
+                {
+                    DosyaNo = (dr[0] != DBNull.Value) ? dr.GetInt32(0) : 0,
+                    SevkTarihi = (dr[1] != DBNull.Value) ? Convert.ToDateTime(dr[1]) : DateTime.MinValue,
+                    CikisTarihi = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue,
+                    Odeme = (dr[3] != DBNull.Value) ? dr.GetInt32(3) : 0,
+                    ToplamTutar = (dr[4] != DBNull.Value) ? dr.GetInt32(4) : 0
+            };
 
                 data.Add(patient);
             }
@@ -771,14 +805,14 @@ namespace HastaneOtomasyon
             sqlCommand.Connection = conSOHATS;
             SqlDataReader dr = sqlCommand.ExecuteReader();
 
-            List<Operation> data = new List<Operation>();
-            Operation dt = new Operation();
+            var data = new List<Operation>();
+            var dt = new Operation();
             while (dr.Read())
             {
                 dt = new Operation
                 {
-                    IslemAdi = dr[0].ToString(),
-                    BirimFiyat = dr[1].ToString()
+                    IslemAdi = dr.GetString(0),
+                    BirimFiyat = (dr[1] != DBNull.Value) ? dr.GetInt32(1): 0
                 };
                 data.Add(dt);
             }
@@ -801,23 +835,27 @@ namespace HastaneOtomasyon
             var returnObject = new GenericResponse<List<Transfer>>();
 
             ConnectDB();
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.CommandText = Common.CreateProcedureText(Common.operationTable, alanlar, filtre);
-            sqlCommand.Connection = conSOHATS;
-            SqlDataReader dr = sqlCommand.ExecuteReader();
+            var sqlCommand = new SqlCommand
+            {
+                CommandText = Common.CreateProcedureText(Common.operationTable, alanlar, filtre),
+                Connection = conSOHATS
+            };
+            var dr = sqlCommand.ExecuteReader();
 
-            List<Transfer> data = new List<Transfer>();
-            Transfer dt = new Transfer();
+            var data = new List<Transfer>();
+            var dt = new Transfer();
             while (dr.Read())
             {
-                dt = new Transfer();
-                dt.Poliklinik = dr[0].ToString();
-                dt.Sira = dr[1].ToString();
-                dt.Saat = dr[2].ToString();
-                dt.YapilanIslem = dr[3].ToString();
-                dt.DrKod = dr[4].ToString();
-                dt.Miktar = dr[5].ToString();
-                dt.BirimFiyat = dr[6].ToString();
+                dt = new Transfer
+                {
+                    Poliklinik = dr.GetString(0),
+                    Sira = (dr[1] != DBNull.Value) ? dr.GetInt32(1) : 0,
+                    Saat = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue,
+                    YapilanIslem = dr.GetString(3),
+                    DrKod = (dr[4] != DBNull.Value) ? dr.GetInt32(4) : 0,
+                    Miktar = (dr[5] != DBNull.Value) ? dr.GetInt32(5) : 0,
+                    BirimFiyat = (dr[6] != DBNull.Value) ? dr.GetInt32(6) : 0
+                };
                 data.Add(dt);
             }
             endConnectDB();
