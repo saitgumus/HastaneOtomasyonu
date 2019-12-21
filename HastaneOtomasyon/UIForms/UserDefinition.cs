@@ -106,7 +106,7 @@ namespace HastaneOtomasyon.UIForms
                 }
                 else
                 {
-                    Common.DialogWarningMessage(Common.msg_zorunluAlanWarning);
+                    Messaging.DialogWarningMessage(Messaging.msg_zorunluAlanWarning);
                     return;
                 }
             }
@@ -156,11 +156,11 @@ namespace HastaneOtomasyon.UIForms
             var response = request.Execute(o);
             if (!response.Success)
             {
-                Common.DialogErrorMessage(response.ErrorMessage);
+                Messaging.DialogErrorMessage(response.ErrorMessage);
                 return;
             }
 
-            Common.DialogInfoMessage(Common.msg_kayıtOk);
+            Messaging.DialogInfoMessage(Messaging.msg_kayıtOk);
         }
 
         /// <summary>
@@ -176,11 +176,11 @@ namespace HastaneOtomasyon.UIForms
             var response = request.Execute(o);
             if (!response.Success)
             {
-                Common.DialogErrorMessage(response.ErrorMessage);
+                Messaging.DialogErrorMessage(response.ErrorMessage);
                 return;
             }
 
-            Common.DialogInfoMessage(Common.msg_güncellemeOk);
+            Messaging.DialogInfoMessage(Messaging.msg_güncellemeOk);
         }
 
         /// <summary>
@@ -191,6 +191,17 @@ namespace HastaneOtomasyon.UIForms
         private void txtKullaniciKodu_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// eğer sadece alfabetik veya silme tuşu ise true döner.
+        /// event fonksiyonu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckAlphabetic(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Common.ControlAlphabetic(e);
         }
 
         /// <summary>
@@ -221,7 +232,7 @@ namespace HastaneOtomasyon.UIForms
         {
             if(Common.SpaceControl(txtKullaniciKodu.Text))
             {
-                if(Common.DialogExamMessage(Common.msg_silmeIslemiSoru ))
+                if(Messaging.DialogExamMessage(Messaging.msg_silmeIslemiSoru ))
                 {
                     var request = new Request<User, bool>();
                     request.MethodName = "DeleteUser";
@@ -229,11 +240,11 @@ namespace HastaneOtomasyon.UIForms
                     var response = request.Execute(new object[] { user });
                     if (!response.Success)
                     {
-                        Common.DialogErrorMessage(Common.msg_silmeHata + response.ErrorMessage);
+                        Messaging.DialogErrorMessage(Messaging.msg_silmeHata + response.ErrorMessage);
                         return;
                     }
 
-                    Common.DialogInfoMessage(Common.msg_silmeOk);
+                    Messaging.DialogInfoMessage(Messaging.msg_silmeOk);
                 }
             }
         }

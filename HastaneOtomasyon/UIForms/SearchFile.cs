@@ -36,7 +36,7 @@ namespace HastaneOtomasyon.UIForms
 
         /// <summary>
         /// filtre ayrıntı
-        /// </summary>
+         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void txt_bilgi_TextChanged(object sender, EventArgs e)
@@ -59,11 +59,15 @@ namespace HastaneOtomasyon.UIForms
                 var response = request.Execute(new object[] {null, string.Format("{0} = '{1}'", filterHead, filterStr)});
                 if (!response.Success)
                 {
-                    Common.DialogErrorMessage(response.ErrorMessage);
+                    Messaging.DialogErrorMessage(response.ErrorMessage);
                     return;
                 }
 
                 dtgridHasta.DataSource = response.Value;
+            }
+            else
+            {
+                Messaging.DialogWarningMessage("kriter giriniz.");
             }
         }
 

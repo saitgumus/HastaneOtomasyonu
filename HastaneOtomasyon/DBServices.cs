@@ -613,28 +613,30 @@ namespace HastaneOtomasyon
             User user;
             while (dr.Read())
             {
-                user = new User();
-                user.Kodu = (int)dr[0];
-                user.Ad = dr[1].ToString();
-                user.Soyad = dr[2].ToString();
-                user.Sifre = dr[3].ToString();
-                user.Yetki = dr[4].ToString();
-                user.Evtel = dr[5].ToString();
-                user.CepTel = dr[6].ToString();
-                user.Adres = dr[7].ToString();
-                user.Unvan = dr[8].ToString();
-                user.IseBaslama = (dr[9] != DBNull.Value) ? Convert.ToDateTime(dr[9]) : DateTime.MinValue;
-                user.Maas = (dr[10] != DBNull.Value) ? dr.GetInt32(10) : 0;
-                user.DogumYeri = dr[11].ToString();
-                user.AnneAd = dr[12].ToString();
-                user.BabaAd = dr[13].ToString();
-                user.Cinsiyet = dr[14].ToString();
-                user.KanGrubu = dr[15].ToString();
-                user.MedeniHal = dr[16].ToString();
-                user.DogumTarihi = (dr[17] != DBNull.Value) ? Convert.ToDateTime(dr[17]) : DateTime.MinValue;
-                user.TcKimlikNo = dr[18].ToString();
-                user.UserName = dr[19].ToString();
-                
+                user = new User
+                {
+                    Kodu = SQLDBHelper.GetIntValue(dr["kodu"]),
+                    Ad = SQLDBHelper.GetStringValue(dr["ad"]),
+                    Soyad = SQLDBHelper.GetStringValue(dr["soyad"]),
+                    Sifre = SQLDBHelper.GetStringValue(dr["sifre"]),
+                    Yetki = SQLDBHelper.GetStringValue(dr["yetki"]),
+                    Evtel = SQLDBHelper.GetStringValue(dr["evtel"]),
+                    CepTel = SQLDBHelper.GetStringValue(dr["ceptel"]),
+                    Adres = SQLDBHelper.GetStringValue(dr["adres"]),
+                    Unvan = SQLDBHelper.GetStringValue(dr["unvan"]),
+                    IseBaslama = SQLDBHelper.GetDateTimeValue(dr["isebaslama"]),
+                    Maas = SQLDBHelper.GetIntValue(dr["maas"]),
+                    DogumYeri = SQLDBHelper.GetStringValue(dr["dogumyeri"]),
+                    AnneAd = SQLDBHelper.GetStringValue(dr["annead"]),
+                    BabaAd = SQLDBHelper.GetStringValue(dr["babaad"]),
+                    Cinsiyet = SQLDBHelper.GetStringValue(dr["cinsiyet"]),
+                    KanGrubu = SQLDBHelper.GetStringValue(dr["kangrubu"]),
+                    MedeniHal = SQLDBHelper.GetStringValue(dr["medenihal"]),
+                    DogumTarihi = SQLDBHelper.GetDateTimeValue(dr["dogumtarihi"]),
+                    TcKimlikNo = SQLDBHelper.GetStringValue(dr["tckimlikno"]),
+                    UserName = SQLDBHelper.GetStringValue(dr["username"])
+                };
+
                 data.Add(user);
             }
             endConnectDB();
@@ -666,24 +668,24 @@ namespace HastaneOtomasyon
             {
                 patient = new Patient
                 {
-                    TcKimlikNo = dr[0].ToString(),
-                    DosyaNo = (dr[1] != DBNull.Value) ? dr.GetInt32(1) : 0,
-                Ad = dr[2].ToString(),
-                    Soyad = dr[3].ToString(),
-                    DogumYeri = dr[4].ToString(),
-                    DogumTarihi = (dr[5] != DBNull.Value) ? Convert.ToDateTime(dr[5]) : DateTime.MinValue,
-                    BabaAdi = dr[6].ToString(),
-                    AnneAdi = dr[7].ToString(),
-                    Cinsiyet = dr[8].ToString(),
-                    KanGrubu = dr[9].ToString(),
-                    MedeniHal = dr[10].ToString(),
-                    Adres = dr[11].ToString(),
-                    Tel = dr[12].ToString(),
-                    KurumSicilNo = dr[13].ToString(),
-                    KurumAdi = dr[14].ToString(),
-                    YakinTel = dr[15].ToString(),
-                    YakinKurumSicilNo = dr[16].ToString(),
-                    YakinKurumAdi = dr[17].ToString()
+                    TcKimlikNo = SQLDBHelper.GetStringValue(dr["tckimlikno"]),
+                    DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
+                        Ad = SQLDBHelper.GetStringValue(dr["ad"]),
+                    Soyad = SQLDBHelper.GetStringValue(dr["soyad"]),
+                    DogumYeri = SQLDBHelper.GetStringValue(dr["dogumyeri"]),
+                    DogumTarihi = SQLDBHelper.GetDateTimeValue(dr["dogumtarihi"]),
+                    BabaAdi = SQLDBHelper.GetStringValue(dr["babaadi"]),
+                    AnneAdi = SQLDBHelper.GetStringValue(dr["anneadi"]),
+                    Cinsiyet = SQLDBHelper.GetStringValue(dr["cinsiyet"]),
+                    KanGrubu = SQLDBHelper.GetStringValue(dr["kangrubu"]),
+                    MedeniHal = SQLDBHelper.GetStringValue(dr["medenihal"]),
+                    Adres = SQLDBHelper.GetStringValue(dr["adres"]),
+                    Tel = SQLDBHelper.GetStringValue(dr["tel"]),
+                    KurumSicilNo = SQLDBHelper.GetStringValue(dr["kurumsicilno"]),
+                    KurumAdi = SQLDBHelper.GetStringValue(dr["kurumadi"]),
+                    YakinTel = SQLDBHelper.GetStringValue(dr["yakintel"]),
+                    YakinKurumSicilNo = SQLDBHelper.GetStringValue(dr["yakinkurumsicilno"]),
+                    YakinKurumAdi = SQLDBHelper.GetStringValue(dr["yakinkurumadi"])
                 };
                 data.Add(patient);
             }
@@ -707,16 +709,32 @@ namespace HastaneOtomasyon
             var cmd = new SqlCommand(Common.dosyanoilehastagetir, conSOHATS);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@dosyano",dosyaNo);
-            try
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
             {
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Common.WriteLog("error", e.Message);
-                returnObject.Success = false;
-                returnObject.ErrorMessage = e.Message;
-                throw;
+                var data = new Patient
+                {
+                    TcKimlikNo = SQLDBHelper.GetStringValue(dr["tckimlikno"]),
+                    DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
+                    Ad = SQLDBHelper.GetStringValue(dr["ad"]),
+                    Soyad = SQLDBHelper.GetStringValue(dr["soyad"]),
+                    DogumYeri = SQLDBHelper.GetStringValue(dr["dogumyeri"]),
+                    DogumTarihi = SQLDBHelper.GetDateTimeValue(dr["dogumtarihi"]),
+                    BabaAdi = SQLDBHelper.GetStringValue(dr["babaadi"]),
+                    AnneAdi = SQLDBHelper.GetStringValue(dr["anneadi"]),
+                    Cinsiyet = SQLDBHelper.GetStringValue(dr["cinsiyet"]),
+                    KanGrubu = SQLDBHelper.GetStringValue(dr["kangrubu"]),
+                    MedeniHal = SQLDBHelper.GetStringValue(dr["medenihal"]),
+                    Adres = SQLDBHelper.GetStringValue(dr["adres"]),
+                    Tel = SQLDBHelper.GetStringValue(dr["tel"]),
+                    KurumSicilNo = SQLDBHelper.GetStringValue(dr["kurumsicilno"]),
+                    KurumAdi = SQLDBHelper.GetStringValue(dr["kurumadi"]),
+                    YakinTel = SQLDBHelper.GetStringValue(dr["yakintel"]),
+                    YakinKurumSicilNo = SQLDBHelper.GetStringValue(dr["yakinkurumsicilno"]),
+                    YakinKurumAdi = SQLDBHelper.GetStringValue(dr["yakinkurumadi"])
+                };
+                returnObject.Value = data;
             }
 
             returnObject.Success = true;
@@ -837,7 +855,7 @@ namespace HastaneOtomasyon
             ConnectDB();
             var sqlCommand = new SqlCommand
             {
-                CommandText = Common.CreateProcedureText(Common.operationTable, alanlar, filtre),
+                CommandText = Common.CreateProcedureText(Common.transferTable, alanlar, filtre),
                 Connection = conSOHATS
             };
             var dr = sqlCommand.ExecuteReader();
@@ -848,13 +866,59 @@ namespace HastaneOtomasyon
             {
                 dt = new Transfer
                 {
-                    Poliklinik = dr.GetString(0),
-                    Sira = (dr[1] != DBNull.Value) ? dr.GetInt32(1) : 0,
-                    Saat = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue,
-                    YapilanIslem = dr.GetString(3),
-                    DrKod = (dr[4] != DBNull.Value) ? dr.GetInt32(4) : 0,
-                    Miktar = (dr[5] != DBNull.Value) ? dr.GetInt32(5) : 0,
-                    BirimFiyat = (dr[6] != DBNull.Value) ? dr.GetInt32(6) : 0
+                    Poliklinik = SQLDBHelper.GetStringValue(dr["poliklinik"]),
+                    SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]),
+                    DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
+                    Sira = SQLDBHelper.GetIntValue(dr["sira"]),
+                    Saat = SQLDBHelper.GetDateTimeValue(dr["saat"]),
+                    YapilanIslem = SQLDBHelper.GetStringValue(dr["yapilanislem"]),
+                    DrKod = SQLDBHelper.GetIntValue(dr["drkod"]),
+                    Miktar = SQLDBHelper.GetIntValue(dr["miktar"]),
+                    BirimFiyat = SQLDBHelper.GetIntValue(dr["birimfiyat"]),
+                    ToplamTutar = SQLDBHelper.GetIntValue(dr["toplamtutar"]),
+                    Taburcu = SQLDBHelper.GetStringValue(dr["taburcu"])
+                };
+                data.Add(dt);
+            }
+            endConnectDB();
+            returnObject.Value = data;
+            returnObject.Success = true;
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// dosya numarasına göre değer döndürür
+        /// </summary>
+        /// <param name="dosyano"></param>
+        /// <returns></returns>
+        public GenericResponse<List<Transfer>> SelectTransferByDosyaNo(int dosyano)
+        {
+            var returnObject = new GenericResponse<List<Transfer>>();
+
+            ConnectDB();
+            var cmd = new SqlCommand(Common.dosyanoilesevkgetir, conSOHATS);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@dosyano", dosyano);
+            var dr = cmd.ExecuteReader();
+
+            var data = new List<Transfer>();
+            var dt = new Transfer();
+            while (dr.Read())
+            {
+                dt = new Transfer
+                {
+                    Poliklinik = SQLDBHelper.GetStringValue(dr["poliklinik"]),
+                    SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]),
+                    DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
+                    Sira = SQLDBHelper.GetIntValue(dr["sira"]),
+                    Saat = SQLDBHelper.GetDateTimeValue(dr["saat"]),
+                    YapilanIslem = SQLDBHelper.GetStringValue(dr["yapilanislem"]),
+                    DrKod = SQLDBHelper.GetIntValue(dr["drkod"]),
+                    Miktar = SQLDBHelper.GetIntValue(dr["miktar"]),
+                    BirimFiyat = SQLDBHelper.GetIntValue(dr["birimfiyat"]),
+                    ToplamTutar = SQLDBHelper.GetIntValue(dr["toplamtutar"]),
+                    Taburcu = SQLDBHelper.GetStringValue(dr["taburcu"])
                 };
                 data.Add(dt);
             }

@@ -17,7 +17,7 @@ namespace HastaneOtomasyon.UIForms
 
         List<Polyclinic> polyList;
         Polyclinic selectedData;
-
+        private bool isUpdate;
         #endregion
         public AddPolyclinic()
         {
@@ -49,7 +49,7 @@ namespace HastaneOtomasyon.UIForms
             if (!response.Success)
             {
                 Common.WriteLog("veri tabanı", "poliklinik listesi alınamadı");
-                Common.DialogErrorMessage("poliklinik listesi alınamadı.");
+                Messaging.DialogErrorMessage("poliklinik listesi alınamadı.");
                 return;
             }
 
@@ -76,8 +76,12 @@ namespace HastaneOtomasyon.UIForms
         {
             if(e.KeyChar == (Char)Keys.Enter)
             {
+                if (cmb_policlinic.SelectedText != selectedData.PoliklinikAdi)
+                {
+                    
+                }
                 pnl_polyclinic.Visible = true;
-                this.Height = 550;
+                this.Height = 500;
 
                 if(selectedData.Durum == Common.PolyclinicStatus)
                 {
@@ -92,6 +96,31 @@ namespace HastaneOtomasyon.UIForms
             }
         }
 
+        /// <summary>
+        /// butonu kaydetme durumuna getirir
+        /// </summary>
+        private void SetButtonToSave()
+        {
+            btnGuncelle.Text = "Kaydet";
+            btnGuncelle.Image = global::HastaneOtomasyon.Properties.Resources.Save1;
+            isUpdate = false;
+        }
+
+        /// <summary>
+        /// butonu güncelle durumuna getirir.
+        /// </summary>
+        private void SetButtonToUpdate()
+        {
+            btnGuncelle.Text = "Güncelle";
+            btnGuncelle.Image = global::HastaneOtomasyon.Properties.Resources.Update;
+            isUpdate = true;
+        }
+
+        /// <summary>
+        /// seçili poliklinik değiştiğinde çalışır.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_policlinic_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmb = (ComboBox)sender;
@@ -99,24 +128,51 @@ namespace HastaneOtomasyon.UIForms
         }
 
         /// <summary>
-        /// poliklinik güncelleme
+        /// poliklinik güncelleme/kaydetme
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            Request<Polyclinic, bool> request = new Request<Polyclinic, bool>();
-            request.MethodName = "UpdatePolyclinic";
-
-            var response = request.Execute();
-            if (!response.Success)
+            if (isUpdate)
             {
-                Common.WriteLog("database", "poliklinik kaydı yapılamadı.");
-                Common.DialogErrorMessage(Common.msg_güncellemeHata);
-                return;
-            }
+                Request<Polyclinic, bool> request = new Request<Polyclinic, bool>();
+                request.MethodName = "UpdatePolyclinic";
 
-            Common.DialogInfoMessage(Common.msg_güncellemeOk);
+                var response = request.Execute();
+                if (!response.Success)
+                {
+                    Common.WriteLog("database", "poliklinik kaydı yapılamadı.");
+                    Messaging.DialogErrorMessage(Messaging.msg_güncellemeHata);
+                    return;
+                }
+
+                Messaging.DialogInfoMessage(Messaging.msg_güncellemeOk);
+            }
+            else
+            {
+                var request = new Request<Polyclinic,bool>();
+                request.MethodName = "InsertPolyclinic";
+
+                var response = request.Execute(new object[]
+                {
+                    new Polyclinic
+                    {
+                        PoliklinikAdi = cmb_policlinic.Text,
+                        Aciklama = txtAciklama.Text,
+                        Durum = (cbx_gecerli.CheckState == CheckState.Checked)? Common.PolyclinicStatus:""
+                    }
+                });
+
+                if (!response.Success)
+                {
+                    Messaging.DialogErrorMessage(Messaging.msg_kayıtHata);
+                    return;
+                }
+
+                Messaging.DialogInfoMessage(Messaging.msg_kayıtOk);
+            }
+            
         }
 
         /// <summary>
@@ -128,7 +184,7 @@ namespace HastaneOtomasyon.UIForms
         {
             if (selectedData != null)
             {
-                if (Common.DialogExamMessage(Common.msg_silmeIslemiSoru))
+                if (Messaging.DialogExamMessage(Messaging.msg_silmeIslemiSoru))
                 {
                     Request<Polyclinic, bool> request = new Request<Polyclinic, bool>();
                     request.MethodName = "DeletePolyclinic";
@@ -138,17 +194,17 @@ namespace HastaneOtomasyon.UIForms
                     if (!response.Success)
                     {
                         Common.WriteLog("database", "poliklinik kaydı silinemedi.");
-                        Common.DialogErrorMessage(Common.msg_silmeHata);
+                        Messaging.DialogErrorMessage(Messaging.msg_silmeHata);
                         return;
                     }
 
-                    Common.DialogInfoMessage(Common.msg_silmeOk);
+                    Messaging.DialogInfoMessage(Messaging.msg_silmeOk);
                 }
                 
             }
             else
             {
-                Common.DialogWarningMessage(Common.msg_selectRecordWarning);
+                Messaging.DialogWarningMessage(Messaging.msg_selectRecordWarning);
             }
 
         }

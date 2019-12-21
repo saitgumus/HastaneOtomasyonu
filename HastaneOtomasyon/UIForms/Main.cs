@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HastaneOtomasyon.Models;
 
 namespace HastaneOtomasyon.UIForms
 {
@@ -48,6 +49,7 @@ namespace HastaneOtomasyon.UIForms
             add.Show();
         }
 
+        
         /// <summary>
         /// Log out
         /// </summary>

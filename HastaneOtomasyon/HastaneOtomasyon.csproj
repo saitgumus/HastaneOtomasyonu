@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SQLDBHelper.cs" />
     <Compile Include="UIForms\AddPolyclinic.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,6 +14,7 @@ namespace HastaneOtomasyon.Models
 
         public GenericResponse()
         {
+            ErrorMessage = "DB error!";
         }
         public GenericResponse(T obj)
         {

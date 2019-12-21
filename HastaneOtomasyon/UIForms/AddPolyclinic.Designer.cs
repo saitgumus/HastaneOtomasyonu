@@ -165,14 +165,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(207)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(497, 514);
+            this.ClientSize = new System.Drawing.Size(479, 495);
             this.Controls.Add(this.pnl_polyclinic);
             this.Controls.Add(this.cbx_gecerli);
             this.Controls.Add(this.cmb_policlinic);
             this.Controls.Add(this.lbl_policlinic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddPolyclinic";
-            this.Text = "AddPolyclinic";
+            this.Text = "poliklinik tanıtma";
             this.Load += new System.EventHandler(this.AddPolyclinic_Load);
             this.pnl_polyclinic.ResumeLayout(false);
             this.pnl_polyclinic.PerformLayout();

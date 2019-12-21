@@ -76,19 +76,19 @@ namespace HastaneOtomasyon.UIForms
         {
             if(!Common.SpaceControlAll(ref pnl_login))
             {
-                Common.DialogWarningMessage(Common.msg_zorunluAlanWarning);
+                Messaging.DialogWarningMessage(Messaging.msg_zorunluAlanWarning);
                 return;
             }
 
             if (!UserControl())
             {
-                Common.DialogWarningMessage(Common.msg_kullaniciBulunamadı);
+                Messaging.DialogWarningMessage(Messaging.msg_kullaniciBulunamadı);
                 return;
             }
 
             if (!AdminControl())
             {
-                Common.DialogWarningMessage(Common.msg_yetkiliDegil);
+                Messaging.DialogWarningMessage(Messaging.msg_yetkiliDegil);
                 return;
             }
 

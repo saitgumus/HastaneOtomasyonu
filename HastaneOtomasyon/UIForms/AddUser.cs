@@ -48,11 +48,11 @@ namespace HastaneOtomasyon.UIForms
            var response = request.Execute();
             if (!response.Success)
             {
-                Common.DialogErrorMessage(Common.msg_selectHata);
+                Messaging.DialogErrorMessage(Messaging.msg_selectHata);
                 return;
             }
             userList = response.Value;
-            userList.Insert(0, new User { UserName = Common.msg_seciniz });
+            userList.Insert(0, new User { UserName = Messaging.msg_seciniz });
 
             cmb_kullanicilar.DataSource = userList;
             cmb_kullanicilar.DisplayMember = "UserName";

@@ -10,27 +10,11 @@ using System.Drawing;
 
 namespace HastaneOtomasyon
 {
-    public class Common
+    /// <summary>
+    /// mesaj bilgileri tutar
+    /// </summary>
+    public class Messaging
     {
-        #region LoginUser
-        // ReSharper disable once InconsistentNaming
-        private static User loginUser;
-
-        public static User LoginUser
-        {
-            get
-            {
-                return loginUser;
-            }
-            set
-            {
-                loginUser = value;
-                WriteLog("Giriş", "giriş yapıldı.");
-            }
-        }
-        #endregion
-
-        #region methods
         #region message texts
 
         public const string msg_zorunluAlanWarning = "Zorunlu alanları doldurunuz.";
@@ -51,7 +35,9 @@ namespace HastaneOtomasyon
         public const string msg_hepsi = "Hepsi";
 
         #endregion
+
         #region message metods
+
         /// <summary>
         /// uyarı mesajı
         /// </summary>
@@ -94,9 +80,44 @@ namespace HastaneOtomasyon
             return false;
         }
 
+        #endregion
+    }
+
+    /// <summary>
+    /// ünvanları tutar
+    /// </summary>
+    public static class Unvan
+    {
+        public const string Doktor = "Doktor";
+        public const string Calisan = "Çalışan";
+    }
+    /// <summary>
+    /// control metodları ve DB type stringleri tutar
+    /// </summary>
+    public class Common
+    {
+        #region LoginUser
+        // ReSharper disable once InconsistentNaming
+        private static User loginUser;
+
+        public static User LoginUser
+        {
+            get
+            {
+                return loginUser;
+            }
+            set
+            {
+                loginUser = value;
+                WriteLog("Giriş", "giriş yapıldı.");
+            }
+        }
 
         #endregion
 
+        #region methods
+     
+    
         #region Log
         /// <summary>
         /// Loglama Metodu
@@ -250,6 +271,7 @@ namespace HastaneOtomasyon
         public const string poliklinikGuncelle = "update_poliklinik";
         public const string sevkGuncelle = "update_sevk";
         public const string dosyanoilehastagetir = "dosyano_ile_bul";
+        public const string dosyanoilesevkgetir = "sel_sevkByDosyaNo";
 
 
         public const string userTable = "kullanici";
@@ -258,8 +280,11 @@ namespace HastaneOtomasyon
         public const string operationTable = "islem";
         public const string dischargedTable = "cikis";
         public const string transferTable = "sevk";
+
         /// <summary>
         /// procedure için commandtext oluşturur
+        /// alanlar null bırakılırsa bütün alanlar dahil olur
+        /// filtre null bırakılırsa filtresiz varsayılır
         /// </summary>
         /// <param name="tablo"></param>
         /// <param name="filter"></param>
@@ -292,6 +317,7 @@ namespace HastaneOtomasyon
             return stringBuilder.ToString();
         }
 
+
         /// <summary>
         /// verilen sınıfın public değerlerni döndürür.
         /// </summary>
@@ -310,8 +336,68 @@ namespace HastaneOtomasyon
 
             return returnObject;
         }
+
+        /// <summary>
+        /// eğer sadece alfabetik veya silme tuşu ise true döner.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static bool ControlAlphabetic(KeyPressEventArgs e)
+        {
+            return (char.IsLetter(e.KeyChar) || e.KeyChar == (char) Keys.Back);
+        }
+
+       
         #endregion
 
         #endregion
+    }
+
+    public static class Sira
+    {
+        private static Dictionary<string,KeyValuePair<DateTime,int>> sequenceDictionary = new Dictionary<string, KeyValuePair<DateTime, int>>();
+      
+        /// <summary>
+        /// verilen poliklinik ismine göre son sırayı verir.
+        /// </summary>
+        /// <param name="polyclinic"></param>
+        /// <returns></returns>
+        public static int GetNumber(string polyclinic)
+        {
+            if (!sequenceDictionary.Keys.Contains(polyclinic))
+            {
+                sequenceDictionary.Add(polyclinic, new KeyValuePair<DateTime, int>(DateTime.Today, 0));
+            }
+
+            var date = sequenceDictionary[polyclinic].Key;
+            var seq = sequenceDictionary[polyclinic].Value;
+            if (date.Date != DateTime.Today.Date)
+            {
+                date = DateTime.Today;
+                seq = 1;
+            }
+
+            if (seq <= 0)
+            {
+                seq = 1;
+            }
+
+            return seq;
+        }
+
+        /// <summary>
+        /// sıra bilgisi kaydeder.
+        /// </summary>
+        /// <param name="polName"></param>
+        /// <param name="date"></param>
+        /// <param name="seq"></param>
+        public static void SetSequenceData(string polName, DateTime date, int seq)
+        {
+            if (!sequenceDictionary.Keys.Contains(polName))
+            {
+                sequenceDictionary.Add(polName, new KeyValuePair<DateTime, int>(date,seq) );
+            }
+        }
+
     }
 }

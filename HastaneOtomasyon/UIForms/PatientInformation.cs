@@ -52,7 +52,7 @@ namespace HastaneOtomasyon.UIForms
 
             if (!response.Success)
             {
-                Common.DialogErrorMessage(response.ErrorMessage);
+                Messaging.DialogErrorMessage(response.ErrorMessage);
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace HastaneOtomasyon.UIForms
             }
             else
             {
-                Common.DialogWarningMessage(Common.msg_hastaBulunamadı);
+                Messaging.DialogWarningMessage(Messaging.msg_hastaBulunamadı);
                 return;
             }
         }
@@ -132,6 +132,17 @@ namespace HastaneOtomasyon.UIForms
         private void btnYeni_Click(object sender, EventArgs e)
         {
             Common.CleanTextControls(ref pnlPatientInfo);
+        }
+
+        /// <summary>
+        /// eğer sadece alfabetik veya silme tuşu ise true döner.
+        /// event fonksiyonu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckAlphabetic(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Common.ControlAlphabetic(e);
         }
     }
 }
