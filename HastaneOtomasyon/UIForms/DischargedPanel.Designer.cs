@@ -147,13 +147,14 @@
             this.btnVazgec.Image = global::HastaneOtomasyon.Properties.Resources.round_remove_32x32;
             this.btnVazgec.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVazgec.Location = new System.Drawing.Point(191, 230);
-            this.btnVazgec.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVazgec.Margin = new System.Windows.Forms.Padding(2);
             this.btnVazgec.Name = "btnVazgec";
             this.btnVazgec.Size = new System.Drawing.Size(149, 39);
             this.btnVazgec.TabIndex = 49;
             this.btnVazgec.Text = "Vazgec";
             this.btnVazgec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVazgec.UseVisualStyleBackColor = false;
+            this.btnVazgec.Click += new System.EventHandler(this.btnVazgec_Click);
             // 
             // btnKaydet
             // 
@@ -166,13 +167,14 @@
             this.btnKaydet.Image = global::HastaneOtomasyon.Properties.Resources.Save1;
             this.btnKaydet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnKaydet.Location = new System.Drawing.Point(190, 182);
-            this.btnKaydet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnKaydet.Margin = new System.Windows.Forms.Padding(2);
             this.btnKaydet.Name = "btnKaydet";
             this.btnKaydet.Size = new System.Drawing.Size(150, 39);
             this.btnKaydet.TabIndex = 48;
             this.btnKaydet.Text = "Kaydet";
             this.btnKaydet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnKaydet.UseVisualStyleBackColor = false;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // txtDosyaNo
             // 
@@ -203,7 +205,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTutar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DischargedPanel";
             this.Text = "Taburcu";
             this.Load += new System.EventHandler(this.DischargedPanel_Load);

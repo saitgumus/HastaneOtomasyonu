@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientOperations));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.cmbMiktar = new System.Windows.Forms.NumericUpDown();
@@ -69,7 +70,7 @@
             this.sira = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poliklinik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgTahliller = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpDatagrid = new System.Windows.Forms.GroupBox();
             this.lblToplamTutarValue = new System.Windows.Forms.Label();
             this.lblTopTutar = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -83,7 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbMiktar)).BeginInit();
             this.pnlYeniEkle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTahliller)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.grpDatagrid.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlHastaIslemleri.SuspendLayout();
             this.SuspendLayout();
@@ -171,6 +172,7 @@
             this.birimfiyat.HeaderText = "BİRİM FİYATI";
             this.birimfiyat.MinimumWidth = 6;
             this.birimfiyat.Name = "birimfiyat";
+            this.birimfiyat.ReadOnly = true;
             this.birimfiyat.Width = 125;
             // 
             // miktar
@@ -179,6 +181,7 @@
             this.miktar.HeaderText = "MİKTAR";
             this.miktar.MinimumWidth = 6;
             this.miktar.Name = "miktar";
+            this.miktar.ReadOnly = true;
             this.miktar.Width = 125;
             // 
             // drkod
@@ -187,6 +190,7 @@
             this.drkod.HeaderText = "DR. KODU";
             this.drkod.MinimumWidth = 6;
             this.drkod.Name = "drkod";
+            this.drkod.ReadOnly = true;
             this.drkod.Width = 125;
             // 
             // yapilanislem
@@ -195,6 +199,7 @@
             this.yapilanislem.HeaderText = "YAPILAN İŞLEM";
             this.yapilanislem.MinimumWidth = 6;
             this.yapilanislem.Name = "yapilanislem";
+            this.yapilanislem.ReadOnly = true;
             this.yapilanislem.Width = 125;
             // 
             // saat
@@ -203,6 +208,7 @@
             this.saat.HeaderText = "SAAT";
             this.saat.MinimumWidth = 6;
             this.saat.Name = "saat";
+            this.saat.ReadOnly = true;
             this.saat.Width = 125;
             // 
             // label13
@@ -496,6 +502,7 @@
             this.sira.HeaderText = "SIRA NO";
             this.sira.MinimumWidth = 6;
             this.sira.Name = "sira";
+            this.sira.ReadOnly = true;
             this.sira.Width = 125;
             // 
             // poliklinik
@@ -504,10 +511,13 @@
             this.poliklinik.HeaderText = "POLİKLİNİK";
             this.poliklinik.MinimumWidth = 6;
             this.poliklinik.Name = "poliklinik";
+            this.poliklinik.ReadOnly = true;
             this.poliklinik.Width = 125;
             // 
             // dtgTahliller
             // 
+            this.dtgTahliller.AllowUserToAddRows = false;
+            this.dtgTahliller.AllowUserToOrderColumns = true;
             this.dtgTahliller.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(207)))), ((int)(((byte)(252)))));
             this.dtgTahliller.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgTahliller.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -521,22 +531,27 @@
             this.dtgTahliller.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgTahliller.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dtgTahliller.Location = new System.Drawing.Point(3, 16);
+            this.dtgTahliller.MultiSelect = false;
             this.dtgTahliller.Name = "dtgTahliller";
+            this.dtgTahliller.ReadOnly = true;
             this.dtgTahliller.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgTahliller.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgTahliller.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgTahliller.Size = new System.Drawing.Size(889, 228);
             this.dtgTahliller.TabIndex = 0;
             // 
-            // groupBox2
+            // grpDatagrid
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.dtgTahliller);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(4, 239);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(895, 247);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Yapılan Tahlil ve İşlemler";
+            this.grpDatagrid.BackColor = System.Drawing.Color.Transparent;
+            this.grpDatagrid.Controls.Add(this.dtgTahliller);
+            this.grpDatagrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.grpDatagrid.Location = new System.Drawing.Point(4, 239);
+            this.grpDatagrid.Name = "grpDatagrid";
+            this.grpDatagrid.Size = new System.Drawing.Size(895, 247);
+            this.grpDatagrid.TabIndex = 15;
+            this.grpDatagrid.TabStop = false;
+            this.grpDatagrid.Text = "Yapılan Tahlil ve İşlemler";
             // 
             // lblToplamTutarValue
             // 
@@ -706,7 +721,7 @@
             this.ClientSize = new System.Drawing.Size(899, 652);
             this.Controls.Add(this.pnlHastaIslemleri);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpDatagrid);
             this.Controls.Add(this.lblToplamTutarValue);
             this.Controls.Add(this.lblTopTutar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -718,7 +733,7 @@
             this.pnlYeniEkle.ResumeLayout(false);
             this.pnlYeniEkle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTahliller)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            this.grpDatagrid.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.pnlHastaIslemleri.ResumeLayout(false);
             this.pnlHastaIslemleri.PerformLayout();
@@ -763,7 +778,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sira;
         private System.Windows.Forms.DataGridViewTextBoxColumn poliklinik;
         private System.Windows.Forms.DataGridView dtgTahliller;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpDatagrid;
         private System.Windows.Forms.Label lblToplamTutarValue;
         private System.Windows.Forms.Label lblTopTutar;
         private System.Windows.Forms.Button btnGit;

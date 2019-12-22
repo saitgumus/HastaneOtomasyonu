@@ -762,11 +762,11 @@ namespace HastaneOtomasyon
             {
                 patient = new Discharged
                 {
-                    DosyaNo = (dr[0] != DBNull.Value) ? dr.GetInt32(0) : 0,
-                    SevkTarihi = (dr[1] != DBNull.Value) ? Convert.ToDateTime(dr[1]) : DateTime.MinValue,
-                    CikisTarihi = (dr[2] != DBNull.Value) ? Convert.ToDateTime(dr[2]) : DateTime.MinValue,
-                    Odeme = (dr[3] != DBNull.Value) ? dr.GetInt32(3) : 0,
-                    ToplamTutar = (dr[4] != DBNull.Value) ? dr.GetInt32(4) : 0
+                    DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
+                    SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]),
+                    CikisTarihi = SQLDBHelper.GetDateTimeValue(dr["cikistarihi"]),
+                    Odeme = SQLDBHelper.GetStringValue(dr["odeme"]),
+                    ToplamTutar = SQLDBHelper.GetIntValue(dr["toplamtutar"])
             };
 
                 data.Add(patient);

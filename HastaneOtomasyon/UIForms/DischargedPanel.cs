@@ -15,7 +15,7 @@ namespace HastaneOtomasyon.UIForms
     {
         #region properties
 
-        private Patient patient;
+        private List<Transfer> transferlist;
         private Discharged dataContract;
         private List<string> odemeTurleri;
         #endregion
@@ -23,11 +23,13 @@ namespace HastaneOtomasyon.UIForms
         public DischargedPanel()
         {
             InitializeComponent();
-            this.patient = new Patient();
+            this.transferlist = new List<Transfer>();
         }
-        public DischargedPanel(Patient patient) : this()
+      
+        public DischargedPanel(List<Transfer> transfers) : this()
         {
-            this.patient = patient;
+            this.transferlist = transfers;
+            txtTutar.ReadOnly = true;
         }
 
         /// <summary>
@@ -46,12 +48,30 @@ namespace HastaneOtomasyon.UIForms
         /// </summary>
         private void SetFields()
         {
-            cmbOdemeSekli.DataSource = odemeTurleri;
-            txtDosyaNo.Text = patient.DosyaNo.ToString();
-            txtDosyaNo.ReadOnly = true;
+            if (transferlist != null && transferlist.Count > 0)
+            {
+                cmbOdemeSekli.DataSource = odemeTurleri;
+                txtDosyaNo.Text = transferlist[0].DosyaNo.ToString();
+                txtDosyaNo.ReadOnly = true;
+                dateSevkTarihi.Value = transferlist[0].SevkTarihi;
+                dateCikisTarihi.Value = DateTime.Today;
+                double top = 0;
+                transferlist.ForEach(x => top += x.ToplamTutar);
+                txtTutar.Text = top.ToString();
+            }
+           
+        }
 
-            dateSevkTarihi.Value = DateTime.Today;
-            dateCikisTarihi.Value = DateTime.Today;
+        /// <summary>
+        /// dataContract doldur
+        /// </summary>
+        private void SetDataContract()
+        {
+            dataContract.DosyaNo = Convert.ToInt32(txtDosyaNo.Text);
+            dataContract.SevkTarihi = Convert.ToDateTime(dateSevkTarihi.Value);
+            dataContract.CikisTarihi = DateTime.Today;
+            dataContract.Odeme = (string) cmbOdemeSekli.SelectedItem;
+            dataContract.ToplamTutar = Convert.ToInt32(txtTutar.Text);
         }
 
         /// <summary>
@@ -70,6 +90,46 @@ namespace HastaneOtomasyon.UIForms
             }
 
             odemeTurleri = response.Value;
+        }
+
+        /// <summary>
+        /// çıkış kayıt işlemi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SetDataContract();
+            SaveCommand();
+        }
+
+        /// <summary>
+        /// kaydetme işlemi
+        /// </summary>
+        private void SaveCommand()
+        {
+            var request =new Request<Discharged, bool>();
+            request.MethodName = "InsertDischarged";
+
+            var response = request.Execute(dataContract);
+            if (!response.Success)
+            {
+                Messaging.DialogErrorMessage(Messaging.msg_kayıtHata);
+                return;
+            }
+
+            Messaging.DialogInfoMessage("Çıkış işlemi kaydedildi.");
+            this.Close();
+        }
+
+        /// <summary>
+        /// kapat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVazgec_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

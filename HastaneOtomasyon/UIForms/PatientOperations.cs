@@ -22,7 +22,8 @@ namespace HastaneOtomasyon.UIForms
         List<Polyclinic> polyclinics;
         List<Transfer> transfers;
         private int DosyaNo;
-
+        private List<Transfer> SelectedDataGridTransferList;
+        private Transfer SelectedDataGridTransfer;
         #endregion
         public PatientOperations()
         {
@@ -40,6 +41,7 @@ namespace HastaneOtomasyon.UIForms
         private void PatientOperations_Load(object sender, EventArgs e)
         {
             selectedOperation = new Operation();
+            SelectedDataGridTransferList = new List<Transfer>();
             GetUsers();
             GetPolyclinics();
             GetOperations();
@@ -417,9 +419,24 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void btnTaburcu_Click(object sender, EventArgs e)
         {
-            if (patient != null)
+            if (dtgTahliller.SelectedRows.Count > 0)
             {
-                DischargedPanel dsgp = new DischargedPanel(patient);
+                SelectedDataGridTransferList = new List<Transfer>();
+                foreach (DataGridViewRow row in dtgTahliller.SelectedRows)
+                {
+                    SelectedDataGridTransferList.Add(transfers.Find(r=> r == row.DataBoundItem));
+                }
+                
+            }
+            else
+            {
+                Messaging.DialogWarningMessage("Herhangi bir kayıt seçmediniz.");
+                return;
+            }
+
+            if (SelectedDataGridTransferList != null && SelectedDataGridTransferList.Count > 0)
+            {
+                DischargedPanel dsgp = new DischargedPanel(SelectedDataGridTransferList);
                 dsgp.MdiParent = Main.ActiveForm;
                 dsgp.Show();
             }
@@ -491,7 +508,46 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void btnSecSil_Click(object sender, EventArgs e)
         {
+            if (dtgTahliller.RowCount < 1)
+            {
+                return;
+            }
 
+            if (dtgTahliller.SelectedRows.Count > 1)
+            {
+                Messaging.DialogWarningMessage("Silme işlemi için sadece bir adet kayıt seçiniz.");
+                return;
+            }
+
+            DataGridViewRow row = this.dtgTahliller.SelectedRows[0];
+            SelectedDataGridTransfer = transfers.Find(x => x == row.DataBoundItem);
+            DeleteSelectedTransfer();
+        }
+
+        /// <summary>
+        /// seçili kaydı sler
+        /// </summary>
+        private void DeleteSelectedTransfer()
+        {
+            if (SelectedDataGridTransfer != null)
+            {
+                if (!Messaging.DialogExamMessage("Seçili kayıt silinsin mi?"))
+                {
+                    return;
+                }
+                var request = new Request<Transfer, bool>();
+                request.MethodName = "DeleteTransfer";
+                request.DataContract = SelectedDataGridTransfer;
+
+                var response = request.Execute(selectedOperation);
+                if (!response.Success)
+                {
+                    Messaging.DialogErrorMessage(response.ErrorMessage);
+                    return;
+                }
+
+                Messaging.DialogInfoMessage(Messaging.msg_silmeOk);
+            }
         }
     }
 }

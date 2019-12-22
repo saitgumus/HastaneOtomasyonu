@@ -13,7 +13,7 @@ namespace HastaneOtomasyon.Models
         private int dosyaNo;
         private DateTime sevkTarihi;
         private DateTime cikisTarihi;
-        private int odeme;
+        private string odeme;
         private int toplamTutar;
         #endregion
         #region public members
@@ -53,7 +53,7 @@ namespace HastaneOtomasyon.Models
             }
         }
 
-        public int Odeme
+        public string Odeme
         {
             get
             {
