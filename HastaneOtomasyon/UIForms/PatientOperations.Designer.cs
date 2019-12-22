@@ -43,13 +43,12 @@
             this.yapilanislem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtDosyaNo = new System.Windows.Forms.MaskedTextBox();
             this.cmbSevkTarihi = new System.Windows.Forms.ComboBox();
             this.btnHastaBilgileri = new System.Windows.Forms.Button();
             this.btnGit = new System.Windows.Forms.Button();
             this.btn_ekle = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlYeniEkle = new System.Windows.Forms.Panel();
             this.btnEkle = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -76,16 +75,17 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnYazdır = new System.Windows.Forms.Button();
             this.btnTaburcu = new System.Windows.Forms.Button();
             this.btnSecSil = new System.Windows.Forms.Button();
             this.btnYeni = new System.Windows.Forms.Button();
+            this.pnlHastaIslemleri = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMiktar)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlYeniEkle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTahliller)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.pnlHastaIslemleri.SuspendLayout();
             this.SuspendLayout();
             // 
             // printPreviewDialog1
@@ -102,61 +102,68 @@
             // cmbMiktar
             // 
             this.cmbMiktar.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMiktar.Location = new System.Drawing.Point(653, 46);
-            this.cmbMiktar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbMiktar.Location = new System.Drawing.Point(490, 37);
+            this.cmbMiktar.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.cmbMiktar.Name = "cmbMiktar";
-            this.cmbMiktar.Size = new System.Drawing.Size(93, 28);
+            this.cmbMiktar.Size = new System.Drawing.Size(70, 24);
             this.cmbMiktar.TabIndex = 14;
+            this.cmbMiktar.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.cmbMiktar.ValueChanged += new System.EventHandler(this.cmbMiktar_ValueChanged);
             // 
             // txtBirimFiyat
             // 
             this.txtBirimFiyat.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBirimFiyat.Location = new System.Drawing.Point(772, 46);
-            this.txtBirimFiyat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBirimFiyat.Location = new System.Drawing.Point(579, 37);
             this.txtBirimFiyat.Name = "txtBirimFiyat";
             this.txtBirimFiyat.ReadOnly = true;
-            this.txtBirimFiyat.Size = new System.Drawing.Size(137, 28);
+            this.txtBirimFiyat.Size = new System.Drawing.Size(104, 24);
             this.txtBirimFiyat.TabIndex = 15;
             // 
             // cmbSiraNo
             // 
             this.cmbSiraNo.Enabled = false;
             this.cmbSiraNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSiraNo.Location = new System.Drawing.Point(195, 46);
-            this.cmbSiraNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSiraNo.Location = new System.Drawing.Point(146, 37);
             this.cmbSiraNo.Name = "cmbSiraNo";
-            this.cmbSiraNo.Size = new System.Drawing.Size(109, 28);
+            this.cmbSiraNo.Size = new System.Drawing.Size(83, 24);
             this.cmbSiraNo.TabIndex = 11;
             // 
             // cmbDrKodu
             // 
             this.cmbDrKodu.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDrKodu.FormattingEnabled = true;
-            this.cmbDrKodu.Location = new System.Drawing.Point(505, 46);
-            this.cmbDrKodu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDrKodu.Location = new System.Drawing.Point(379, 37);
             this.cmbDrKodu.Name = "cmbDrKodu";
-            this.cmbDrKodu.Size = new System.Drawing.Size(132, 29);
+            this.cmbDrKodu.Size = new System.Drawing.Size(100, 25);
             this.cmbDrKodu.TabIndex = 13;
             // 
             // cmbYapilanIslem
             // 
             this.cmbYapilanIslem.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbYapilanIslem.FormattingEnabled = true;
-            this.cmbYapilanIslem.Location = new System.Drawing.Point(312, 44);
-            this.cmbYapilanIslem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbYapilanIslem.Location = new System.Drawing.Point(234, 36);
             this.cmbYapilanIslem.Name = "cmbYapilanIslem";
-            this.cmbYapilanIslem.Size = new System.Drawing.Size(185, 29);
+            this.cmbYapilanIslem.Size = new System.Drawing.Size(140, 25);
             this.cmbYapilanIslem.TabIndex = 12;
+            this.cmbYapilanIslem.SelectedIndexChanged += new System.EventHandler(this.cmbYapilanIslem_SelectedIndexChanged);
             // 
             // cmbPoliklinik
             // 
             this.cmbPoliklinik.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPoliklinik.FormattingEnabled = true;
-            this.cmbPoliklinik.Location = new System.Drawing.Point(9, 46);
-            this.cmbPoliklinik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbPoliklinik.Location = new System.Drawing.Point(7, 37);
             this.cmbPoliklinik.Name = "cmbPoliklinik";
-            this.cmbPoliklinik.Size = new System.Drawing.Size(179, 29);
+            this.cmbPoliklinik.Size = new System.Drawing.Size(135, 25);
             this.cmbPoliklinik.TabIndex = 10;
+            this.cmbPoliklinik.SelectedIndexChanged += new System.EventHandler(this.cmbPoliklinik_SelectedIndexChanged);
             // 
             // birimfiyat
             // 
@@ -202,50 +209,20 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label13.Location = new System.Drawing.Point(792, 16);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(594, 13);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(104, 25);
+            this.label13.Size = new System.Drawing.Size(84, 21);
             this.label13.TabIndex = 5;
             this.label13.Text = "Birim Fiyat";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
-            this.groupBox1.Controls.Add(this.txtDosyaNo);
-            this.groupBox1.Controls.Add(this.cmbSevkTarihi);
-            this.groupBox1.Controls.Add(this.btnHastaBilgileri);
-            this.groupBox1.Controls.Add(this.btnGit);
-            this.groupBox1.Controls.Add(this.btn_ekle);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.cmbOncekiIslemleri);
-            this.groupBox1.Controls.Add(this.txtKurumAdi);
-            this.groupBox1.Controls.Add(this.txtSoyadi);
-            this.groupBox1.Controls.Add(this.txtHastaAdi);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(5, 14);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1193, 284);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
             // 
             // txtDosyaNo
             // 
             this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosyaNo.Location = new System.Drawing.Point(156, 15);
-            this.txtDosyaNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDosyaNo.Location = new System.Drawing.Point(109, 19);
             this.txtDosyaNo.Mask = "00000";
             this.txtDosyaNo.Name = "txtDosyaNo";
             this.txtDosyaNo.PromptChar = ' ';
-            this.txtDosyaNo.Size = new System.Drawing.Size(197, 27);
+            this.txtDosyaNo.Size = new System.Drawing.Size(149, 23);
             this.txtDosyaNo.TabIndex = 59;
             this.txtDosyaNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDosyaNo_KeyPress_1);
             // 
@@ -253,10 +230,10 @@
             // 
             this.cmbSevkTarihi.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSevkTarihi.FormattingEnabled = true;
-            this.cmbSevkTarihi.Location = new System.Drawing.Point(157, 49);
-            this.cmbSevkTarihi.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbSevkTarihi.Location = new System.Drawing.Point(110, 47);
+            this.cmbSevkTarihi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSevkTarihi.Name = "cmbSevkTarihi";
-            this.cmbSevkTarihi.Size = new System.Drawing.Size(285, 27);
+            this.cmbSevkTarihi.Size = new System.Drawing.Size(215, 23);
             this.cmbSevkTarihi.TabIndex = 11;
             // 
             // btnHastaBilgileri
@@ -269,10 +246,10 @@
             this.btnHastaBilgileri.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHastaBilgileri.Image = global::HastaneOtomasyon.Properties.Resources.table_go;
             this.btnHastaBilgileri.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHastaBilgileri.Location = new System.Drawing.Point(947, 62);
-            this.btnHastaBilgileri.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHastaBilgileri.Location = new System.Drawing.Point(702, 57);
+            this.btnHastaBilgileri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHastaBilgileri.Name = "btnHastaBilgileri";
-            this.btnHastaBilgileri.Size = new System.Drawing.Size(235, 54);
+            this.btnHastaBilgileri.Size = new System.Drawing.Size(176, 44);
             this.btnHastaBilgileri.TabIndex = 10;
             this.btnHastaBilgileri.Text = "Hasta Bilgileri";
             this.btnHastaBilgileri.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -289,10 +266,10 @@
             this.btnGit.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGit.Image = global::HastaneOtomasyon.Properties.Resources.Forward;
             this.btnGit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGit.Location = new System.Drawing.Point(360, 87);
-            this.btnGit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGit.Location = new System.Drawing.Point(262, 78);
+            this.btnGit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGit.Name = "btnGit";
-            this.btnGit.Size = new System.Drawing.Size(84, 27);
+            this.btnGit.Size = new System.Drawing.Size(63, 22);
             this.btnGit.TabIndex = 5;
             this.btnGit.Text = "Git";
             this.btnGit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -309,36 +286,36 @@
             this.btn_ekle.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ekle.Image = global::HastaneOtomasyon.Properties.Resources.Search;
             this.btn_ekle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_ekle.Location = new System.Drawing.Point(360, 15);
-            this.btn_ekle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_ekle.Location = new System.Drawing.Point(262, 19);
+            this.btn_ekle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_ekle.Name = "btn_ekle";
-            this.btn_ekle.Size = new System.Drawing.Size(84, 27);
+            this.btn_ekle.Size = new System.Drawing.Size(63, 22);
             this.btn_ekle.TabIndex = 2;
             this.btn_ekle.Text = "Bul";
             this.btn_ekle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_ekle.UseVisualStyleBackColor = false;
             this.btn_ekle.Click += new System.EventHandler(this.btn_ekle_Click);
             // 
-            // panel1
+            // pnlYeniEkle
             // 
-            this.panel1.Controls.Add(this.btnEkle);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.cmbPoliklinik);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.cmbMiktar);
-            this.panel1.Controls.Add(this.txtBirimFiyat);
-            this.panel1.Controls.Add(this.cmbSiraNo);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.cmbDrKodu);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.cmbYapilanIslem);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Location = new System.Drawing.Point(11, 149);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1171, 100);
-            this.panel1.TabIndex = 9;
+            this.pnlYeniEkle.Controls.Add(this.btnEkle);
+            this.pnlYeniEkle.Controls.Add(this.label8);
+            this.pnlYeniEkle.Controls.Add(this.cmbPoliklinik);
+            this.pnlYeniEkle.Controls.Add(this.label13);
+            this.pnlYeniEkle.Controls.Add(this.cmbMiktar);
+            this.pnlYeniEkle.Controls.Add(this.txtBirimFiyat);
+            this.pnlYeniEkle.Controls.Add(this.cmbSiraNo);
+            this.pnlYeniEkle.Controls.Add(this.label9);
+            this.pnlYeniEkle.Controls.Add(this.cmbDrKodu);
+            this.pnlYeniEkle.Controls.Add(this.label10);
+            this.pnlYeniEkle.Controls.Add(this.cmbYapilanIslem);
+            this.pnlYeniEkle.Controls.Add(this.label11);
+            this.pnlYeniEkle.Controls.Add(this.label12);
+            this.pnlYeniEkle.Location = new System.Drawing.Point(6, 147);
+            this.pnlYeniEkle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlYeniEkle.Name = "pnlYeniEkle";
+            this.pnlYeniEkle.Size = new System.Drawing.Size(878, 81);
+            this.pnlYeniEkle.TabIndex = 9;
             // 
             // btnEkle
             // 
@@ -350,10 +327,10 @@
             this.btnEkle.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEkle.Image = global::HastaneOtomasyon.Properties.Resources.Add;
             this.btnEkle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEkle.Location = new System.Drawing.Point(935, 23);
-            this.btnEkle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEkle.Location = new System.Drawing.Point(701, 19);
+            this.btnEkle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(232, 54);
+            this.btnEkle.Size = new System.Drawing.Size(174, 44);
             this.btnEkle.TabIndex = 16;
             this.btnEkle.Text = "Ekle";
             this.btnEkle.UseVisualStyleBackColor = false;
@@ -363,10 +340,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label8.Location = new System.Drawing.Point(45, 15);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(34, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 25);
+            this.label8.Size = new System.Drawing.Size(75, 21);
             this.label8.TabIndex = 5;
             this.label8.Text = "Poliklinik";
             // 
@@ -374,10 +350,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label9.Location = new System.Drawing.Point(211, 15);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(158, 12);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 25);
+            this.label9.Size = new System.Drawing.Size(59, 21);
             this.label9.TabIndex = 5;
             this.label9.Text = "Sıra No";
             // 
@@ -385,10 +360,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label10.Location = new System.Drawing.Point(344, 15);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(258, 12);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(128, 25);
+            this.label10.Size = new System.Drawing.Size(104, 21);
             this.label10.TabIndex = 5;
             this.label10.Text = "Yapılan İşlem";
             // 
@@ -396,10 +370,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label11.Location = new System.Drawing.Point(528, 16);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(396, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 25);
+            this.label11.Size = new System.Drawing.Size(69, 21);
             this.label11.TabIndex = 5;
             this.label11.Text = "Dr. Kodu";
             // 
@@ -407,10 +380,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label12.Location = new System.Drawing.Point(661, 16);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(496, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 25);
+            this.label12.Size = new System.Drawing.Size(55, 21);
             this.label12.TabIndex = 5;
             this.label12.Text = "Miktar";
             // 
@@ -418,47 +390,43 @@
             // 
             this.cmbOncekiIslemleri.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOncekiIslemleri.FormattingEnabled = true;
-            this.cmbOncekiIslemleri.Location = new System.Drawing.Point(160, 84);
-            this.cmbOncekiIslemleri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbOncekiIslemleri.Location = new System.Drawing.Point(112, 75);
             this.cmbOncekiIslemleri.Name = "cmbOncekiIslemleri";
-            this.cmbOncekiIslemleri.Size = new System.Drawing.Size(193, 29);
+            this.cmbOncekiIslemleri.Size = new System.Drawing.Size(146, 25);
             this.cmbOncekiIslemleri.TabIndex = 4;
+            this.cmbOncekiIslemleri.SelectedIndexChanged += new System.EventHandler(this.cmbOncekiIslemleri_SelectedIndexChanged);
             // 
             // txtKurumAdi
             // 
             this.txtKurumAdi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKurumAdi.Location = new System.Drawing.Point(608, 89);
-            this.txtKurumAdi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKurumAdi.Location = new System.Drawing.Point(448, 79);
             this.txtKurumAdi.Name = "txtKurumAdi";
-            this.txtKurumAdi.Size = new System.Drawing.Size(305, 28);
+            this.txtKurumAdi.Size = new System.Drawing.Size(230, 24);
             this.txtKurumAdi.TabIndex = 8;
             // 
             // txtSoyadi
             // 
             this.txtSoyadi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoyadi.Location = new System.Drawing.Point(608, 53);
-            this.txtSoyadi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSoyadi.Location = new System.Drawing.Point(448, 50);
             this.txtSoyadi.Name = "txtSoyadi";
-            this.txtSoyadi.Size = new System.Drawing.Size(305, 28);
+            this.txtSoyadi.Size = new System.Drawing.Size(230, 24);
             this.txtSoyadi.TabIndex = 7;
             // 
             // txtHastaAdi
             // 
             this.txtHastaAdi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHastaAdi.Location = new System.Drawing.Point(608, 17);
-            this.txtHastaAdi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHastaAdi.Location = new System.Drawing.Point(448, 21);
             this.txtHastaAdi.Name = "txtHastaAdi";
-            this.txtHastaAdi.Size = new System.Drawing.Size(305, 28);
+            this.txtHastaAdi.Size = new System.Drawing.Size(230, 24);
             this.txtHastaAdi.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(16, 86);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(4, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 23);
+            this.label3.Size = new System.Drawing.Size(105, 18);
             this.label3.TabIndex = 0;
             this.label3.Text = "Önceki İşlemler";
             // 
@@ -466,10 +434,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(49, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(29, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 23);
+            this.label2.Size = new System.Drawing.Size(74, 18);
             this.label2.TabIndex = 0;
             this.label2.Text = "Sevk Tarihi";
             // 
@@ -477,10 +444,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(503, 87);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(369, 78);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 23);
+            this.label6.Size = new System.Drawing.Size(75, 18);
             this.label6.TabIndex = 0;
             this.label6.Text = "Kurum  Adı";
             // 
@@ -488,10 +454,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(537, 53);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(395, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 23);
+            this.label5.Size = new System.Drawing.Size(48, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "Soyadı";
             // 
@@ -499,10 +464,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.Location = new System.Drawing.Point(920, 15);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(682, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(247, 21);
+            this.label7.Size = new System.Drawing.Size(201, 18);
             this.label7.TabIndex = 0;
             this.label7.Text = "Sağlık Ocağı Hasta Takip Sistemi";
             // 
@@ -510,10 +474,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(516, 18);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(379, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 23);
+            this.label4.Size = new System.Drawing.Size(65, 18);
             this.label4.TabIndex = 0;
             this.label4.Text = "Hasta Adı";
             // 
@@ -521,10 +484,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(60, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(37, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 23);
+            this.label1.Size = new System.Drawing.Size(66, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Dosya No";
             // 
@@ -558,11 +520,10 @@
             this.birimfiyat});
             this.dtgTahliller.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgTahliller.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dtgTahliller.Location = new System.Drawing.Point(4, 20);
-            this.dtgTahliller.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtgTahliller.Location = new System.Drawing.Point(3, 16);
             this.dtgTahliller.Name = "dtgTahliller";
             this.dtgTahliller.RowHeadersWidth = 51;
-            this.dtgTahliller.Size = new System.Drawing.Size(1185, 375);
+            this.dtgTahliller.Size = new System.Drawing.Size(889, 228);
             this.dtgTahliller.TabIndex = 0;
             // 
             // groupBox2
@@ -570,11 +531,9 @@
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.dtgTahliller);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(5, 305);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(4, 239);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(1193, 399);
+            this.groupBox2.Size = new System.Drawing.Size(895, 247);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Yapılan Tahlil ve İşlemler";
@@ -584,10 +543,9 @@
             this.lblToplamTutarValue.AutoSize = true;
             this.lblToplamTutarValue.BackColor = System.Drawing.Color.Transparent;
             this.lblToplamTutarValue.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToplamTutarValue.Location = new System.Drawing.Point(1149, 718);
-            this.lblToplamTutarValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblToplamTutarValue.Location = new System.Drawing.Point(852, 506);
             this.lblToplamTutarValue.Name = "lblToplamTutarValue";
-            this.lblToplamTutarValue.Size = new System.Drawing.Size(43, 24);
+            this.lblToplamTutarValue.Size = new System.Drawing.Size(36, 19);
             this.lblToplamTutarValue.TabIndex = 16;
             this.lblToplamTutarValue.Text = "0 TL";
             // 
@@ -596,10 +554,9 @@
             this.lblTopTutar.AutoSize = true;
             this.lblTopTutar.BackColor = System.Drawing.Color.Transparent;
             this.lblTopTutar.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTopTutar.Location = new System.Drawing.Point(956, 718);
-            this.lblTopTutar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTopTutar.Location = new System.Drawing.Point(707, 506);
             this.lblTopTutar.Name = "lblTopTutar";
-            this.lblTopTutar.Size = new System.Drawing.Size(140, 25);
+            this.lblTopTutar.Size = new System.Drawing.Size(114, 21);
             this.lblTopTutar.TabIndex = 17;
             this.lblTopTutar.Text = "Toplam Tutar : ";
             // 
@@ -608,14 +565,14 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(187)))), ((int)(((byte)(247)))));
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.btnYazdır);
             this.panel2.Controls.Add(this.btnTaburcu);
             this.panel2.Controls.Add(this.btnSecSil);
             this.panel2.Controls.Add(this.btnYeni);
-            this.panel2.Location = new System.Drawing.Point(24, 761);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(11, 559);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1169, 113);
+            this.panel2.Size = new System.Drawing.Size(888, 92);
             this.panel2.TabIndex = 19;
             // 
             // button5
@@ -627,10 +584,10 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = global::HastaneOtomasyon.Properties.Resources.btnico_kapat;
-            this.button5.Location = new System.Drawing.Point(1061, 12);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Location = new System.Drawing.Point(796, 10);
+            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(88, 86);
+            this.button5.Size = new System.Drawing.Size(66, 70);
             this.button5.TabIndex = 23;
             this.button5.UseVisualStyleBackColor = false;
             // 
@@ -643,28 +600,28 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastaonizleme;
-            this.button4.Location = new System.Drawing.Point(480, 12);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Location = new System.Drawing.Point(360, 10);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 86);
+            this.button4.Size = new System.Drawing.Size(66, 70);
             this.button4.TabIndex = 22;
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnYazdır
             // 
-            this.button3.BackColor = System.Drawing.Color.AliceBlue;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastayazdir;
-            this.button3.Location = new System.Drawing.Point(365, 12);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 86);
-            this.button3.TabIndex = 21;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnYazdır.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnYazdır.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnYazdır.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Honeydew;
+            this.btnYazdır.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnYazdır.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYazdır.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYazdır.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastayazdir;
+            this.btnYazdır.Location = new System.Drawing.Point(274, 10);
+            this.btnYazdır.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnYazdır.Name = "btnYazdır";
+            this.btnYazdır.Size = new System.Drawing.Size(66, 70);
+            this.btnYazdır.TabIndex = 21;
+            this.btnYazdır.UseVisualStyleBackColor = false;
             // 
             // btnTaburcu
             // 
@@ -675,12 +632,13 @@
             this.btnTaburcu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaburcu.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaburcu.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastataburcu;
-            this.btnTaburcu.Location = new System.Drawing.Point(245, 12);
-            this.btnTaburcu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTaburcu.Location = new System.Drawing.Point(184, 10);
+            this.btnTaburcu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnTaburcu.Name = "btnTaburcu";
-            this.btnTaburcu.Size = new System.Drawing.Size(88, 86);
+            this.btnTaburcu.Size = new System.Drawing.Size(66, 70);
             this.btnTaburcu.TabIndex = 20;
             this.btnTaburcu.UseVisualStyleBackColor = false;
+            this.btnTaburcu.Click += new System.EventHandler(this.btnTaburcu_Click);
             // 
             // btnSecSil
             // 
@@ -691,12 +649,13 @@
             this.btnSecSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecSil.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSecSil.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastasec;
-            this.btnSecSil.Location = new System.Drawing.Point(128, 12);
-            this.btnSecSil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSecSil.Location = new System.Drawing.Point(96, 10);
+            this.btnSecSil.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSecSil.Name = "btnSecSil";
-            this.btnSecSil.Size = new System.Drawing.Size(88, 86);
+            this.btnSecSil.Size = new System.Drawing.Size(66, 70);
             this.btnSecSil.TabIndex = 19;
             this.btnSecSil.UseVisualStyleBackColor = false;
+            this.btnSecSil.Click += new System.EventHandler(this.btnSecSil_Click);
             // 
             // btnYeni
             // 
@@ -707,38 +666,62 @@
             this.btnYeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYeni.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYeni.Image = global::HastaneOtomasyon.Properties.Resources.btnico_hastaekle;
-            this.btnYeni.Location = new System.Drawing.Point(11, 12);
-            this.btnYeni.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnYeni.Location = new System.Drawing.Point(8, 10);
+            this.btnYeni.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnYeni.Name = "btnYeni";
-            this.btnYeni.Size = new System.Drawing.Size(88, 86);
+            this.btnYeni.Size = new System.Drawing.Size(66, 70);
             this.btnYeni.TabIndex = 18;
             this.btnYeni.UseVisualStyleBackColor = false;
             this.btnYeni.Click += new System.EventHandler(this.btnYeni_Click);
             // 
+            // pnlHastaIslemleri
+            // 
+            this.pnlHastaIslemleri.Controls.Add(this.txtDosyaNo);
+            this.pnlHastaIslemleri.Controls.Add(this.cmbSevkTarihi);
+            this.pnlHastaIslemleri.Controls.Add(this.pnlYeniEkle);
+            this.pnlHastaIslemleri.Controls.Add(this.btnHastaBilgileri);
+            this.pnlHastaIslemleri.Controls.Add(this.label1);
+            this.pnlHastaIslemleri.Controls.Add(this.btnGit);
+            this.pnlHastaIslemleri.Controls.Add(this.label4);
+            this.pnlHastaIslemleri.Controls.Add(this.btn_ekle);
+            this.pnlHastaIslemleri.Controls.Add(this.label7);
+            this.pnlHastaIslemleri.Controls.Add(this.cmbOncekiIslemleri);
+            this.pnlHastaIslemleri.Controls.Add(this.label5);
+            this.pnlHastaIslemleri.Controls.Add(this.txtKurumAdi);
+            this.pnlHastaIslemleri.Controls.Add(this.label6);
+            this.pnlHastaIslemleri.Controls.Add(this.txtSoyadi);
+            this.pnlHastaIslemleri.Controls.Add(this.label2);
+            this.pnlHastaIslemleri.Controls.Add(this.txtHastaAdi);
+            this.pnlHastaIslemleri.Controls.Add(this.label3);
+            this.pnlHastaIslemleri.Location = new System.Drawing.Point(4, 3);
+            this.pnlHastaIslemleri.Name = "pnlHastaIslemleri";
+            this.pnlHastaIslemleri.Size = new System.Drawing.Size(889, 230);
+            this.pnlHastaIslemleri.TabIndex = 60;
+            // 
             // PatientOperations
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(207)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1199, 875);
+            this.ClientSize = new System.Drawing.Size(899, 652);
+            this.Controls.Add(this.pnlHastaIslemleri);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblToplamTutarValue);
             this.Controls.Add(this.lblTopTutar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PatientOperations";
             this.Text = "Hasta İşlemleri";
             this.Load += new System.EventHandler(this.PatientOperations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmbMiktar)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlYeniEkle.ResumeLayout(false);
+            this.pnlYeniEkle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTahliller)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.pnlHastaIslemleri.ResumeLayout(false);
+            this.pnlHastaIslemleri.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -760,8 +743,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn yapilanislem;
         private System.Windows.Forms.DataGridViewTextBoxColumn saat;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlYeniEkle;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -793,9 +775,10 @@
         private System.Windows.Forms.Button btnSecSil;
         private System.Windows.Forms.Button btnTaburcu;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnYazdır;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cmbSevkTarihi;
         private System.Windows.Forms.MaskedTextBox txtDosyaNo;
+        private System.Windows.Forms.Panel pnlHastaIslemleri;
     }
 }

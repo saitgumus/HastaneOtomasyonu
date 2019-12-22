@@ -17,7 +17,8 @@ namespace HastaneOtomasyon.UIForms
         #region properties
 
         private string filterHead, filterStr;
-        private List<string> filterHeads;
+        private Patient p;
+        private Dictionary<string, Type> fltrNameAndTypes;
         #endregion
         public SearchFile()
         {
@@ -31,7 +32,11 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void SearchFile_Load(object sender, EventArgs e)
         {
-            cmbKriterBaslık.DataSource = filterHeads = Common.GetClassProperties<Patient>();
+           p = new Patient();
+           fltrNameAndTypes = new Dictionary<string, Type>();
+           fltrNameAndTypes = Common.GetClassPropertyDictionary<Patient>();
+
+           cmbKriterBaslık.DataSource = fltrNameAndTypes.Keys.ToList();
         }
 
         /// <summary>
@@ -56,7 +61,7 @@ namespace HastaneOtomasyon.UIForms
                 var request = new Request<Patient,List<Patient>>();
                 request.MethodName = "SelectPatient";
 
-                var response = request.Execute(new object[] {null, string.Format("{0} = '{1}'", filterHead, filterStr)});
+                var response = request.Execute(null, string.Format("{0} = '{1}'", filterHead, filterStr));
                 if (!response.Success)
                 {
                     Messaging.DialogErrorMessage(response.ErrorMessage);
@@ -82,8 +87,40 @@ namespace HastaneOtomasyon.UIForms
         {
             if(cmbKriterBaslık.SelectedIndex >= 0)
             {
-                filterHead = filterHeads.Find(x => x == cmbKriterBaslık.Text);
+                txt_bilgi.Text = "";
+                filterHead =  fltrNameAndTypes.Keys.ToList().Find(x => x == cmbKriterBaslık.Text);
+                var Type = fltrNameAndTypes.FirstOrDefault(x => x.Key == filterHead).Value;
+                if (Type == typeof(Int32))
+                {
+                    txt_bilgi.KeyPress += CheckNumeric;
+                }
+                else
+                {
+                    txt_bilgi.KeyPress -= CheckNumeric;
+                }
             }
+        }
+
+
+        /// <summary>
+        /// eğer sadece alfabetik veya silme tuşu kontrol.
+        /// event fonksiyonu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckAlphabetic(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Common.ControlAlphabetic(e);
+        }
+
+        /// <summary>
+        /// eğer sadece numeric veya silme tuşu control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckNumeric(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Common.ControlNumeric(e);
         }
     }
 }

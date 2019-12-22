@@ -38,6 +38,18 @@ namespace HastaneOtomasyon
             return o.ToString();
         }
 
+        public static string GetTimeFormat(object o)
+        {
+            if (o == DBNull.Value)
+            {
+                return "00:00";
+            }
+            else
+            {
+                string s = (o is DateTime ? (DateTime) o : default).ToShortTimeString();
+                return s;
+            }
+        }
         
     }
 }

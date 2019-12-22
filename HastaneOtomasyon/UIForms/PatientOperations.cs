@@ -18,6 +18,7 @@ namespace HastaneOtomasyon.UIForms
         Patient patient;
         List<User> users;
         List<Operation> operations;
+        private Operation selectedOperation;
         List<Polyclinic> polyclinics;
         List<Transfer> transfers;
         private int DosyaNo;
@@ -28,6 +29,9 @@ namespace HastaneOtomasyon.UIForms
             InitializeComponent();
         }
 
+        #region Methods
+
+
         /// <summary>
         /// load form
         /// </summary>
@@ -35,6 +39,7 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void PatientOperations_Load(object sender, EventArgs e)
         {
+            selectedOperation = new Operation();
             GetUsers();
             GetPolyclinics();
             GetOperations();
@@ -120,7 +125,7 @@ namespace HastaneOtomasyon.UIForms
             Request<Transfer, List<Transfer>> request = new Request<Transfer, List<Transfer>>();
             request.MethodName = "SelectTransfer";
 
-            GenericResponse<List<Transfer>> responseUser = request.Execute(new object[] {null, "dosyano = '" + txtDosyaNo.Text + "' OR yapilanislem = '"+cmbOncekiIslemleri.Text+"'" });
+            GenericResponse<List<Transfer>> responseUser = request.Execute( null, "dosyano = '" + txtDosyaNo.Text + "' OR yapilanislem = '" + selectedOperation.IslemAdi + "'");
 
             if (!responseUser.Success)
             {
@@ -141,7 +146,7 @@ namespace HastaneOtomasyon.UIForms
             Request<Transfer, List<Transfer>> request = new Request<Transfer, List<Transfer>>();
             request.MethodName = "SelectTransferByDosyaNo";
 
-            GenericResponse<List<Transfer>> responseUser = request.Execute(new object[] { DosyaNo});
+            GenericResponse<List<Transfer>> responseUser = request.Execute( DosyaNo );
 
             if (!responseUser.Success)
             {
@@ -150,6 +155,7 @@ namespace HastaneOtomasyon.UIForms
             }
 
             transfers = responseUser.Value;
+            dtgTahliller.DataSource = transfers;
         }
 
         /// <summary>
@@ -160,7 +166,7 @@ namespace HastaneOtomasyon.UIForms
             var request = new Request<Patient, Patient>();
             request.MethodName = "SelectPatientByKey";
 
-            var response = request.Execute(new object[] {DosyaNo});
+            var response = request.Execute( DosyaNo );
             if (response.Success)
             {
                 patient = response.Value;
@@ -177,12 +183,15 @@ namespace HastaneOtomasyon.UIForms
         /// </summary>
         private void SetComboboxes()
         {
-            cmbOncekiIslemleri.DataSource = operations;
-            cmbOncekiIslemleri.DisplayMember = "IslemAdi";
+            operations.Insert(0,new Operation{IslemAdi = Messaging.msg_seciniz});
+            cmbYapilanIslem.DataSource = operations;
+            cmbYapilanIslem.DisplayMember = "IslemAdi";
 
+            polyclinics.Insert(0,new Polyclinic{PoliklinikAdi = Messaging.msg_seciniz});
             cmbPoliklinik.DataSource = polyclinics;
             cmbPoliklinik.DisplayMember = "PoliklinikAdi";
 
+            users.Insert(0,new User{Kodu = 0});
             cmbDrKodu.DataSource = users;
             cmbDrKodu.DisplayMember = "Kodu";
 
@@ -190,6 +199,75 @@ namespace HastaneOtomasyon.UIForms
             cmbSevkTarihi.DisplayMember = "SevkTarihi";
         }
 
+
+        /// <summary>
+        /// sevk kaydeder.
+        /// </summary>
+        /// <param name="transfer"></param>
+        private void InsertTransfer(Transfer transfer)
+        {
+            var request = new Request<Transfer, bool>();
+            request.DataContract = transfer;
+            request.MethodName = "InsertTransfer";
+
+            var response = request.Execute(transfer);
+            if (!response.Success)
+            {
+                Messaging.DialogErrorMessage(Messaging.msg_kayıtHata);
+                return;
+            }
+
+            GetTransfersAll();
+            SetDataGridValues();
+        }
+
+        private void SetDataGridValues()
+        {
+            dtgTahliller.DataSource = transfers;
+        }
+
+
+        /// <summary>
+        /// hasta bilgileri komboboxlarda seçilir
+        /// dosya numarası girilip enter a basıldığında çalışır
+        /// </summary>
+        private void SetComboboxItemsForPatient()
+        {
+           
+            var sevk = transfers.Find(r => r.DosyaNo == DosyaNo);
+
+            if (patient != null)
+            {
+                txtDosyaNo.Text = patient.DosyaNo.ToString();
+                txtHastaAdi.Text = patient.Ad;
+                txtSoyadi.Text = patient.Soyad;
+                txtKurumAdi.Text = patient.KurumAdi;
+            }
+            else
+            {
+                Messaging.DialogWarningMessage("Hasta kaydı bulunamadı.");
+            }
+
+            if (sevk != null)
+            {
+                var transfersSpec = transfers.Where(x => x.DosyaNo == DosyaNo).ToList();
+
+                cmbOncekiIslemleri.DataSource = transfersSpec;
+                cmbOncekiIslemleri.DisplayMember = "YapilanIslem";
+
+                cmbSevkTarihi.DataSource = transfersSpec;
+                cmbSevkTarihi.DisplayMember = "SevkTarihi";
+            }
+            else
+            {
+                Common.CleanTextControls(ref pnlHastaIslemleri);
+            }
+
+        }
+
+        #endregion
+
+        #region events
         /// <summary>
         /// bul
         /// </summary>
@@ -209,8 +287,15 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void btnGit_Click(object sender, EventArgs e)
         {
-            if(cmbOncekiIslemleri.SelectedIndex != -1)
+            if (cmbOncekiIslemleri.SelectedIndex != -1)
             {
+                if (Common.TaburcuTxt == transfers.Find(x =>
+                        x.DosyaNo == patient.DosyaNo &&
+                        x.YapilanIslem == selectedOperation.IslemAdi)
+                        .Taburcu)
+                {
+                    Messaging.DialogInfoMessage("Hasta bu sevkten taburcu edilmiş.");
+                }
                 dtgTahliller.DataSource = transfers;
             }
         }
@@ -226,9 +311,19 @@ namespace HastaneOtomasyon.UIForms
         {
             if (Common.SpaceControl(txtDosyaNo.Text))
             {
-                PatientInformation pinfo = new PatientInformation(Convert.ToInt32(txtDosyaNo.Text));
-                pinfo.MdiParent = Main.ActiveForm;
-                pinfo.Show();
+                if (patient != null && patient.DosyaNo == Convert.ToInt32(txtDosyaNo.Text))
+                {
+                    PatientInformation pinfo = new PatientInformation(patient);
+                    pinfo.MdiParent = Main.ActiveForm;
+                    pinfo.Show();
+                }
+                else
+                {
+                    PatientInformation pinfo = new PatientInformation(Convert.ToInt32(txtDosyaNo.Text));
+                    pinfo.MdiParent = Main.ActiveForm;
+                    pinfo.Show();
+                }
+
             }
             else
             {
@@ -245,20 +340,92 @@ namespace HastaneOtomasyon.UIForms
         /// <param name="e"></param>
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            var transfer = new Transfer
+            if (!Common.SpaceControlAll(ref pnlYeniEkle))
             {
-                DosyaNo = int.Parse(txtDosyaNo.Text),
-                BirimFiyat = int.Parse(txtBirimFiyat.Text),
-                DrKod = int.Parse(cmbDrKodu.SelectedText),
-                Miktar = Convert.ToInt32(cmbMiktar.Value),
-                Poliklinik = cmbPoliklinik.SelectedText,
-                Saat = DateTime.Now,
-                SevkTarihi = Convert.ToDateTime(cmbSevkTarihi.SelectedText),
-                Sira = 0
-            };
+                Messaging.DialogWarningMessage("zorunlu alanları doldurunuz.");
+                return;
+            }
+
+            if (DosyaNo > 0 && patient.DosyaNo == DosyaNo && cmbYapilanIslem.SelectedIndex <= 0)
+            {
+                var transfer = new Transfer
+                {
+                    DosyaNo = int.Parse(txtDosyaNo.Text),
+                    BirimFiyat = int.Parse(txtBirimFiyat.Text),
+                    DrKod = (cmbDrKodu.SelectedItem as User).Kodu,
+                    Miktar = Convert.ToInt32(cmbMiktar.Value),
+                    Poliklinik = (cmbPoliklinik.SelectedItem as Polyclinic).PoliklinikAdi,
+                    Saat = DateTime.Now.ToShortTimeString(),
+                    SevkTarihi = DateTime.Today.Date,
+                    Sira = Convert.ToInt32(cmbSiraNo.Text),
+                    YapilanIslem = (cmbYapilanIslem.SelectedItem as Operation).IslemAdi,
+                    Taburcu = Common.TaburcuTxt
+                };
+
+                InsertTransfer(transfer);
+            }
+            else
+            {
+                Messaging.DialogWarningMessage("Hatalı işlem. önce dosya numarası girip 'Enter' tuşuna basınız. daha sonra zorunlu alanlar doldurup ekleme yapabilirsiniz");
+            }
+
         }
 
-       
+
+        /// <summary>
+        /// yeni hasta ekler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnYeni_Click(object sender, EventArgs e)
+        {
+            PatientInformation ptInfo = new PatientInformation();
+            ptInfo.MdiParent = Main.ActiveForm;
+            ptInfo.Show();
+        }
+
+        /// <summary>
+        /// miktar değiştiğinde tutar tekrar hesaplanır
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbMiktar_ValueChanged(object sender, EventArgs e)
+        {
+            var birim = Convert.ToInt32(txtBirimFiyat.Text);
+            if (birim > 0)
+            {
+                lblToplamTutarValue.Text = ((double)birim * (double)cmbMiktar.Value).ToString();
+            }
+
+        }
+
+        /// <summary>
+        /// seçili işlem değiştiğinde
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbYapilanIslem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var birim = operations.Find(x => x == cmbYapilanIslem.SelectedItem).BirimFiyat;
+            txtBirimFiyat.Text = birim.ToString();
+        }
+
+        /// <summary>
+        /// taburcu butonu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTaburcu_Click(object sender, EventArgs e)
+        {
+            if (patient != null)
+            {
+                DischargedPanel dsgp = new DischargedPanel(patient);
+                dsgp.MdiParent = Main.ActiveForm;
+                dsgp.Show();
+            }
+
+        }
+
         /// <summary>
         /// dosya no enter basıldığında
         /// </summary>
@@ -278,54 +445,53 @@ namespace HastaneOtomasyon.UIForms
                 if (DosyaNo > 0)
                 {
                     GetPatient();
+                    GetTransferByDosyaNo();
                     SetComboboxItemsForPatient();
                 }
 
             }
         }
 
+
+        #endregion
+
         /// <summary>
-        /// hasta bilgileri komboboxlarda seçilir
-        /// dosya numarası girilip enter a basıldığında çalışır
+        /// poliklinik seçim değiştiğinde
         /// </summary>
-        private void SetComboboxItemsForPatient()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbPoliklinik_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (transfers == null || transfers.Count < 1)
+            if (cmbPoliklinik.SelectedIndex != -1)
             {
-                GetTransferByDosyaNo();
+                cmbSiraNo.Text = Sira.GetNumber( (cmbPoliklinik.SelectedItem as Polyclinic).PoliklinikAdi ).ToString();
             }
+        }
 
-            var sevk = transfers.Find(r => r.DosyaNo == DosyaNo);
 
-            if (patient != null)
+        /// <summary>
+        /// selected operation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbOncekiIslemleri_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOncekiIslemleri.SelectedItem != null)
             {
-                txtDosyaNo.Text = patient.DosyaNo.ToString();
-                txtHastaAdi.Text = patient.Ad;
-                txtSoyadi.Text = patient.Soyad;
-                txtKurumAdi.Text = patient.KurumAdi;
-            }
+                var operat = (Transfer) cmbOncekiIslemleri.SelectedItem;
 
-            if (sevk != null)
-            {
-                var transfersSpec = transfers.Where(x => x.DosyaNo == DosyaNo).ToList();
-                cmbOncekiIslemleri.DataSource = transfersSpec;
-                cmbOncekiIslemleri.DisplayMember = "YapilanIslem";
-
-                cmbSevkTarihi.DataSource = transfersSpec;
-                cmbSevkTarihi.DisplayMember = "SevkTarihi";
+                selectedOperation = operations.Find(x => x.IslemAdi == operat.YapilanIslem);
             }
         }
 
         /// <summary>
-        /// yeni hasta ekler
+        /// seç / sil
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnYeni_Click(object sender, EventArgs e)
+        private void btnSecSil_Click(object sender, EventArgs e)
         {
-            PatientInformation ptInfo = new PatientInformation();
-            ptInfo.MdiParent = Main.ActiveForm;
-            ptInfo.Show();
+
         }
     }
 }

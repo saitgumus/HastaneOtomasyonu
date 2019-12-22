@@ -34,7 +34,7 @@ namespace HastaneOtomasyon.Models
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
-        public GenericResponse<R> Execute(Object[] o)
+        public GenericResponse<R> Execute(params Object[] o)
         {
             return (GenericResponse<R>)method.Invoke(db,o);
         }

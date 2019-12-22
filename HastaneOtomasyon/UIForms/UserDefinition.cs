@@ -17,6 +17,7 @@ namespace HastaneOtomasyon.UIForms
         bool isUpdate;
         User updateUser;
         User data;
+        private List<string> unvans;
         #endregion
 
         #region constructors
@@ -53,6 +54,10 @@ namespace HastaneOtomasyon.UIForms
                 txtKullaniciKodu.Enabled = false;
                 SetUpdateUser();
             }
+            else
+            {
+                SetDefaultValues();
+            }
         }
 
         /// <summary>
@@ -84,6 +89,36 @@ namespace HastaneOtomasyon.UIForms
             dateDogumTarihi.Value = (updateUser.DogumTarihi < dateIseBaslama.MinDate) ? dateIseBaslama.MinDate : updateUser.DogumTarihi;
             txtTcKimlikNumarasi.Text = updateUser.TcKimlikNo;
             txtKullaniciAdi.Text = updateUser.UserName;
+        }
+
+        /// <summary>
+        /// default değerler girilir
+        /// </summary>
+        private void SetDefaultValues()
+        {
+            dateDogumTarihi.Value = DateTime.Today;
+            dateDogumTarihi.Value = DateTime.Today;
+            GetUnvan();
+            cmbUnvani.DataSource = unvans;
+        }
+
+        /// <summary>
+        /// ünvan kayıtlarınık getirir
+        /// </summary>
+        private void GetUnvan()
+        {
+            var request = new Request<bool,List<string>>();
+            request.MethodName = "SelectUnvan";
+
+            var response = request.Execute();
+            if (!response.Success)
+            {
+                Messaging.DialogErrorMessage("unvan listesi alınamadı");
+                return;
+            }
+
+            unvans = new List<string>();
+            unvans = response.Value;
         }
 
         /// <summary>
@@ -237,7 +272,7 @@ namespace HastaneOtomasyon.UIForms
                     var request = new Request<User, bool>();
                     request.MethodName = "DeleteUser";
                     User user = new User{ Kodu= Convert.ToInt32(txtKullaniciKodu.Text)};
-                    var response = request.Execute(new object[] { user });
+                    var response = request.Execute( user );
                     if (!response.Success)
                     {
                         Messaging.DialogErrorMessage(Messaging.msg_silmeHata + response.ErrorMessage);

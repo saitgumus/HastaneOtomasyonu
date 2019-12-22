@@ -36,28 +36,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDosyaNo = new System.Windows.Forms.TextBox();
             this.txtTutar = new System.Windows.Forms.TextBox();
             this.btnVazgec = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
+            this.txtDosyaNo = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // dateCikisTarihi
             // 
             this.dateCikisTarihi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateCikisTarihi.Location = new System.Drawing.Point(167, 98);
-            this.dateCikisTarihi.Margin = new System.Windows.Forms.Padding(4);
+            this.dateCikisTarihi.Location = new System.Drawing.Point(125, 80);
             this.dateCikisTarihi.Name = "dateCikisTarihi";
-            this.dateCikisTarihi.Size = new System.Drawing.Size(241, 28);
+            this.dateCikisTarihi.Size = new System.Drawing.Size(218, 24);
             this.dateCikisTarihi.TabIndex = 13;
             // 
             // dateSevkTarihi
             // 
             this.dateSevkTarihi.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateSevkTarihi.Location = new System.Drawing.Point(167, 62);
-            this.dateSevkTarihi.Margin = new System.Windows.Forms.Padding(4);
+            this.dateSevkTarihi.Location = new System.Drawing.Point(125, 50);
             this.dateSevkTarihi.Name = "dateSevkTarihi";
-            this.dateSevkTarihi.Size = new System.Drawing.Size(241, 28);
+            this.dateSevkTarihi.Size = new System.Drawing.Size(218, 24);
             this.dateSevkTarihi.TabIndex = 14;
             // 
             // cmbOdemeSekli
@@ -70,10 +68,9 @@
             "Kredi Kartı - Tek Çekim",
             "Çek",
             "Senet"});
-            this.cmbOdemeSekli.Location = new System.Drawing.Point(167, 134);
-            this.cmbOdemeSekli.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbOdemeSekli.Location = new System.Drawing.Point(125, 109);
             this.cmbOdemeSekli.Name = "cmbOdemeSekli";
-            this.cmbOdemeSekli.Size = new System.Drawing.Size(240, 29);
+            this.cmbOdemeSekli.Size = new System.Drawing.Size(217, 25);
             this.cmbOdemeSekli.TabIndex = 12;
             // 
             // label5
@@ -81,10 +78,9 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(49, 178);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(21, 145);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 21);
+            this.label5.Size = new System.Drawing.Size(89, 17);
             this.label5.TabIndex = 7;
             this.label5.Text = "Toplam Tutar :";
             // 
@@ -93,10 +89,9 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(54, 142);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(24, 115);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 21);
+            this.label4.Size = new System.Drawing.Size(84, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Ödeme Şekli :";
             // 
@@ -105,10 +100,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(66, 105);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(34, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 21);
+            this.label3.Size = new System.Drawing.Size(73, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Çıkış Tarihi :";
             // 
@@ -117,10 +111,9 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 68);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(34, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 21);
+            this.label2.Size = new System.Drawing.Size(74, 17);
             this.label2.TabIndex = 10;
             this.label2.Text = "Sevk Tarihi :";
             // 
@@ -129,29 +122,18 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(74, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(40, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 21);
+            this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "Dosya No :";
-            // 
-            // txtDosyaNo
-            // 
-            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosyaNo.Location = new System.Drawing.Point(167, 26);
-            this.txtDosyaNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDosyaNo.Name = "txtDosyaNo";
-            this.txtDosyaNo.Size = new System.Drawing.Size(241, 28);
-            this.txtDosyaNo.TabIndex = 5;
             // 
             // txtTutar
             // 
             this.txtTutar.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTutar.Location = new System.Drawing.Point(166, 171);
-            this.txtTutar.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTutar.Location = new System.Drawing.Point(124, 139);
             this.txtTutar.Name = "txtTutar";
-            this.txtTutar.Size = new System.Drawing.Size(241, 28);
+            this.txtTutar.Size = new System.Drawing.Size(218, 24);
             this.txtTutar.TabIndex = 6;
             // 
             // btnVazgec
@@ -164,11 +146,13 @@
             this.btnVazgec.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVazgec.Image = global::HastaneOtomasyon.Properties.Resources.round_remove_32x32;
             this.btnVazgec.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVazgec.Location = new System.Drawing.Point(252, 280);
+            this.btnVazgec.Location = new System.Drawing.Point(191, 230);
+            this.btnVazgec.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVazgec.Name = "btnVazgec";
-            this.btnVazgec.Size = new System.Drawing.Size(155, 40);
+            this.btnVazgec.Size = new System.Drawing.Size(149, 39);
             this.btnVazgec.TabIndex = 49;
             this.btnVazgec.Text = "Vazgec";
+            this.btnVazgec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVazgec.UseVisualStyleBackColor = false;
             // 
             // btnKaydet
@@ -181,19 +165,32 @@
             this.btnKaydet.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKaydet.Image = global::HastaneOtomasyon.Properties.Resources.Save1;
             this.btnKaydet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKaydet.Location = new System.Drawing.Point(251, 221);
+            this.btnKaydet.Location = new System.Drawing.Point(190, 182);
+            this.btnKaydet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnKaydet.Name = "btnKaydet";
-            this.btnKaydet.Size = new System.Drawing.Size(156, 40);
+            this.btnKaydet.Size = new System.Drawing.Size(150, 39);
             this.btnKaydet.TabIndex = 48;
             this.btnKaydet.Text = "Kaydet";
+            this.btnKaydet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnKaydet.UseVisualStyleBackColor = false;
+            // 
+            // txtDosyaNo
+            // 
+            this.txtDosyaNo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosyaNo.Location = new System.Drawing.Point(124, 22);
+            this.txtDosyaNo.Mask = "00000";
+            this.txtDosyaNo.Name = "txtDosyaNo";
+            this.txtDosyaNo.PromptChar = ' ';
+            this.txtDosyaNo.Size = new System.Drawing.Size(216, 23);
+            this.txtDosyaNo.TabIndex = 59;
             // 
             // DischargedPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(207)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(436, 363);
+            this.ClientSize = new System.Drawing.Size(376, 299);
+            this.Controls.Add(this.txtDosyaNo);
             this.Controls.Add(this.btnVazgec);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.dateCikisTarihi);
@@ -204,11 +201,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtDosyaNo);
             this.Controls.Add(this.txtTutar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DischargedPanel";
             this.Text = "Taburcu";
+            this.Load += new System.EventHandler(this.DischargedPanel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,9 +221,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDosyaNo;
         private System.Windows.Forms.TextBox txtTutar;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.Button btnVazgec;
+        private System.Windows.Forms.MaskedTextBox txtDosyaNo;
     }
 }

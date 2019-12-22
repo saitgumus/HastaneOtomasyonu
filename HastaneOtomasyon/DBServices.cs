@@ -237,7 +237,6 @@ namespace HastaneOtomasyon
             cmd.Parameters.AddWithValue("@Miktar", data.Miktar);
             cmd.Parameters.AddWithValue("@BirimFiyat", data.BirimFiyat);
             cmd.Parameters.AddWithValue("@Sira", data.Sira);
-            cmd.Parameters.AddWithValue("@ToplamTutar", data.ToplamTutar);
             cmd.Parameters.AddWithValue("@Taburcu", data.Taburcu);
             try
             {
@@ -248,7 +247,8 @@ namespace HastaneOtomasyon
                 Common.WriteLog("error", e.Message);
                 returnObject.Success = false;
                 returnObject.ErrorMessage = e.Message;
-                throw;
+                endConnectDB();
+                return returnObject;
             }
 
             returnObject.Success = true;
@@ -283,7 +283,7 @@ namespace HastaneOtomasyon
                 Common.WriteLog("error", e.Message);
                 returnObject.Success = false;
                 returnObject.ErrorMessage = e.Message;
-                throw;
+                return returnObject;
             }
 
             returnObject.Success = true;
@@ -493,7 +493,7 @@ namespace HastaneOtomasyon
                 Common.WriteLog("error", e.Message);
                 returnObject.Success = false;
                 returnObject.ErrorMessage = e.Message;
-                throw;
+                return returnObject;
             }
 
             returnObject.Success = true;
@@ -653,13 +653,13 @@ namespace HastaneOtomasyon
         public GenericResponse<List<Patient>> SelectPatient(string[] fields, string filter)
         {
             var returnObject = new GenericResponse<List<Patient>>();
-
             ConnectDB();
             var sqlCommand = new SqlCommand
             {
                 CommandText = Common.CreateProcedureText(Common.patientTable, fields, filter),
                 Connection = conSOHATS
             };
+           
             var dr = sqlCommand.ExecuteReader();
 
             var data = new List<Patient>();
@@ -870,7 +870,7 @@ namespace HastaneOtomasyon
                     SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]),
                     DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
                     Sira = SQLDBHelper.GetIntValue(dr["sira"]),
-                    Saat = SQLDBHelper.GetDateTimeValue(dr["saat"]),
+                    Saat = SQLDBHelper.GetStringValue(dr["saat"]),
                     YapilanIslem = SQLDBHelper.GetStringValue(dr["yapilanislem"]),
                     DrKod = SQLDBHelper.GetIntValue(dr["drkod"]),
                     Miktar = SQLDBHelper.GetIntValue(dr["miktar"]),
@@ -912,7 +912,7 @@ namespace HastaneOtomasyon
                     SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]),
                     DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]),
                     Sira = SQLDBHelper.GetIntValue(dr["sira"]),
-                    Saat = SQLDBHelper.GetDateTimeValue(dr["saat"]),
+                    Saat = SQLDBHelper.GetStringValue(dr["saat"]),
                     YapilanIslem = SQLDBHelper.GetStringValue(dr["yapilanislem"]),
                     DrKod = SQLDBHelper.GetIntValue(dr["drkod"]),
                     Miktar = SQLDBHelper.GetIntValue(dr["miktar"]),
@@ -929,6 +929,100 @@ namespace HastaneOtomasyon
             return returnObject;
         }
 
+        /// <summary>
+        /// ünvan tablosu kayıtlarını getirir.
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<string>> SelectUnvan()
+        {
+            var returnObject = new GenericResponse<List<string>>();
+
+            ConnectDB();
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.unvanTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            var data = new List<string>();
+            while (dr.Read())
+            {
+                var dt = SQLDBHelper.GetStringValue(dr["unvanadı"]);
+                data.Add(dt);
+            }
+
+            returnObject.Success = true;
+            returnObject.Value = data;
+            endConnectDB();
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// odeme türlerini getirir
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<string>> SelectOdeme()
+        {
+            var returnObject = new GenericResponse<List<string>>();
+
+            ConnectDB();
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = Common.CreateProcedureText(Common.odemeTable, null, null);
+            sqlCommand.Connection = conSOHATS;
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            var data = new List<string>();
+            while (dr.Read())
+            {
+                var dt = SQLDBHelper.GetStringValue(dr["odemeSekli"]);
+                data.Add(dt);
+            }
+
+            returnObject.Success = true;
+            returnObject.Value = data;
+            endConnectDB();
+
+            return returnObject;
+        }
+
+        /// <summary>
+        /// son dosya numarasını döndürür
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<int> SelectDosyaNo()
+        {
+            var returnObject = new GenericResponse<Int32>();
+
+            ConnectDB();
+
+            var cmd = new SqlCommand(Common.sondosyanumarasıgetir, conSOHATS);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Common.WriteLog("error", e.Message);
+                returnObject.Success = false;
+                returnObject.ErrorMessage = e.Message;
+                return returnObject;
+            }
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            var data = new List<string>();
+            while (dr.Read())
+            {
+                returnObject.Value = SQLDBHelper.GetIntValue(dr["dosyano"]);
+            }
+
+            returnObject.Success = true;
+            endConnectDB();
+
+            return returnObject;
+        }
         #endregion
     }
 }

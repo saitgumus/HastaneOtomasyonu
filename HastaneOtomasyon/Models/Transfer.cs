@@ -12,7 +12,7 @@ namespace HastaneOtomasyon.Models
         private DateTime sevkTarihi;
         private int dosyaNo;
         private string poliklinik;
-        private DateTime saat;
+        private string saat;
         private string yapilanIslem;
         private int drKod;
         private int miktar;
@@ -55,7 +55,7 @@ namespace HastaneOtomasyon.Models
                 poliklinik = value;
             }
         }
-        public DateTime Saat
+        public string Saat
         {
             get
             {

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using HastaneOtomasyon.Models;
 using System.IO;
 using System.Drawing;
+using System.Reflection;
 
 namespace HastaneOtomasyon
 {
@@ -160,6 +161,7 @@ namespace HastaneOtomasyon
 
         /// <summary>
         /// boş bırakılan text alanlarını işaretler
+        /// boş değer/ler varsa false döner
         /// </summary>
         /// <param name="control"></param>
         public static bool SpaceControlAll(ref Panel control)
@@ -208,6 +210,43 @@ namespace HastaneOtomasyon
         }
 
         /// <summary>
+        /// tek bir kontrol için (textb,mask,combo)
+        /// </summary>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        public static bool SpaceControlOne(ref Control control)
+        {
+            bool returnObject = true;
+            if (control.GetType() == typeof(TextBox) || control.GetType() == typeof(MaskedTextBox))
+            {
+                if (!SpaceControl(control.Text))
+                {
+                    control.BackColor = Color.LightCoral;
+                    returnObject = false;
+                }
+                else
+                {
+                    control.BackColor = Color.White;
+                }
+            }
+
+            if (control.GetType() == typeof(ComboBox))
+            {
+                if ((control as ComboBox).SelectedIndex < 0 )
+                {
+                    control.BackColor = Color.LightCoral;
+                    returnObject = false;
+                }
+                else
+                {
+                    control.BackColor = Color.White;
+                }
+            }
+
+            return returnObject;
+        }
+
+        /// <summary>
         /// değerin numeric olma durumu
         /// </summary>
         /// <param name="s"></param>
@@ -240,7 +279,10 @@ namespace HastaneOtomasyon
 
             foreach (var item in parent.Controls.OfType<ComboBox>())
             {
-                item.SelectedIndex = 0;
+                if (item.Items.Count > 0)
+                {
+                    item.SelectedIndex = 0;
+                }
             }
         }
 
@@ -253,7 +295,11 @@ namespace HastaneOtomasyon
         public const string ConnectionString = @"Server=.\; Database= SOHATS; Integrated Security = SSPI";
         public const string LogPath = @"./SOHATS_LOG.txt";
         public const string AdminText = "Evet";
-        public const string PolyclinicStatus = "Aktif";
+        public const string PolyclinicStatusAktif = "Aktif";
+        public const string PolyclinicStatusPasif = "Pasif";
+        public const string TaburcuTxt = "Taburcu";
+        public const string TaburcuDegilTxt = "Taburcu Degil";
+
         #region procedure names
         public const string hastasil = "delete_hasta";
         public const string kullanıcısil = "delete_kullanici";
@@ -272,6 +318,7 @@ namespace HastaneOtomasyon
         public const string sevkGuncelle = "update_sevk";
         public const string dosyanoilehastagetir = "dosyano_ile_bul";
         public const string dosyanoilesevkgetir = "sel_sevkByDosyaNo";
+        public const string sondosyanumarasıgetir = "sel_sondosyanumarası";
 
 
         public const string userTable = "kullanici";
@@ -280,6 +327,9 @@ namespace HastaneOtomasyon
         public const string operationTable = "islem";
         public const string dischargedTable = "cikis";
         public const string transferTable = "sevk";
+        public const string unvanTable = "unvan";
+        public const string odemeTable = "odeme";
+
 
         /// <summary>
         /// procedure için commandtext oluşturur
@@ -338,6 +388,25 @@ namespace HastaneOtomasyon
         }
 
         /// <summary>
+        /// verilen sınıfın public değerlerni döndürür.
+        /// her değerin tipini value olarak girer
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, Type> GetClassPropertyDictionary<T>()
+        {
+            var returnObject = new Dictionary<string, Type>();
+
+            Type t = typeof(T);
+
+            foreach (PropertyInfo info in t.GetProperties())
+            {
+                returnObject.Add(info.Name,info.PropertyType);
+            }
+
+            return returnObject;
+        }
+
+        /// <summary>
         /// eğer sadece alfabetik veya silme tuşu ise true döner.
         /// </summary>
         /// <param name="e"></param>
@@ -347,7 +416,16 @@ namespace HastaneOtomasyon
             return (char.IsLetter(e.KeyChar) || e.KeyChar == (char) Keys.Back);
         }
 
-       
+        /// <summary>
+        /// eğer sadece numeric veya silme tuşu ise true döner.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static bool ControlNumeric(KeyPressEventArgs e)
+        {
+            return (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
         #endregion
 
         #endregion
@@ -400,4 +478,14 @@ namespace HastaneOtomasyon
         }
 
     }
+
+    /// <summary>
+    /// dosya numarası işlemleri
+    /// </summary>
+    public static class Dosya
+    { 
+        public static int SonDosyaNumarası = 0;
+    }
+
+
 }
