@@ -1023,6 +1023,50 @@ namespace HastaneOtomasyon
 
             return returnObject;
         }
-        #endregion
+
+        /// <summary>
+        /// listeleme ekranı için filtreli veri döndürür
+        /// </summary>
+        /// <returns></returns>
+        public GenericResponse<List<TransferListContract>> SelectGeneralList(TransferListContract contract)
+        {
+            var returnObject = new GenericResponse<List<TransferListContract>>();
+
+            ConnectDB();
+
+            var cmd = new SqlCommand(Common.genellistelemegetir,conSOHATS);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@dosyano", contract.DosyaNo);
+            cmd.Parameters.AddWithValue("@tckimlikno", contract.Tckimlikno);
+            cmd.Parameters.AddWithValue("@baslangictarihi", contract.SevkTarihi);
+            cmd.Parameters.AddWithValue("@bitistarihi", contract.CikisTarihi);
+            cmd.Parameters.AddWithValue("@taburcu", contract.Taburcu);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            List<TransferListContract> list = new List<TransferListContract>();
+            TransferListContract data;
+            while (dr.Read())
+            {
+                data = new TransferListContract();
+                data.DosyaNo = SQLDBHelper.GetIntValue(dr["dosyano"]);
+                data.PoliklinikAdi = SQLDBHelper.GetStringValue(dr["poliklinikadi"]);
+                data.HastaAdı = SQLDBHelper.GetStringValue(dr["ad"]);
+                data.HastaSoyadı = SQLDBHelper.GetStringValue(dr["soyad"]);
+                data.DoktorAdı = SQLDBHelper.GetStringValue(dr["doktor"]);
+                data.SevkTarihi = SQLDBHelper.GetDateTimeValue(dr["sevktarihi"]);
+                data.CikisTarihi = SQLDBHelper.GetDateTimeValue(dr["cikistarihi"]);
+                data.Taburcu = SQLDBHelper.GetStringValue(dr["taburcu"]);
+                data.odeme = SQLDBHelper.GetStringValue(dr["odeme"]);
+                data.ToplamTutar = SQLDBHelper.GetIntValue(dr["toplamtutar"]);
+                list.Add(data);
+            }
+
+            endConnectDB();
+            returnObject.Success = true;
+            returnObject.Value = list;
+            return returnObject;
+        }
+
+            #endregion
     }
 }

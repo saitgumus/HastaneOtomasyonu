@@ -84,5 +84,29 @@ namespace HastaneOtomasyon.UIForms
             patientOperations.MdiParent = this;
             patientOperations.Show();
         }
+
+        /// <summary>
+        /// listelem ekranını açar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listeleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listForm lf = new listForm();
+            lf.MdiParent = this;
+            lf.Show();
+        }
+
+        /// <summary>
+        /// rapor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuRaporlama_Click(object sender, EventArgs e)
+        {
+            ReportForm rf  = new ReportForm();
+            rf.MdiParent = this;
+            rf.Show();
+        }
     }
 }

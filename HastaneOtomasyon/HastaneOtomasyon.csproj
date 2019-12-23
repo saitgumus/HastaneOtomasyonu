@@ -32,10 +32,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>add-to-favorites.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +64,24 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Polyclinic.cs" />
     <Compile Include="Models\GenericResponse.cs" />
+    <Compile Include="Models\TransferListContract.cs" />
+    <Compile Include="rapor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rapor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SOHATSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SOHATSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\ReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\ReportForm.Designer.cs">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="Models\User.cs" />
@@ -130,6 +158,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rapor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rapor.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\AddPolyclinic.resx">
       <DependentUpon>AddPolyclinic.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +186,9 @@
     <EmbeddedResource Include="UIForms\PatientOperations.resx">
       <DependentUpon>PatientOperations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\ReportForm.resx">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\SearchFile.resx">
       <DependentUpon>SearchFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +204,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SOHATSDataSet.xsc">
+      <DependentUpon>SOHATSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SOHATSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SOHATSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SOHATSDataSet.xss">
+      <DependentUpon>SOHATSDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -256,6 +302,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="add-to-favorites.ico" />
+    <None Include="Resources\application_view_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

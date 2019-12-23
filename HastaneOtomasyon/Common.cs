@@ -319,6 +319,7 @@ namespace HastaneOtomasyon
         public const string dosyanoilehastagetir = "dosyano_ile_bul";
         public const string dosyanoilesevkgetir = "sel_sevkByDosyaNo";
         public const string sondosyanumarasıgetir = "sel_sondosyanumarası";
+        public const string genellistelemegetir = "sel_genelfiltre";
 
 
         public const string userTable = "kullanici";
